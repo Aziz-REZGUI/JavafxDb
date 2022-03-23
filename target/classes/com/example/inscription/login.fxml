@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="408.0" prefWidth="554.0" style="-fx-background-color: #6ccbc3;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inscription.LoginView">
+   <children>
+      <AnchorPane layoutX="7.0" layoutY="146.0" prefHeight="397.0" prefWidth="614.0" style="-fx-background-color: #f7f7f7;">
+         <children>
+            <Button fx:id="btn_validate" blendMode="SRC_ATOP" contentDisplay="TEXT_ONLY" layoutX="168.0" layoutY="256.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="30.0" prefWidth="278.0" style="-fx-background-color: #56a39b; -fx-background-radius: 10;" text="Sign in" textAlignment="CENTER" textOverrun="CLIP">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <effect>
+                  <Bloom />
+               </effect>
+            </Button>
+            <Label fx:id="loginMessagelabel" layoutX="262.0" layoutY="189.0" minHeight="-Infinity" prefWidth="120.0" text="avec succes" textFill="#e12121">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <Button blendMode="SRC_ATOP" contentDisplay="TEXT_ONLY" layoutX="429.0" layoutY="25.0" lineSpacing="1.0" mnemonicParsing="false" style="-fx-background-color: #56a39b;" text="Sign in" textAlignment="CENTER" textOverrun="CLIP" underline="true">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Button>
+      <Button fx:id="Sign_up" blendMode="SRC_ATOP" contentDisplay="TEXT_ONLY" layoutX="503.0" layoutY="25.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#gotosignupAction" onKeyPressed="#gotosignupAction" style="-fx-background-color: #56a39b;" text="Sign up" textAlignment="CENTER" textOverrun="CLIP">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Button>
+      <Label layoutX="70.0" layoutY="130.0" prefHeight="30.0" prefWidth="110.0" text="USERNAME" textFill="#56a39b" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="Bold Italic Art" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Usernamefield" focusTraversable="false" layoutX="63.0" layoutY="170.0" mouseTransparent="true" opacity="0.88" pickOnBounds="false" prefHeight="39.0" prefWidth="502.0" promptText="Username" style="-fx-background-color: #6ccbc3; -fx-background-radius: 40;" />
+      <Label layoutX="70.0" layoutY="230.0" prefHeight="30.0" prefWidth="110.0" text="PASSWORD" textFill="#56a39b" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="Bold Italic Art" size="15.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passwordfield" focusTraversable="false" layoutX="63.0" layoutY="270.0" prefHeight="39.0" prefWidth="502.0" promptText="PASSWORD" style="-fx-background-color: #6ccbc3; -fx-background-radius: 40;" />
+      <Label layoutX="92.0" layoutY="29.0" text="Login Form" textFill="#f7f7f7">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

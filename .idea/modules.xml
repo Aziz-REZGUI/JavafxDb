@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Mini_Projet_Fx.iml" filepath="$PROJECT_DIR$/Mini_Projet_Fx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inscription.iml" filepath="$PROJECT_DIR$/inscription.iml" />
     </modules>
   </component>
 </project>

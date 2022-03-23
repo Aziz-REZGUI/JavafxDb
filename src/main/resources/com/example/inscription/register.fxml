@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="474.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inscription.RegisterView">
+   <children>
+      <AnchorPane layoutY="82.0" prefHeight="390.0" prefWidth="520.0">
+         <children>
+            <Button fx:id="btn_signup" layoutX="279.0" layoutY="283.0" onAction="#registerButtonOnAction" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: #6ccbc3; -fx-background-radius: 10;" text="Register" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button id="Closebutton" layoutX="398.0" layoutY="283.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: #6ccbc3; -fx-background-radius: 10;" text="Close" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Label fx:id="RegisterMessagelabel" layoutX="307.0" layoutY="249.0" prefHeight="28.0" prefWidth="180.0" textFill="#ec3737" />
+            <PasswordField fx:id="txt_password" layoutX="302.0" layoutY="210.0" prefHeight="26.0" prefWidth="180.0" promptText="Password" />
+            <ImageView fitHeight="265.0" fitWidth="387.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/275943217_3036476296603930_2930074349567067427_n.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="302.0" layoutY="124.0" text="UserName" textOverrun="WORD_ELLIPSIS" />
+            <TextField id="UserNameTextField" fx:id="txt_username" layoutX="302.0" layoutY="148.0" prefHeight="26.0" prefWidth="180.0" promptText="UserName" />
+            <TextField id="FirstNameTextField" fx:id="txt_fullname" layoutX="302.0" layoutY="84.0" prefHeight="26.0" prefWidth="180.0" promptText="FullName" style="-fx-cursor: auto;" />
+            <Label layoutX="302.0" layoutY="60.0" text="FullName" textOverrun="WORD_ELLIPSIS" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="82.0" prefWidth="520.0" style="-fx-background-color: #6ccbc3;">
+         <children>
+            <ImageView fitHeight="42.0" fitWidth="69.0" layoutX="32.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/276017598_957078381611473_2217063712483159013_n.png" />
+               </image></ImageView>
+            <Label layoutX="92.0" layoutY="29.0" text="User Registration" textFill="#f7f7f7">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="300.0" layoutY="270.0" text="PassWord" textOverrun="WORD_ELLIPSIS" />
+   </children>
+</AnchorPane>
