@@ -58,7 +58,6 @@ public class LoginView extends Application {
         window.show();
     }
 
-    //Login-btn
     public void loginButtonOnAction(ActionEvent event) throws IOException {
         if (username.getText().isBlank() || password.getText().isBlank()) {
             alert("Please enter your password and username");
@@ -86,7 +85,7 @@ public class LoginView extends Application {
         }
     }
 
-    // alerte
+
     private Alert alert(String alertText) {
         Alert alert = new Alert(ERROR, alertText, OK);
         DialogPane dialogPane = alert.getDialogPane();
