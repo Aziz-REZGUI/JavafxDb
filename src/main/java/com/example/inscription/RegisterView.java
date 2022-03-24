@@ -41,6 +41,7 @@ public class RegisterView {
 
             if (RegisterController.validateRegister(user)) {
                 alert("Welcome");
+                // TODO check exisatance
             } else {
                 alert("operation echoué");
             }
