@@ -54,13 +54,13 @@ public class Databaseconnection {
         boolean state;
         try {
             //statement.executeUpdate("INSERT INTO utilisateur (login,password,full_name,role) VALUES ('" + user.getLogin() + "','" + user.getPassword() + "','" + user.getFullname() + "','" + user.getRole() + "')");
-                pr = cn.prepareStatement("insert into utilisateur(login,password,full_name,role) values(?,?,?,?)");
-                // pr.setInt(1, eid);
-                pr.setString(1, user.getLogin());
-                pr.setString(2, user.getPassword());
-                pr.setString(3, user.getFullname());
-                pr.setString(4, user.getRole());
-             pr.executeUpdate();
+            pr = cn.prepareStatement("insert into utilisateur(login,password,full_name,role) values(?,?,?,?)");
+            // pr.setInt(1, eid);
+            pr.setString(1, user.getLogin());
+            pr.setString(2, user.getPassword());
+            pr.setString(3, user.getFullname());
+            pr.setString(4, user.getRole());
+            pr.executeUpdate();
             System.out.println("L'utilisateur a été ajouté avec succès.");
             state = true;
         } catch (SQLException e) {

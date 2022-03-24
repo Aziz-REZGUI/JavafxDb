@@ -1,81 +1,79 @@
 package com.example.inscription;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static javafx.scene.control.Alert.AlertType.INFORMATION;
+import static javafx.scene.control.ButtonType.OK;
 
-public class RegisterView extends Application {
+public class RegisterView {
+    private Stage stage;
+
     @FXML
-    private Label RegisterMessagelabel;
+    private Label sign_in;
     @FXML
-    private TextField txt_username;
+    private TextField text_username;
     @FXML
     private PasswordField txt_password;
     @FXML
     private TextField txt_fullname;
     @FXML
-    private Button btn_signup;
+    private Button Btn_signin;
 
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(RegisterView.class.getResource("register.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 700);
+    @FXML
+    public void RegisterButtonOnAction(ActionEvent event) throws SQLException {
 
-        stage.setTitle("Signup");
+        String fullname = txt_fullname.getText().trim();
+        String username = text_username.getText().trim();
+        String password = txt_password.getText();
+        if (username.isEmpty() || password.isEmpty() || fullname.isEmpty()) {
+            alert("Please enter your data");
+        } else {
+            User user = new User(fullname, username, password);
+
+            if (RegisterController.validateRegister(user)) {
+                alert("Welcome");
+            } else {
+                alert("operation echoué");
+            }
+        }
+
+
+    }
+
+
+    private Alert alert(String alertText) {
+        Alert alert = new Alert(INFORMATION, alertText, OK);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("login.css").toExternalForm());
+        dialogPane.getStyleClass().add("myDialog");
+        alert.show();
+        return alert;
+    }
+
+
+    // To go to the login page
+    @FXML
+    public void sign_in(javafx.scene.input.MouseEvent mouseEvent) throws IOException {
+        Parent signUp = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene scene = new Scene(signUp, 1500, 870);
+        scene.getStylesheets().add(this.getClass().getResource("login.css").toExternalForm());
+
+        //This line gets the stage information
+        stage = (Stage) sign_in.getScene().getWindow();
         stage.setScene(scene);
+        stage.setTitle("Sign up");
+        stage.setMaximized(true);
         stage.show();
     }
 
-
-    public void registerButtonOnAction(ActionEvent event) throws SQLException {
-
-        String fullname = txt_fullname.getText().trim();
-        String username = txt_username.getText().trim();
-        String password = txt_password.getText();
-        if (username.isEmpty() && password.isEmpty() && fullname.isEmpty()) {
-            RegisterMessagelabel.setText("Please enter your data");
-        }
-       /* else{ if (password.isEmpty()) {
-            RegisterMessagelabel.setText("Empty Password Please fill in the password");
-
-        } else if (username.isEmpty()) {
-            RegisterMessagelabel.setText("Empty Username Please fill in the Username");
-
-        } else if (fullname.isEmpty()) {
-            RegisterMessagelabel.setText("Empty Fullname Please fill in the name");
-
-        } */else {
-            {
-                User user = new User(fullname,username, password);
-
-                if (RegisterController.validateRegister(user)) {
-                    RegisterMessagelabel.setText("Welcome");
-                } else {
-                    RegisterMessagelabel.setText("operation echoué");
-                }
-            }
-
-
-        }
-
-
-    }
-
-
-    public static void main(String[] args) {
-        launch(args);
-
-    }
 
 }
