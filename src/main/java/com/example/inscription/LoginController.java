@@ -8,8 +8,9 @@ public class LoginController {
     public static boolean validatelogin(User user) {
 
         Connection connectDB = Databaseconnection.getConnection();
-        Databaseconnection con = new Databaseconnection();
-        return con.login(connectDB, user);
+        // Databaseconnection con = new Databaseconnection();
+        return user.login(connectDB);
+
 
     }
 

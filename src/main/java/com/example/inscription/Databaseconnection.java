@@ -24,7 +24,7 @@ public class Databaseconnection {
         return databaselink;
     }
 
-    public boolean login(Connection cn, User user) {
+    /*public boolean login(Connection cn, User user) {
         boolean state = false;
         try {
             pr = cn.prepareStatement("select count(1) from utilisateur where login = '" + user.getLogin() + "' and password = '" + user.getPassword() + "'");
@@ -46,10 +46,10 @@ public class Databaseconnection {
         }
 
         return state;
-    }
+    }*/
 
 
-    public boolean addUser(Connection cn, User user) throws SQLException {
+   /* public boolean addUser(Connection cn, User user) throws SQLException {
 
         //Statement statement = cn.createStatement();
         boolean state;
@@ -68,10 +68,10 @@ public class Databaseconnection {
             state = false;
         }
         return state;
-    }
+    }*/
 //ajouter un participant
 
-    public boolean ajouter_participant(Connection Cx, Participant participant) throws SQLException {
+   /* public boolean ajouter_participant(Connection Cx, Participant participant) throws SQLException {
         boolean state;
 
         try {
@@ -138,7 +138,7 @@ public class Databaseconnection {
         }
         return state;
 
-    }
+    }*/
 
 }
 

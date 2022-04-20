@@ -8,9 +8,9 @@ import java.sql.SQLException;
 public class RegisterController {
     public static boolean validateRegister(User user) throws SQLException {
         Connection connectDB = Databaseconnection.getConnection();
-        Databaseconnection con = new Databaseconnection();
+        //Databaseconnection con = new Databaseconnection();
 
-        return con.addUser(connectDB, user);
+        return user.register(connectDB);
     }
 
 }
