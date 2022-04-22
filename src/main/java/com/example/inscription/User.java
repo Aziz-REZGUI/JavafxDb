@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class User {
 
@@ -92,6 +93,76 @@ public class User {
             state = false;
         }
         return state;
+    }
+    public List<Participant> getParticipants()
+    {
+        return null;
+    }
+    public boolean ajouter_participant(Participant participant,Connection Cx) throws SQLException {
+        boolean state;
+
+        try {
+            //   java.sql.Statement st = Cx.createStatement();
+            PreparedStatement pst = Cx.prepareStatement("insert into participant(matricule,nom,prenom,date_naissance) values(?,?,?,?) ");
+            pst.setString(2, participant.getNom());
+            pst.setString(3, participant.getPrenom());
+            pst.setDate(4, (java.sql.Date) participant.getDate_naissance());
+            pst.executeUpdate();
+            System.out.println("participant a été ajouté avec succès.");
+            state = true;
+        } catch (SQLException e) {
+            state = false;
+        }
+        return state;
+    }
+
+    public boolean supprimer_participant(Participant participant,Connection Cx){
+        boolean state = false;
+        try
+        {   java.sql.Statement st = Cx.createStatement();
+
+            pr = Cx.prepareStatement("DELETE FROM participant(matricule,nom,prenom,date_naissance) where matricule="+participant.getMatricule());
+            pr.executeUpdate();
+        }
+        catch (SQLException e) {
+            state = false;
+        }
+        return state;
+
+    }
+    public boolean Chercher_participant(Participant participant ,Connection Cx){
+        boolean state = false;
+        try
+        {   java.sql.Statement st = Cx.createStatement();
+
+            pr = Cx.prepareStatement("SELECT  * FROM participant(matricule,nom,prenom,date_naissance) where matricule="+participant.getMatricule());
+            pr.executeUpdate();
+
+        }
+        catch (SQLException e) {
+            state = false;
+        }
+        return state;
+
+    }
+    //update_participant
+    public boolean modifiier_participant(Participant participant,Connection Cx){
+        boolean state = false;
+        try
+        {   java.sql.Statement st = Cx.createStatement();
+
+            pr = Cx.prepareStatement("UPDATE participant(matricule,nom,prenom,date_naissance) SET values (?,?,?,?)");
+            pr.setInt(1, participant.getMatricule());
+            pr.setString(2, participant.getNom());
+            pr.setString(3, participant.getPrenom());
+            pr.setDate(4, (java.sql.Date) participant.getDate_naissance());
+            pr.executeUpdate();
+        }
+        catch (SQLException e) {
+            state = false;
+        }
+        return state;
+
     }
 
 }
