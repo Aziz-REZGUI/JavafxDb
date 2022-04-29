@@ -60,14 +60,38 @@ public class UserDao implements Crud<User> {
 
     @Override
     public boolean update(User user) {
-        //TOOO
-        return false;
+        boolean state = false;
+        try {
+            java.sql.Statement st = c.createStatement();
+
+            pr = c.prepareStatement("UPDATE utilisateur SET login=?,password=?,role=?,full_name=? where code_utilisateur=? ");
+            pr.setString(1, user.getLogin());
+            pr.setString(2, user.getPassword());
+            pr.setString(3, user.getRole());
+            pr.setString(4, user.getFullname());
+            pr.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+        return state;
+
+
     }
 
     @Override
     public boolean delete(User user) {
-        //TODO
-        return false;
+        boolean state = false;
+        try {
+            java.sql.Statement st = c.createStatement();
+
+            pr = c.prepareStatement("DELETE FROM utilisateur where code_utilisateur=" + user.getCodeutilisateur());
+            pr.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+        return state;
     }
 
     @Override

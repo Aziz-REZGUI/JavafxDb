@@ -1,7 +1,6 @@
 package com.example.inscription.Daos;
 
 import com.example.inscription.Classes.Profil;
-import com.example.inscription.Classes.Profil;
 import com.example.inscription.Databaseconnection;
 import com.example.inscription.Interfaces.Crud;
 
@@ -18,7 +17,7 @@ public class ProfileDao implements Crud<Profil> {
         List<Profil> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  * FROM profil(code_Profil,libelle)");
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM profil");
 
             while (resultSet.next()) {
                 Profil temp = new Profil(resultSet.getInt("code_profil"), resultSet.getString("libelle"));
@@ -96,14 +95,14 @@ public class ProfileDao implements Crud<Profil> {
         try {
             java.sql.Statement st = c.createStatement();
 
-            pr = c.prepareStatement("UPDATE profil(code_profil,libelle) SET values (?,?)");
-            pr.setInt(1, profil.getCode_profil());
-            pr.setString(2, profil.getLibelle());
+            pr = c.prepareStatement("UPDATE profil SET libelle=? where code_profil=? ");
+            pr.setString(1, profil.getLibelle());
+            pr.setInt(2, profil.getCode_profil());
+
             pr.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
-            state = false;
         }
         return state;
 

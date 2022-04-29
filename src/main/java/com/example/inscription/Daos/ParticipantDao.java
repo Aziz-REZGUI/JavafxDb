@@ -1,13 +1,12 @@
 package com.example.inscription.Daos;
 
 import com.example.inscription.Classes.Participant;
+import com.example.inscription.Classes.Profil;
 import com.example.inscription.Databaseconnection;
 import com.example.inscription.Interfaces.Crud;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParticipantDao implements Crud<Participant> {
@@ -16,8 +15,22 @@ public class ParticipantDao implements Crud<Participant> {
 
     @Override
     public List<Participant> findAll() {
-        //TODO
-        return null;
+        List<Participant> output = new ArrayList<>();
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM participant");
+
+            while (resultSet.next()) {
+                Participant temp = new Participant(resultSet.getInt("matricule"), resultSet.getString("nom"), resultSet.getString("prenom"));
+                output.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+
     }
 
     @Override
@@ -26,7 +39,7 @@ public class ParticipantDao implements Crud<Participant> {
         try {
             java.sql.Statement st = c.createStatement();
 
-            pr = c.prepareStatement("UPDATE participant(matricule,nom,prenom,date_naissance) SET values (?,?,?,?)");
+            pr = c.prepareStatement("UPDATE participant SET nom=?,prenom=?,date_naissance=? where matricule=?");
             pr.setInt(1, participant.getMatricule());
             pr.setString(2, participant.getNom());
             pr.setString(3, participant.getPrenom());
@@ -35,7 +48,7 @@ public class ParticipantDao implements Crud<Participant> {
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
-            state = false;
+
         }
         return state;
 
@@ -73,15 +86,13 @@ public class ParticipantDao implements Crud<Participant> {
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
-            state = false;
+
         }
         return state;
 
     }
 
-    /*
 
-     */
     @Override
     public boolean exists(Participant participant) {
         boolean state = false;
@@ -96,7 +107,7 @@ public class ParticipantDao implements Crud<Participant> {
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
-            state = false;
+
         }
         return state;
     }

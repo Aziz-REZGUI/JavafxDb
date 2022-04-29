@@ -16,7 +16,7 @@ public class DomainDao implements Crud<Domaine> {
         List<Domaine> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  * FROM profil(code_domaine,libelle)");
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM domaine");
 
             while (resultSet.next()) {
                 Domaine temp = new Domaine(resultSet.getInt("code_domain"), resultSet.getString("libelle"));
@@ -61,7 +61,7 @@ public class DomainDao implements Crud<Domaine> {
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
-            state = false;
+
         }
         return state;
 
@@ -80,7 +80,7 @@ public class DomainDao implements Crud<Domaine> {
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
-            state = false;
+
         }
         return state;
 
@@ -92,14 +92,14 @@ public class DomainDao implements Crud<Domaine> {
         try {
             java.sql.Statement st = c.createStatement();
 
-            pr = c.prepareStatement("UPDATE profil(code_domaine,libelle) SET values (?,?)");
-            pr.setInt(1, domaine.getCode_domaine());
-            pr.setString(2, domaine.getLibelle());
+            pr = c.prepareStatement("UPDATE domaine SET libelle=?    where code_domaine=?");
+            pr.setString(1, domaine.getLibelle());
+            pr.setInt(2, domaine.getCode_domaine());
             pr.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
-            state = false;
+
         }
         return state;
 
