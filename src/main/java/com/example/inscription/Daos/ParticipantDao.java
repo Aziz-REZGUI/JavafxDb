@@ -6,6 +6,7 @@ import com.example.inscription.Interfaces.Crud;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class ParticipantDao implements Crud<Participant> {
 
     @Override
     public List<Participant> findAll() {
+        //TODO
         return null;
     }
 
@@ -77,21 +79,25 @@ public class ParticipantDao implements Crud<Participant> {
 
     }
 
+    /*
+
+     */
     @Override
     public boolean exists(Participant participant) {
         boolean state = false;
         try {
             java.sql.Statement st = c.createStatement();
 
-            pr = c.prepareStatement("SELECT  * FROM participant(matricule,nom,prenom,date_naissance) where matricule=" + participant.getMatricule());
-            pr.executeUpdate();
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM participant(matricule,nom,prenom,date_naissance) where matricule=" + participant.getMatricule());
 
+            if (resultSet.next()) {
+                state = true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
             state = false;
         }
         return state;
-
     }
 }

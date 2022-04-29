@@ -1,13 +1,12 @@
 package com.example.inscription.Daos;
 
 import com.example.inscription.Classes.User;
+import com.example.inscription.Classes.User;
 import com.example.inscription.Databaseconnection;
 import com.example.inscription.Interfaces.Crud;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements Crud<User> {
@@ -34,8 +33,11 @@ public class UserDao implements Crud<User> {
     }
 
 
-    public boolean register(User user) {
-        Databaseconnection con = new Databaseconnection();
+
+
+
+    @Override
+    public boolean create(User user) {
         boolean state;
         try {
             //statement.executeUpdate("INSERT INTO utilisateur (login,password,full_name,role) VALUES ('" + user.getLogin() + "','" + user.getPassword() + "','" + user.getFullname() + "','" + user.getRole() + "')");
@@ -56,13 +58,6 @@ public class UserDao implements Crud<User> {
         return state;
     }
 
-
-    @Override
-    public boolean create(User user) {
-        //TODO
-        return false;
-    }
-
     @Override
     public boolean update(User user) {
         //TOOO
@@ -77,8 +72,21 @@ public class UserDao implements Crud<User> {
 
     @Override
     public List<User> findAll() {
-        //TODO
-        return null;
+        List<User> output = new ArrayList<>();
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM utilisateur");
+
+            while (resultSet.next()) {
+                User temp = new User(resultSet.getInt("code_utilisateur"), resultSet.getString("login"),resultSet.getString("password"),resultSet.getString("role"),resultSet.getString("full_name"));
+                output.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
     }
 
     @Override

@@ -8,6 +8,11 @@ public class Profil {
         this.libelle = libelle;
     }
 
+    public Profil(int code_profil, String libelle) {
+        this.code_profil = code_profil;
+        this.libelle = libelle;
+    }
+
     public int getCode_profil() {
         return code_profil;
     }

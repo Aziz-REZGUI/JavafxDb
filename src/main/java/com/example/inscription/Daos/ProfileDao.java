@@ -1,12 +1,12 @@
 package com.example.inscription.Daos;
 
 import com.example.inscription.Classes.Profil;
+import com.example.inscription.Classes.Profil;
 import com.example.inscription.Databaseconnection;
 import com.example.inscription.Interfaces.Crud;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileDao implements Crud<Profil> {
@@ -15,7 +15,22 @@ public class ProfileDao implements Crud<Profil> {
 
     @Override
     public List<Profil> findAll() {
-        return null;
+        List<Profil> output = new ArrayList<>();
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM profil(code_Profil,libelle)");
+
+            while (resultSet.next()) {
+                Profil temp = new Profil(resultSet.getInt("code_profil"), resultSet.getString("libelle"));
+                output.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+
     }
 
     @Override
@@ -60,9 +75,11 @@ public class ProfileDao implements Crud<Profil> {
         try {
             java.sql.Statement st = c.createStatement();
 
-            pr = c.prepareStatement("SELECT  * FROM profil(code_profil,libelle) where code_profil=" + profil.getCode_profil());
-            pr.executeUpdate();
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM profil(code_profil,libelle) where code_profil=" + profil.getCode_profil());
 
+            if (resultSet.next()) {
+                state = true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();

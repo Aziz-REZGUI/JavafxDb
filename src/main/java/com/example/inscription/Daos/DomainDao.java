@@ -4,9 +4,8 @@ import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Databaseconnection;
 import com.example.inscription.Interfaces.Crud;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DomainDao implements Crud<Domaine> {
@@ -14,7 +13,22 @@ public class DomainDao implements Crud<Domaine> {
     PreparedStatement pr = null;
 
     public List<Domaine> findAll() {
-        return null;
+        List<Domaine> output = new ArrayList<>();
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM profil(code_domaine,libelle)");
+
+            while (resultSet.next()) {
+                Domaine temp = new Domaine(resultSet.getInt("code_domain"), resultSet.getString("libelle"));
+                output.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+
     }
 
     @Override
@@ -57,11 +71,12 @@ public class DomainDao implements Crud<Domaine> {
     public boolean exists(Domaine domaine) {
         boolean state = false;
         try {
-            java.sql.Statement st = c.createStatement();
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM profil(code_domaine,libelle) where code_profil=" + domaine.getCode_domaine());
 
-            pr = c.prepareStatement("SELECT  * FROM profil(code_domaine,libelle) where code_profil=" + domaine.getCode_domaine());
-            pr.executeUpdate();
-
+            if (resultSet.next()) {
+                state = true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();

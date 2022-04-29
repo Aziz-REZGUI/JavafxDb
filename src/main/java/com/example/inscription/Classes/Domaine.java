@@ -8,6 +8,11 @@ public class Domaine {
         this.libelle = libelle;
     }
 
+    public Domaine(int code_domaine, String libelle) {
+        this.code_domaine = code_domaine;
+        this.libelle = libelle;
+    }
+
     public int getCode_domaine() {
         return code_domaine;
     }

@@ -1,18 +1,17 @@
 package com.example.inscription.Classes;
 
-import com.example.inscription.Databaseconnection;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-
 public class User {
 
 
     private int Codeutilisateur;
-    PreparedStatement pr;
+
+    public User(int codeutilisateur, String login, String password, String role, String fullname) {
+        Codeutilisateur = codeutilisateur;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.fullname = fullname;
+    }
 
     private String login, password, role, fullname;
 
@@ -49,7 +48,6 @@ public class User {
     public String getFullname() {
         return fullname;
     }
-
 
 
 }
