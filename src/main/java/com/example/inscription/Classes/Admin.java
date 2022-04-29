@@ -7,8 +7,14 @@ import java.util.List;
 
 public class Admin {
     private int code_admin;
-    PreparedStatement pr;
+
     private String login,password;
+
+    public Admin(int code_admin, String login, String password) {
+        this.code_admin = code_admin;
+        this.login = login;
+        this.password = password;
+    }
 
     public Admin(String login, String password) {
         this.login = login;

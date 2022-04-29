@@ -40,7 +40,7 @@ public class DomainDao implements Crud<Domaine> {
             PreparedStatement pst = c.prepareStatement("insert into domaine(libelle) values(?) ");
             pst.setString(1, domaine.getLibelle());
             pst.executeUpdate();
-            System.out.println("participant a été ajouté avec succès.");
+            System.out.println("domain a été ajouté avec succès.");
             state = true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -56,7 +56,7 @@ public class DomainDao implements Crud<Domaine> {
         try {
             java.sql.Statement st = c.createStatement();
 
-            pr = c.prepareStatement("DELETE FROM domaine(code_domaine,libelle) where code_profil=" + domaine.getCode_domaine());
+            pr = c.prepareStatement("DELETE FROM domaine where code_domaine=" + domaine.getCode_domaine());
             pr.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

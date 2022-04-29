@@ -23,7 +23,7 @@ public class FormateurDao implements Crud<Formateur> {
             pr.setString(2, formateur.getPrenom());
             pr.setString(3,formateur.getEmail());
             pr.executeUpdate();
-            System.out.println("organisme a été ajouté avec succès.");
+            System.out.println("formateur a été ajouté avec succès.");
             state = true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -35,14 +35,40 @@ public class FormateurDao implements Crud<Formateur> {
 
     @Override
     public boolean update(Formateur formateur) {
-        return false;
-        //TODO
+        boolean state = false;
+        try {
+            java.sql.Statement st = c.createStatement();
+
+            pr = c.prepareStatement("UPDATE formateur SET Nom=?,Prenom=?,Email=?,N_tel=?    where Code_formateur=?");
+            pr.setString(1, formateur.getNom());
+            pr.setString(2, formateur.getPrenom());
+            pr.setString(3, formateur.getEmail());
+            pr.setInt(4, formateur.getN_tel());
+            pr.setInt(5,formateur.getCode_formateur());
+            pr.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return state;
+
     }
 
     @Override
     public boolean delete(Formateur formateur) {
-        return false;
-        //TODO delete fromateur
+        boolean state = false;
+        try {
+            java.sql.Statement st = c.createStatement();
+
+            pr = c.prepareStatement("DELETE FROM formateur where Code_formateur=" + formateur.getCode_formateur());
+            pr.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return state;
     }
 
     @Override
@@ -82,5 +108,4 @@ public class FormateurDao implements Crud<Formateur> {
         return state;
 
     }
-    //TODO complete formateur
 }

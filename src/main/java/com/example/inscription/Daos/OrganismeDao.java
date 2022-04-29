@@ -62,7 +62,6 @@ public class OrganismeDao implements Crud<Organisme> {
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
-            state = false;
         }
         return state;
 

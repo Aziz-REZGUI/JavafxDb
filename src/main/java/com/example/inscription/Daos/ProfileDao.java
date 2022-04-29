@@ -41,7 +41,7 @@ public class ProfileDao implements Crud<Profil> {
             PreparedStatement pst = c.prepareStatement("insert into profil(libelle) values(?) ");
             pr.setString(1, profil.getLibelle());
             pr.executeUpdate();
-            System.out.println("participant a été ajouté avec succès.");
+            System.out.println("profile a été ajouté avec succès.");
             state = true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,12 +57,12 @@ public class ProfileDao implements Crud<Profil> {
         try {
             java.sql.Statement st = c.createStatement();
 
-            pr = c.prepareStatement("DELETE FROM profil(code_profil,libelle) where code_profil=" + profil.getCode_profil());
+            pr = c.prepareStatement("DELETE FROM profil where code_profil=" + profil.getCode_profil());
             pr.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
-            state = false;
+
         }
         return state;
 
@@ -82,7 +82,6 @@ public class ProfileDao implements Crud<Profil> {
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
-            state = false;
         }
         return state;
 
