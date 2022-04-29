@@ -31,7 +31,7 @@ public class RegisterView {
     @FXML
     public void RegisterButtonOnAction(ActionEvent event) throws SQLException {
 
-        String fullname = txt_fullname.getText().trim();
+       /* String fullname = txt_fullname.getText().trim();
         String username = text_username.getText().trim();
         String password = txt_password.getText();
         if (username.isEmpty() || password.isEmpty() || fullname.isEmpty()) {
@@ -39,13 +39,17 @@ public class RegisterView {
         } else {
             User user = new User(fullname, username, password);
 
-            if (RegisterController.validateRegister(user)) {
-                alert("Welcome");
-                // TODO check exisatance
-            } else {
-                alert("operation echoué");
+            if(!RegisterController.check(user)) {
+                if (RegisterController.validateRegister(user)) {
+                    alert("Welcome");
+                } else {
+                    alert("operation echoué");
+                }
             }
-        }
+            else {
+                alert("user already exists");
+            }
+        }*/
 
 
     }
