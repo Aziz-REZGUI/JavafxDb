@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 29 avr. 2022 à 15:28
+-- Généré le : sam. 30 avr. 2022 à 01:58
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 7.1.32
 
@@ -30,8 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `code_admin` int(11) NOT NULL,
   `login` varchar(10) NOT NULL,
-  `password` varchar(10) NOT NULL,
-  `Role` varchar(10) NOT NULL
+  `password` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

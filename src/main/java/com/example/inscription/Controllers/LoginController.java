@@ -49,7 +49,7 @@ public class LoginController extends Application {
 
     @FXML
     public void sign_up(javafx.scene.input.MouseEvent mouseEvent) throws Exception {
-        Parent signUp = FXMLLoader.load(getClass().getResource("/views/register.fxml"));
+        Parent signUp = FXMLLoader.load(this.getClass().getResource("/views/register.fxml"));
         Scene scene = new Scene(signUp, 1500, 870);
         scene.getStylesheets().add(this.getClass().getResource("/views/login.css").toExternalForm());
 
@@ -70,14 +70,14 @@ public class LoginController extends Application {
             user = new User(username.getText().trim(), password.getText());
             UserDao userDao = new UserDao();
             if (userDao.login(user)) {
-                Parent signUp = FXMLLoader.load(getClass().getResource("/views/OK.fxml"));
+                Parent signUp = FXMLLoader.load(this.getClass().getResource("/views/MenuAdmin.fxml"));
                 Scene scene = new Scene(signUp, 1500, 870);
                 scene.getStylesheets().add(this.getClass().getResource("/views/login.css").toExternalForm());
 
                 //This line gets the stage information
                 window = (Stage) sign_up.getScene().getWindow();
                 window.setScene(scene);
-                window.setTitle("Successfull Login");
+                window.setTitle("Menuadmin ");
                 window.setMaximized(true);
                 window.show();
 
