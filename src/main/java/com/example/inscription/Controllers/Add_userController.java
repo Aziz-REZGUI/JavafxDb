@@ -32,10 +32,10 @@ public class Add_userController {
 
 
 
-@FXML
-   private void initialize()
-   {   roleChoiceBox.setItems(list);
-       roleChoiceBox.setValue("Role");
+    @FXML
+    private void initialize()
+    {   roleChoiceBox.setItems(list);
+        roleChoiceBox.setValue("Role");
     }
 
 
@@ -45,17 +45,17 @@ public class Add_userController {
     public void Ajouter_user(ActionEvent event) {
 
         //if((emailTextField.getText().matches("\\b[a-z0-9._-]+@[a-z0-9.-]+\\.[a-z]{2,}\\b"))&&(!passwordTextField.getText().isBlank())) {
-        User user= new User(emailTextField.getText().trim(), passwordTextField.getText());
-            UserDao userDao=new UserDao();
-            userDao.create(user);
+        User user= new User(emailTextField.getText().trim(), passwordTextField.getText(),"test","utilisateur");
+        UserDao userDao=new UserDao();
+        userDao.create(user);
 
-            //emailTextField.setText(emailTextField.getText());
+        //emailTextField.setText(emailTextField.getText());
 
-            successLabel.setText("User successfully added!");
-            MsgErreur();
+        successLabel.setText("User successfully added!");
+        MsgErreur();
         //} else {
-         //   successLabel.setText("Enter a valid email address .");
-           // MsgErreur();
+        //   successLabel.setText("Enter a valid email address .");
+        // MsgErreur();
         //}
 
     }

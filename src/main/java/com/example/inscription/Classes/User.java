@@ -5,8 +5,15 @@ public class User {
 
     private int Codeutilisateur;
 
-    public User(int codeutilisateur, String login, String password, String role, String fullname) {
+    public User(int codeutilisateur, String login, String password, String fullname, String role) {
         Codeutilisateur = codeutilisateur;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.fullname = fullname;
+    }
+
+    public User(String login, String password, String fullname, String role) {
         this.login = login;
         this.password = password;
         this.role = role;
@@ -22,7 +29,7 @@ public class User {
     }
 
 
-    public User(String fullname, String login, String password) {
+    public User( String login, String password,String fullname) {
         this.login = login;
         this.password = password;
         this.role = "user";
