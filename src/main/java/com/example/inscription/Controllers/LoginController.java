@@ -71,8 +71,8 @@ public class LoginController extends Application {
             UserDao userDao = new UserDao();
             if (userDao.login(user)) {
                 Parent signUp = FXMLLoader.load(this.getClass().getResource("/views/MenuAdmin.fxml"));
-                Scene scene = new Scene(signUp, 1500, 870);
-                scene.getStylesheets().add(this.getClass().getResource("/views/login.css").toExternalForm());
+                Scene scene = new Scene(signUp, 778, 563);
+                //scene.getStylesheets().add(this.getClass().getResource("/views/login.css").toExternalForm());
 
                 //This line gets the stage information
                 window = (Stage) sign_up.getScene().getWindow();

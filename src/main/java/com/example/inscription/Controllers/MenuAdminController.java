@@ -1,6 +1,7 @@
 package com.example.inscription.Controllers;
 
 import com.example.inscription.Controllers.LoginController;
+import com.example.inscription.Daos.AdminDao;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,10 +13,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
@@ -30,15 +34,11 @@ public class MenuAdminController implements Initializable  {
     @FXML
     private Button btnControl_utilisateur;
     @FXML
-    private Button btnControl_profil;
-    @FXML
-    private Font x1;
-    @FXML
-    private Color x2;
+    private Button BtnAdduser;
+
     @FXML
     private Button btnControl_domaine;
-    @FXML
-    private Font x3;
+
     @FXML
     private Button signOutButton;
     private Stage window;
@@ -48,65 +48,52 @@ public class MenuAdminController implements Initializable  {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
-    @FXML
-    private void btnControl_utilisateur(ActionEvent event) throws Exception {
-
-        Parent signUp = FXMLLoader.load(getClass().getResource("/views/Gerer_utilisateur.fxml"));
-        Scene scene = new Scene(signUp, 1500, 870);
-        scene.getStylesheets().add(this.getClass().getResource("/views/login.css").toExternalForm());
-
-        //This line gets the stage information
-        stage = (Stage)  btnControl_utilisateur.getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Sign up");
-        stage.setMaximized(true);
-        stage.show();
-        }
     @FXML
     void signOut(ActionEvent event) {
-       // he4i tetzed ken najmou User.cleanUserSession();
+        //AdminDao.cleanUserSession();
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("/views/login.fxml"));
         LoginController controller = new LoginController();
         loader.setController(controller);
 
-        Stage currentStage = (Stage) signOutButton.getScene().getWindow();
-        Stage newStage = new Stage();
-        try {
-            Parent root = loader.load();
-            Scene registerScene = new Scene(root);
 
-            newStage.setScene(registerScene);
-            newStage.setTitle("Login Page");
-
-            currentStage.close();
-            newStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public void Add_user(ActionEvent event) throws IOException {
-
-
-        Parent Add_user = FXMLLoader.load(getClass().getResource("/views/Add_user.fxml"));
-        Scene scene = new Scene(Add_user, 1500, 870);
-        scene.getStylesheets().add(this.getClass().getResource("/views/login.css").toExternalForm());
-
-        //This line gets the stage information
-        window = (Stage) Add_user.getScene().getWindow();
-        window.setScene(scene);
-        window.setTitle("Get");
-        window.setMaximized(true);
-        window.show();
     }
 
+    @FXML
+    private void Ajouter_user(ActionEvent event) throws Exception {
+        Stage SecondStage = new Stage();
+        Pane root = FXMLLoader.load(this.getClass().getResource("/views/Add_user.fxml"));
+        Scene sceneX = new Scene(root, 604, 251);
+        //SecondStage.setMaximized(true);
+        SecondStage.setScene(sceneX);
+        SecondStage.setTitle("Ajouter");
+        SecondStage.show();
+    }
+
+    @FXML
+    private void Modifier_user(ActionEvent event) throws Exception {
+        Stage SecondStage = new Stage();
+        Pane root = FXMLLoader.load(this.getClass().getResource("/views/Modify_user.fxml"));
+        Scene sceneX = new Scene(root, 604, 251);
+        //SecondStage.setMaximized(true);
+        SecondStage.setScene(sceneX);
+        SecondStage.setTitle("Modifier");
+        SecondStage.show();
+    }
+    @FXML
+    private void Supprimer_user(ActionEvent event) throws Exception {
+        Stage SecondStage = new Stage();
+        Pane root = FXMLLoader.load(this.getClass().getResource("/views/Delete.fxml"));
+        Scene sceneX = new Scene(root, 604, 251);
+        //SecondStage.setMaximized(true);
+        SecondStage.setScene(sceneX);
+        SecondStage.setTitle("Supprimer");
+        SecondStage.show();
+    }
 
 
 
-   // he4iya il faza nal9a feha fi log out ama mesh fehma exactly shniya hiya so hawahi lenna taw @SuppressWarnings("unchecked")
 
 
 
