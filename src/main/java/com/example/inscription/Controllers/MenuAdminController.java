@@ -1,8 +1,14 @@
 package com.example.inscription.Controllers;
 
+import com.example.inscription.Classes.Domaine;
+import com.example.inscription.Classes.Organisme;
+import com.example.inscription.Classes.User;
 import com.example.inscription.Controllers.LoginController;
 import com.example.inscription.Daos.AdminDao;
+import com.example.inscription.Daos.UserDao;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -29,24 +36,49 @@ import java.util.ResourceBundle;
 public class MenuAdminController implements Initializable  {
 
     private Stage stage;
-
-
-    @FXML
-    private Button btnControl_utilisateur;
-    @FXML
-    private Button BtnAdduser;
-
-    @FXML
-    private Button btnControl_domaine;
-
-    @FXML
-    private Button signOutButton;
     private Stage window;
+
+
+    @FXML
+    private Button btnControl_utilisateur, BtnAdduser,btnControl_domaine,signOutButton;
+    //Les Tables View
+    @FXML
+    private TableView<User> tableUser ;
+
+
+    //Les columns user
+    @FXML
+    private TableColumn<User, Integer> col_id;
+    @FXML
+    private TableColumn<User, String> col_login;
+
+    @FXML
+    private TableColumn<User, String> col_password;
+
+    @FXML
+    private TableColumn<User, String> col_role;
+
+    ObservableList<User> list = FXCollections.observableArrayList(
+            UserDao.findAll()
+    );
+
+
+
+    @FXML
+    private TableView<Domaine> tableDomaine ;
+    @FXML
+    private TableView<Organisme> tableOrganisme ;
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        col_id.setCellValueFactory(new PropertyValueFactory<User ,Integer>("id"));
+        col_login.setCellValueFactory(new PropertyValueFactory<User ,String>("Login"));
+        col_password.setCellValueFactory(new PropertyValueFactory<User ,String>("Password"));
+        col_role.setCellValueFactory(new PropertyValueFactory<User ,String>("Role"));
+        tableUser.setItems(list);
+
     }
     @FXML
     void signOut(ActionEvent event) {
@@ -84,13 +116,14 @@ public class MenuAdminController implements Initializable  {
     @FXML
     private void Supprimer_user(ActionEvent event) throws Exception {
         Stage SecondStage = new Stage();
-        Pane root = FXMLLoader.load(this.getClass().getResource("/views/Delete.fxml"));
+        Pane root = FXMLLoader.load(this.getClass().getResource("/views/Delete_user.fxml"));
         Scene sceneX = new Scene(root, 604, 251);
         //SecondStage.setMaximized(true);
         SecondStage.setScene(sceneX);
         SecondStage.setTitle("Supprimer");
         SecondStage.show();
     }
+
 
 
 
