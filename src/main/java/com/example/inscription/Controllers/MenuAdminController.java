@@ -34,9 +34,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MenuAdminController implements Initializable  {
-
     private Stage stage;
     private Stage window;
+    private UserDao UserDao = new UserDao();
 
 
     @FXML
@@ -62,8 +62,6 @@ public class MenuAdminController implements Initializable  {
             UserDao.findAll()
     );
 
-
-
     @FXML
     private TableView<Domaine> tableDomaine ;
     @FXML
@@ -72,8 +70,8 @@ public class MenuAdminController implements Initializable  {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        col_id.setCellValueFactory(new PropertyValueFactory<User ,Integer>("id"));
+        // TODO add the rest
+        col_id.setCellValueFactory(new PropertyValueFactory<User ,Integer>("codeutilisateur"));
         col_login.setCellValueFactory(new PropertyValueFactory<User ,String>("Login"));
         col_password.setCellValueFactory(new PropertyValueFactory<User ,String>("Password"));
         col_role.setCellValueFactory(new PropertyValueFactory<User ,String>("Role"));
