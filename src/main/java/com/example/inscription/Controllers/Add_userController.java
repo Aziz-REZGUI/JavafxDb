@@ -48,7 +48,7 @@ public class Add_userController {
         User user= new User(emailTextField.getText().trim(), passwordTextField.getText());
             UserDao userDao=new UserDao();
             userDao.create(user);
-            //TODO verify with abir
+
             //emailTextField.setText(emailTextField.getText());
 
             successLabel.setText("User successfully added!");
