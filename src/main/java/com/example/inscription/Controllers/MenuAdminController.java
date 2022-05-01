@@ -36,7 +36,7 @@ import java.util.ResourceBundle;
 public class MenuAdminController implements Initializable  {
     private Stage stage;
     private Stage window;
-    private UserDao UserDao = new UserDao();
+    private UserDao userDao = new UserDao();
 
 
     @FXML
@@ -59,7 +59,7 @@ public class MenuAdminController implements Initializable  {
     private TableColumn<User, String> col_role;
 
     ObservableList<User> list = FXCollections.observableArrayList(
-            UserDao.findAll()
+            userDao.findAll()
     );
 
     @FXML
