@@ -1,7 +1,6 @@
 package com.example.inscription.Daos;
 
 import com.example.inscription.Classes.Admin;
-import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Databaseconnection;
 import com.example.inscription.Interfaces.Crud;
 
@@ -38,13 +37,12 @@ public class AdminDao implements Crud<Admin> {
     public boolean update(Admin admin) {
         boolean state = false;
         try {
-            java.sql.Statement st = c.createStatement();
-
             pr = c.prepareStatement("UPDATE admin SET login=?,password=? where code_admin=? ");
             pr.setString(1, admin.getLogin());
             pr.setString(2, admin.getPassword());
             pr.setInt(3, admin.getCode_admin());
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
@@ -57,10 +55,9 @@ public class AdminDao implements Crud<Admin> {
     public boolean delete(Admin admin) {
         boolean state = false;
         try {
-            java.sql.Statement st = c.createStatement();
-
             pr = c.prepareStatement("DELETE FROM admin where code_admin=" + admin.getCode_admin());
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
@@ -105,7 +102,6 @@ public class AdminDao implements Crud<Admin> {
         }
         return state;
     }
-
 
 
 }

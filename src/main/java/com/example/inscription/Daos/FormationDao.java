@@ -39,8 +39,6 @@ public class FormationDao implements Crud<Formation> {
     public boolean update(Formation formation) {
         boolean state = false;
         try {
-            java.sql.Statement st = c.createStatement();
-
             pr = c.prepareStatement("UPDATE formation set intitule =?, nombre_jour=? ,annee=?,mois=?,nombre_participant=? where  code_formation=?");
             pr.setString(1, formation.getIntitule());
             pr.setInt(2, formation.getNombre_jours());
@@ -49,6 +47,7 @@ public class FormationDao implements Crud<Formation> {
             pr.setInt(5, formation.getNombre_participants());
             pr.setInt(6, formation.getCode_formation());
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
@@ -63,6 +62,7 @@ public class FormationDao implements Crud<Formation> {
 
             pr = c.prepareStatement("DELETE FROM formation where code_formation=" + formation.getCode_formation());
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();

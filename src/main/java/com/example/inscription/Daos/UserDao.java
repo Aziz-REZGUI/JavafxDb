@@ -1,7 +1,6 @@
 package com.example.inscription.Daos;
 
 import com.example.inscription.Classes.User;
-import com.example.inscription.Classes.User;
 import com.example.inscription.Databaseconnection;
 import com.example.inscription.Interfaces.Crud;
 
@@ -33,9 +32,6 @@ public class UserDao implements Crud<User> {
     }
 
 
-
-
-
     @Override
     public boolean create(User user) {
         boolean state;
@@ -62,14 +58,14 @@ public class UserDao implements Crud<User> {
     public boolean update(User user) {
         boolean state = false;
         try {
-            java.sql.Statement st = c.createStatement();
-
             pr = c.prepareStatement("UPDATE utilisateur SET login=?,password=?,role=?,full_name=? where code_utilisateur=? ");
             pr.setString(1, user.getLogin());
             pr.setString(2, user.getPassword());
             pr.setString(3, user.getRole());
             pr.setString(4, user.getFullname());
+            pr.setInt(5, user.getCodeutilisateur());
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
@@ -87,6 +83,7 @@ public class UserDao implements Crud<User> {
 
             pr = c.prepareStatement("DELETE FROM utilisateur where code_utilisateur=" + user.getCodeutilisateur());
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
@@ -102,7 +99,7 @@ public class UserDao implements Crud<User> {
             ResultSet resultSet = st.executeQuery("SELECT  * FROM utilisateur");
 
             while (resultSet.next()) {
-                User temp = new User(resultSet.getInt("code_utilisateur"), resultSet.getString("login"),resultSet.getString("password"),resultSet.getString("role"),resultSet.getString("full_name"));
+                User temp = new User(resultSet.getInt("code_utilisateur"), resultSet.getString("login"), resultSet.getString("password"), resultSet.getString("full_name"), resultSet.getString("role"));
                 output.add(temp);
             }
         } catch (SQLException e) {
@@ -112,7 +109,8 @@ public class UserDao implements Crud<User> {
         }
         return output;
     }
-//Badalet fi condition raditha code_utilisateur
+
+    //Badalet fi condition raditha code_utilisateur
     @Override
     public boolean exists(User user) {
         boolean state = false;

@@ -54,10 +54,9 @@ public class DomainDao implements Crud<Domaine> {
     public boolean delete(Domaine domaine) {
         boolean state = false;
         try {
-            java.sql.Statement st = c.createStatement();
-
             pr = c.prepareStatement("DELETE FROM domaine where code_domaine=" + domaine.getCode_domaine());
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
@@ -90,12 +89,11 @@ public class DomainDao implements Crud<Domaine> {
     public boolean update(Domaine domaine) {
         boolean state = false;
         try {
-            java.sql.Statement st = c.createStatement();
-
             pr = c.prepareStatement("UPDATE domaine SET libelle=?    where code_domaine=?");
             pr.setString(1, domaine.getLibelle());
             pr.setInt(2, domaine.getCode_domaine());
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();

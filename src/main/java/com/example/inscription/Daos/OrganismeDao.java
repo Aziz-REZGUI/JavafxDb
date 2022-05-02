@@ -55,10 +55,10 @@ public class OrganismeDao implements Crud<Organisme> {
     public boolean delete(Organisme organisme) {
         boolean state = false;
         try {
-            java.sql.Statement st = c.createStatement();
 
             pr = c.prepareStatement("DELETE FROM organisme(code_organisme,libelle) where code_Organisme=" + organisme.getCode_organisme());
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
@@ -91,12 +91,12 @@ public class OrganismeDao implements Crud<Organisme> {
     public boolean update(Organisme organisme) {
         boolean state = false;
         try {
-            java.sql.Statement st = c.createStatement();
 
             pr = c.prepareStatement("UPDATE organisme set libelle=? where code_organisme=?)");
             pr.setString(1, organisme.getLibelle());
             pr.setInt(2, organisme.getCode_organisme());
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();

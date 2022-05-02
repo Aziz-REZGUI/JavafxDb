@@ -1,7 +1,6 @@
 package com.example.inscription.Daos;
 
 import com.example.inscription.Classes.Participant;
-import com.example.inscription.Classes.Profil;
 import com.example.inscription.Databaseconnection;
 import com.example.inscription.Interfaces.Crud;
 
@@ -45,6 +44,7 @@ public class ParticipantDao implements Crud<Participant> {
             pr.setString(3, participant.getPrenom());
             pr.setDate(4, (java.sql.Date) participant.getDate_naissance());
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
@@ -83,6 +83,7 @@ public class ParticipantDao implements Crud<Participant> {
 
             pr = c.prepareStatement("DELETE FROM participant(matricule,nom,prenom,date_naissance) where matricule=" + participant.getMatricule());
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();

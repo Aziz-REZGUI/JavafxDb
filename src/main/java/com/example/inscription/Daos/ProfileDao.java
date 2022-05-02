@@ -59,6 +59,7 @@ public class ProfileDao implements Crud<Profil> {
 
             pr = c.prepareStatement("DELETE FROM profil where code_profil=" + profil.getCode_profil());
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
@@ -99,6 +100,7 @@ public class ProfileDao implements Crud<Profil> {
             pr.setInt(2, profil.getCode_profil());
 
             pr.executeUpdate();
+            state = true;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();

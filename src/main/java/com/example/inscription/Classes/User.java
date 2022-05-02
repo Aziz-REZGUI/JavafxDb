@@ -20,6 +20,10 @@ public class User {
         this.fullname = fullname;
     }
 
+    public User(int codeutilisateur) {
+        Codeutilisateur = codeutilisateur;
+    }
+
     private String login, password, role, fullname;
 
 
@@ -29,11 +33,11 @@ public class User {
     }
 
     // ena zedet he4a
-public User(String Codeutilisateur) {
+    public User(String Codeutilisateur) {
         this.Codeutilisateur = Integer.parseInt(Codeutilisateur);
-}
+    }
 
-    public User( String login, String password,String fullname) {
+    public User(String login, String password, String fullname) {
         this.login = login;
         this.password = password;
         this.role = "user";

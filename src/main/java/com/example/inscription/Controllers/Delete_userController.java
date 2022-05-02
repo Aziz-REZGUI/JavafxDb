@@ -16,7 +16,6 @@ public class Delete_userController {
     private TextField CodeutilisateurTextField;
 
 
-
     @FXML
     public void Supprimer_user(ActionEvent event) {
 
@@ -27,7 +26,7 @@ public class Delete_userController {
         if (userDao.exists(user)) {
             userDao.delete(user);
         } else {
-            LoginController.alert("This ID doesn't exist try again");
+            RoutingClass.alert("This ID doesn't exist try again");
 
 
         }
