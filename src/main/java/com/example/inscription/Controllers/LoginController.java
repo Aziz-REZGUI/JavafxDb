@@ -18,7 +18,7 @@ import static javafx.scene.control.Alert.AlertType.ERROR;
 import static javafx.scene.control.ButtonType.OK;
 
 
-public class LoginController extends Application {
+public class LoginController {
     Stage window;
 
 
@@ -35,8 +35,7 @@ public class LoginController extends Application {
     private Label Sign_up;
     User user;
 
-    @Override
-
+    /*@Override
     public void start(Stage primaryStage) throws Exception {
         Pane root = FXMLLoader.load(this.getClass().getResource("/views/login.fxml"));
         Scene sceneX = new Scene(root, 1500, 870);
@@ -45,11 +44,12 @@ public class LoginController extends Application {
         primaryStage.setScene(sceneX);
         primaryStage.setTitle("Sign in");
         primaryStage.show();
-    }
+    }*/
 
     @FXML
     public void sign_up(javafx.scene.input.MouseEvent mouseEvent) throws Exception {
-        Parent signUp = FXMLLoader.load(this.getClass().getResource("/views/register.fxml"));
+        RoutingClass.goTo((Stage) sign_up.getScene().getWindow(),"register.fxml","Sign up");
+        /*Parent signUp = FXMLLoader.load(this.getClass().getResource("/views/register.fxml"));
         Scene scene = new Scene(signUp, 1500, 870);
         scene.getStylesheets().add(this.getClass().getResource("/views/login.css").toExternalForm());
 
@@ -58,7 +58,7 @@ public class LoginController extends Application {
         window.setScene(scene);
         window.setTitle("Sign up");
         window.setMaximized(true);
-        window.show();
+        window.show();*/
     }
 
     public void loginButtonOnAction(ActionEvent event) throws IOException {
@@ -70,7 +70,8 @@ public class LoginController extends Application {
             user = new User(username.getText().trim(), password.getText());
             UserDao userDao = new UserDao();
             if (userDao.login(user)) {
-                Parent signUp = FXMLLoader.load(this.getClass().getResource("/views/MenuAdmin.fxml"));
+                RoutingClass.goTo((Stage) sign_up.getScene().getWindow(),"MenuAdmin.fxml","Menuadmin ",778,563);
+               /* Parent signUp = FXMLLoader.load(this.getClass().getResource("/views/MenuAdmin.fxml"));
                 Scene scene = new Scene(signUp, 778, 563);
                 //scene.getStylesheets().add(this.getClass().getResource("/views/login.css").toExternalForm());
 
@@ -79,7 +80,7 @@ public class LoginController extends Application {
                 window.setScene(scene);
                 window.setTitle("Menuadmin ");
                 window.setMaximized(true);
-                window.show();
+                window.show();*/
 
             } else {
                 alert("The entered password is wrong!");
@@ -100,9 +101,7 @@ public class LoginController extends Application {
     }
 
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 
 
 
