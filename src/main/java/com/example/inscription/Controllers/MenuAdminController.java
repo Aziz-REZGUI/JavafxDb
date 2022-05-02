@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -39,11 +40,12 @@ public class MenuAdminController implements Initializable  {
     private UserDao userDao = new UserDao();
 
 
-    @FXML
+
+  @FXML
     private Button btnControl_utilisateur, BtnAdduser,btnControl_domaine,signOutButton;
     //Les Tables View
     @FXML
-    private TableView<User> tableUser ;
+    public  TableView<User> tableUser ;
 
 
     //Les columns user
@@ -76,7 +78,6 @@ public class MenuAdminController implements Initializable  {
         col_password.setCellValueFactory(new PropertyValueFactory<User ,String>("Password"));
         col_role.setCellValueFactory(new PropertyValueFactory<User ,String>("Role"));
         tableUser.setItems(list);
-
     }
     @FXML
     void signOut(ActionEvent event) {
@@ -99,6 +100,7 @@ public class MenuAdminController implements Initializable  {
         SecondStage.setScene(sceneX);
         SecondStage.setTitle("Ajouter");
         SecondStage.show();
+
     }
 
     @FXML
@@ -120,6 +122,12 @@ public class MenuAdminController implements Initializable  {
         SecondStage.setScene(sceneX);
         SecondStage.setTitle("Supprimer");
         SecondStage.show();
+    }
+    @FXML
+    public  void refreshTable( ActionEvent Action) {
+        tableUser.getItems().clear();
+
+        tableUser.getItems().addAll(userDao.findAll());
     }
 
 

@@ -91,10 +91,10 @@ public class LoginController {
     }
 
 
-    private Alert alert(String alertText) {
+    public static Alert alert(String alertText) {
         Alert alert = new Alert(ERROR, alertText, OK);
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("/views/login.css").toExternalForm());
+        dialogPane.getStylesheets().add(LoginController.class.getResource("/views/login.css").toExternalForm());
         dialogPane.getStyleClass().add("myDialog");
         alert.show();
         return alert;

@@ -37,10 +37,11 @@
             <padding>
                 <Insets top="16.0" />
             </padding></Label>
-        <TextField fx:id="emailTextField" style="-fx-background-radius: 0;" GridPane.rowIndex="2" />
+        <TextField fx:id="CodeutilisateurTextField" style="-fx-background-radius: 0;" GridPane.rowIndex="2" />
       <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0" GridPane.rowIndex="3">
          <children>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="77.0" styleClass="my-button" text="Supprimer" />
+            <Button fx:id="BtnDelete" mnemonicParsing="false" onAction="#Supprimer_user" prefHeight="26.0" prefWidth="77.0" styleClass="my-button" text="Supprimer" />
+            <Label fx:id="ErreurLabel" text="Not founded" textFill="#fffefe" />
          </children>
          <padding>
             <Insets bottom="8.0" top="8.0" />

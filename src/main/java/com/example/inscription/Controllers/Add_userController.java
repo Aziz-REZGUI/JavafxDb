@@ -1,7 +1,6 @@
 package com.example.inscription.Controllers;
 import com.example.inscription.Classes.User;
 import com.example.inscription.Daos.UserDao;
-
 import javafx.animation.FadeTransition;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -49,10 +48,12 @@ public class Add_userController {
         UserDao userDao=new UserDao();
         userDao.create(user);
 
-        //emailTextField.setText(emailTextField.getText());
 
-        successLabel.setText("User successfully added!");
-        MsgErreur();
+        LoginController.alert("The user is successfully added!");
+
+
+        //successLabel.setText("User successfully added!");
+        //MsgErreur();
         //} else {
         //   successLabel.setText("Enter a valid email address .");
         // MsgErreur();
