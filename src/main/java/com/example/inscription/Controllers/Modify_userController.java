@@ -8,14 +8,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
 public class Modify_userController {
     @FXML
     ObservableList<String> list= FXCollections.observableArrayList("Admin", "User");
     @FXML
     ChoiceBox roleChoiceBox;
-@FXML
+    @FXML
     TextField IDTextField,emailTextField,passwordTextField;
 
 
@@ -26,9 +25,8 @@ public class Modify_userController {
     }
 
 
-// lezem ya3rfou by ID
     public void Update_user(ActionEvent event) {
-        User user= new User(emailTextField.getText().trim(), passwordTextField.getText());
+        User user= new User(IDTextField.getText().trim(),emailTextField.getText(),passwordTextField.getText());
         UserDao userDao=new UserDao();
         userDao.update(user);
 

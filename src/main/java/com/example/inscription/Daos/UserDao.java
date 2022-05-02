@@ -112,12 +112,12 @@ public class UserDao implements Crud<User> {
         }
         return output;
     }
-
+//Badalet fi condition raditha code_utilisateur
     @Override
     public boolean exists(User user) {
         boolean state = false;
         try {
-            pr = c.prepareStatement("select count(1) from utilisateur where login = '" + user.getLogin() + "'");
+            pr = c.prepareStatement("select count(1) from utilisateur where code_utilisateur = '" + user.getCodeutilisateur() + "'");
             ResultSet rs = pr.executeQuery();
             while (rs.next()) {
                 state = rs.getInt(1) == 1;

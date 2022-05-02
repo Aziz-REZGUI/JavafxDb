@@ -66,6 +66,7 @@
                               <Image url="@../Images/TWO.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="BtnRefresh" layoutX="721.0" layoutY="18.0" mnemonicParsing="false" onAction="#refreshTable" text="Refresh" />
 
                             </children>
                         </Pane>

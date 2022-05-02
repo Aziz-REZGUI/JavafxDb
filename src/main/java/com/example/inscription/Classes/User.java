@@ -28,6 +28,10 @@ public class User {
         this.password = password;
     }
 
+    // ena zedet he4a
+public User(String Codeutilisateur) {
+        this.Codeutilisateur = Integer.parseInt(Codeutilisateur);
+}
 
     public User( String login, String password,String fullname) {
         this.login = login;
