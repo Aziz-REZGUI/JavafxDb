@@ -130,4 +130,25 @@ public class UserDao implements Crud<User> {
 
         return state;
     }
+    public   boolean isAdmin(User user)
+    { boolean state = false;
+        try {
+            pr = c.prepareStatement("select role from utilisateur where login = ? and password=?");
+            pr.setString(1, user.getLogin());
+            pr.setString(2, user.getPassword());
+            ResultSet rs = pr.executeQuery();
+            while (rs.next()) {
+                state = rs.getString(1).equalsIgnoreCase("admin");
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+
+        return state;
+
+    }
 }

@@ -1,5 +1,7 @@
 package com.example.inscription;
 
+import com.example.inscription.Classes.User;
+
 import java.sql.*;
 
 
@@ -23,6 +25,7 @@ public class Databaseconnection {
         }
         return databaselink;
     }
+
 
     /*public boolean login(Connection cn, User user) {
         boolean state = false;

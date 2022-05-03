@@ -65,8 +65,12 @@ public class LoginController {
             user = new User(username.getText().trim(), password.getText());
             UserDao userDao = new UserDao();
             if (userDao.login(user)) {
-                RoutingClass.goTo((Stage) sign_up.getScene().getWindow(), "MenuAdmin.fxml", "Menuadmin ", 778, 563);
-               /* Parent signUp = FXMLLoader.load(this.getClass().getResource("/views/MenuAdmin.fxml"));
+                if (userDao.isAdmin(user)) {
+                    RoutingClass.goTo((Stage) sign_up.getScene().getWindow(), "MenuAdmin.fxml", "Menuadmin ", 778, 563);
+                } else {
+                    RoutingClass.goTo((Stage) sign_up.getScene().getWindow(), "MenuUser.fxml", "MenuUser ", 778, 563);
+                }
+                    /* Parent signUp = FXMLLoader.load(this.getClass().getResource("/views/MenuAdmin.fxml"));
                 Scene scene = new Scene(signUp, 778, 563);
                 //scene.getStylesheets().add(this.getClass().getResource("/views/login.css").toExternalForm());
 
@@ -77,13 +81,14 @@ public class LoginController {
                 window.setMaximized(true);
                 window.show();*/
 
-            } else {
-                RoutingClass.alert("The entered password is wrong!");
 
-            }
+        } else{
+            RoutingClass.alert("The entered password is wrong!");
 
         }
+
     }
+}
 
 
    /* public static Alert alert(String alertText) {
