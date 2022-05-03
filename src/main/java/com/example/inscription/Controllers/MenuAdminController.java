@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,7 +27,7 @@ public class MenuAdminController implements Initializable {
 
 
     @FXML
-    private Button btnControl_utilisateur, BtnAdduser, btnControl_domaine, signOutButton;
+    private Button btnRefresh, btnControl_utilisateur, BtnAdduser, btnControl_domaine, signOutButton;
     //Les Tables View
     @FXML
     public TableView<User> tableUser;
@@ -62,9 +63,10 @@ public class MenuAdminController implements Initializable {
     }
 
     @FXML
-    void signOut(ActionEvent event) {
+    void signOut(ActionEvent event) throws IOException {
         //AdminDao.cleanUserSession();
 //TODO check with abir
+        RoutingClass.goTo((Stage)signOutButton.getScene().getWindow(),"login.fxml","login");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("/views/login.fxml"));
         LoginController controller = new LoginController();
@@ -114,7 +116,6 @@ public class MenuAdminController implements Initializable {
     @FXML
     public void refreshTable(ActionEvent Action) {
         tableUser.getItems().clear();
-
         tableUser.getItems().addAll(userDao.findAll());
     }
 
