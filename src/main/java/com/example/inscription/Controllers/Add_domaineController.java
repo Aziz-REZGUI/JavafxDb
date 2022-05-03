@@ -22,7 +22,6 @@ public class Add_domaineController {
     @FXML
     public void Add_domain(ActionEvent event) {
 
-            //if((emailTextField.getText().matches("\\b[a-z0-9._-]+@[a-z0-9.-]+\\.[a-z]{2,}\\b"))&&(!passwordTextField.getText().isBlank())) {
             Domaine domaine = new Domaine(LibelleTextField.getText().trim());
             DomainDao domainDao = new DomainDao();
             if (domainDao.create(domaine)) {

@@ -37,7 +37,7 @@ public class DomainDao implements Crud<Domaine> {
 
         try {
             //   java.sql.Statement st = c.createStatement();
-            PreparedStatement pst = c.prepareStatement("insert into domaine(libelle) values(?) ");
+            PreparedStatement pst = c.prepareStatement("insert into domaine(Libelle) values(?) ");
             pst.setString(1, domaine.getLibelle());
             pst.executeUpdate();
             System.out.println("domain a été ajouté avec succès.");
