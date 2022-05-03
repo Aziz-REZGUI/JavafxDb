@@ -10,6 +10,7 @@ module com.example.inscription {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires org.jetbrains.annotations;
+    requires mysql.connector.java;
 
     opens com.example.inscription to javafx.fxml;
     exports com.example.inscription;
