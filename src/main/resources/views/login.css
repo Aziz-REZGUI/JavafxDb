@@ -1,13 +1,28 @@
-.root {
-    -fx-background-image: url("../Images/backgground.jpeg");
-    -fx-background-size: cover;
-
-}
 
 #pTitle {
     -fx-position: center;
     -fx-font-size: 52;
     -fx-text-align: center;
+    -fx-translate-x: 0.7em;
+    -fx-text-fill: #7CD164FF;
+    -fx-padding: 0.8em;
+    -fx-border-insets: 0.8em;
+    -fx-background-insets: 0.8em;
+
+}
+
+#mp {
+    -fx-spacing: 4em;
+
+
+}
+
+#form {
+    -fx-spacing: 6em;
+
+    -fx-padding:4.2em;
+    -fx-border-insets: 4.2em;
+    -fx-background-insets: 4.2em;
 
 }
 

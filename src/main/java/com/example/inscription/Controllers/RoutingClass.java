@@ -21,9 +21,9 @@ public class RoutingClass extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane root = FXMLLoader.load(this.getClass().getResource("/views/login.fxml"));
-        Scene sceneX = new Scene(root, 1500, 870);
+        Scene sceneX = new Scene(root, 450, 650);
         sceneX.getStylesheets().addAll(this.getClass().getResource("/views/login.css").toExternalForm());
-        primaryStage.setMaximized(true);
+        //primaryStage.setMaximized(true);
         primaryStage.setScene(sceneX);
         primaryStage.setTitle("Sign in");
         primaryStage.show();
