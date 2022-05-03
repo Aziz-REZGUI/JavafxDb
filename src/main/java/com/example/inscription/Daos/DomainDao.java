@@ -16,10 +16,10 @@ public class DomainDao implements Crud<Domaine> {
         List<Domaine> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  * FROM domaine");
+            ResultSet resultSet = st.executeQuery("SELECT code_domaine, libelle FROM domaine");
 
             while (resultSet.next()) {
-                Domaine temp = new Domaine(resultSet.getInt("code_domain"), resultSet.getString("libelle"));
+                Domaine temp = new Domaine(resultSet.getInt("code_domaine"), resultSet.getString("libelle"));
                 output.add(temp);
             }
         } catch (SQLException e) {

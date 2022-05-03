@@ -11,12 +11,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-          prefHeight="251.0" prefWidth="604.0" vgap="8.0" xmlns="http://javafx.com/javafx/17"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inscription.Controllers.Add_domaineController">
+<GridPane hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="251.0" prefWidth="604.0" vgap="8.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inscription.Controllers.Delete_domaineController">
 
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
     <rowConstraints>
@@ -26,7 +23,7 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Label maxWidth="1.7976931348623157E308" text="Ajouter un domaine" GridPane.columnSpan="2147483647">
+        <Label maxWidth="1.7976931348623157E308" text="Choississez ID:" GridPane.columnSpan="2147483647">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
@@ -36,19 +33,14 @@
                 <Insets top="30.0" />
             </GridPane.margin>
         </Separator>
-        <Label alignment="BOTTOM_LEFT" text="Libelle" GridPane.rowIndex="1">
+        <Label alignment="BOTTOM_LEFT" text="ID:" GridPane.rowIndex="1">
             <padding>
                 <Insets top="16.0" />
             </padding></Label>
-        <Label alignment="BOTTOM_LEFT" text="Formation" GridPane.columnIndex="1" GridPane.rowIndex="1">
-            <padding>
-                <Insets top="16.0" />
-            </padding></Label>
-        <TextField fx:id="LibelleTextField" style="-fx-background-radius: 0;" GridPane.rowIndex="2" />
-        <TextField fx:id="FormationTextField" style="-fx-background-radius: 0;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <TextField fx:id="CodeOrganismeTextField" style="-fx-background-radius: 0;" GridPane.rowIndex="2" />
+        <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0" GridPane.rowIndex="3">
             <children>
-                <Button fx:id="BtnAjouterDomaine" mnemonicParsing="false" onAction="#Add_domain" prefHeight="26.0" prefWidth="77.0" styleClass="my-button" text="Ajouter" />
+                <Button fx:id="BtnDelete" mnemonicParsing="false" onAction="#Supprimer_organisme" prefHeight="26.0" prefWidth="77.0" styleClass="my-button" text="Supprimer" />
             </children>
             <padding>
                 <Insets bottom="8.0" top="8.0" />

@@ -88,17 +88,17 @@
                                         <TableColumn fx:id="col_libelledomaine" prefWidth="601.6000289916992" text="Libelle" />
                                     </columns>
                                 </TableView>
-                                <Button layoutX="439.0" layoutY="338.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="172.0" text="Modifier">
+                                <Button fx:id="BtnDeleteDomaine" layoutX="439.0" layoutY="338.0" mnemonicParsing="false" onAction="#Supprimer_domaine" prefHeight="38.0" prefWidth="172.0" text="Supprimer">
                                     <font>
                                         <Font name="System Bold Italic" size="17.0" />
                                     </font>
                                 </Button>
-                                <Button layoutX="225.0" layoutY="338.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="172.0" text="Supprimer">
+                                <Button fx:id="BtnModiyDomaine" layoutX="225.0" layoutY="338.0" mnemonicParsing="false" onAction="#Modifier_domaine" prefHeight="38.0" prefWidth="172.0" text="Modifier">
                                     <font>
                                         <Font name="System Bold Italic" size="17.0" />
                                     </font>
                                 </Button>
-                                <Button layoutX="15.0" layoutY="338.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="172.0" text="Ajouter">
+                                <Button fx:id="BtnAddDomaine" layoutX="15.0" layoutY="338.0" mnemonicParsing="false" onAction="#Ajouter_Domaine" prefHeight="38.0" prefWidth="172.0" text="Ajouter">
                                     <font>
                                         <Font name="System Bold Italic" size="17.0" />
                                     </font>
@@ -112,7 +112,7 @@
                         <Pane prefHeight="200.0" prefWidth="200.0">
                             <children>
                                 <TextField fx:id="TextfieldOrg" layoutX="15.0" layoutY="9.0" prefHeight="44.0" prefWidth="599.0" promptText="Find organisme" />
-                                <Button fx:id="BtnSearchOrg" layoutX="627.0" layoutY="9.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="81.0" text="Search" textFill="#01010d">
+                                <Button fx:id="BtnSearchOrg" layoutX="627.0" layoutY="9.0" mnemonicParsing="false" onAction="#Chercher_org" prefHeight="44.0" prefWidth="81.0" text="Search" textFill="#01010d">
                                     <font>
                                         <Font name="System Bold Italic" size="13.0" />
                                     </font>
@@ -123,17 +123,17 @@
                                         <TableColumn fx:id="col_lielleorg" minWidth="0.0" prefWidth="606.4000778198242" text="Libelle" />
                                     </columns>
                                 </TableView>
-                                <Button layoutX="15.0" layoutY="338.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="172.0" text="Ajouter">
+                                <Button fx:id="BtnAddOrg" layoutX="15.0" layoutY="338.0" mnemonicParsing="false" onAction="#Ajouter_org" prefHeight="38.0" prefWidth="172.0" text="Ajouter">
                                     <font>
                                         <Font name="System Bold Italic" size="17.0" />
                                     </font>
                                 </Button>
-                                <Button layoutX="439.0" layoutY="338.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="172.0" text="Supprimer">
+                                <Button fx:id="BtnDeleteOrg" layoutX="439.0" layoutY="338.0" mnemonicParsing="false" onAction="#Supprimer_org" prefHeight="38.0" prefWidth="172.0" text="Supprimer">
                                     <font>
                                         <Font name="System Bold Italic" size="17.0" />
                                     </font>
                                 </Button>
-                                <Button layoutX="225.0" layoutY="338.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="172.0" text="Modifier">
+                                <Button fx:id="BtnModifyOrg" layoutX="225.0" layoutY="338.0" mnemonicParsing="false" onAction="#Modifier_org" prefHeight="38.0" prefWidth="172.0" text="Modifier">
                                     <font>
                                         <Font name="System Bold Italic" size="17.0" />
                                     </font>
