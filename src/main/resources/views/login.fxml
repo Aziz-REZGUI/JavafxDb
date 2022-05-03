@@ -12,16 +12,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1220.0" styleClass="root" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inscription.Controllers.LoginController">
-    <center>
-        <AnchorPane prefHeight="857.0" prefWidth="1220.0" styleClass="root" stylesheets="@login.css" BorderPane.alignment="CENTER">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inscription.Controllers.LoginController">
+    <stylesheets>
+        <URL value="@login.css" />
+        <URL value="@login.css" />
+        <URL value="@login.css" />
+    </stylesheets>
+   <center>
+        <AnchorPane id="mp" styleClass="root" stylesheets="@login.css" BorderPane.alignment="CENTER">
             <children>
-                <Label id="pTitle" alignment="TOP_LEFT" layoutX="478.0" layoutY="137.0" onMouseClicked="#sign_up" prefHeight="75.0" prefWidth="298.0" stylesheets="@login.css" text="Sign in Page" textFill="WHITE">
+                <Label id="pTitle" alignment="TOP_LEFT" onMouseClicked="#sign_up" stylesheets="@login.css" text="Sign in Page" textFill="WHITE">
                     <font>
                         <Font name="Bebas Neue Regular" size="47.0" />
                     </font>
                 </Label>
-                <VBox layoutX="450.0" layoutY="196.0" spacing="30.0">
+                <VBox id="form">
                     <children>
                         <VBox id="main-VBox">
                             <VBox.margin>
@@ -101,11 +106,6 @@
                 </VBox>
             </children>
         </AnchorPane>
-    </center>
-    <stylesheets>
-        <URL value="@login.css" />
-        <URL value="@login.css" />
-        <URL value="@login.css" />
-    </stylesheets>
+   </center>
 
 </BorderPane>
