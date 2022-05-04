@@ -80,9 +80,9 @@ public class MenuAdminController implements Initializable {
 
 
     @FXML
-Tab DomaineHandlerTab;
-@FXML
-Tab OrganismeHandlerTab;
+    Tab DomaineHandlerTab;
+    @FXML
+    Tab OrganismeHandlerTab;
     @FXML
     private Button btnRefresh, btnControl_utilisateur, BtnAdduser, btnControl_domaine, signOutButton;
     //Tab User
