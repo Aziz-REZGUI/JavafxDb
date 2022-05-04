@@ -18,10 +18,12 @@ public class FormateurDao implements Crud<Formateur> {
 
         try {
             //   java.sql.Statement st = c.createStatement();
-            PreparedStatement pst = c.prepareStatement("insert into formateur(Nom,Prenom,Email) values(?,?,?) ");
+            PreparedStatement pst = c.prepareStatement("insert into formateur(Nom,Prenom,Email,Code_organisme,code_domaine) values(?,?,?,?,?) ");
             pr.setString(1, formateur.getNom());
             pr.setString(2, formateur.getPrenom());
             pr.setString(3, formateur.getEmail());
+            pr.setInt(3, formateur.getCode_organisme());
+            pr.setInt(3, formateur.getCode_domaine());
             pr.executeUpdate();
             System.out.println("formateur a été ajouté avec succès.");
             state = true;
@@ -37,12 +39,14 @@ public class FormateurDao implements Crud<Formateur> {
     public boolean update(Formateur formateur) {
         boolean state = false;
         try {
-            pr = c.prepareStatement("UPDATE formateur SET Nom=?,Prenom=?,Email=?,N_tel=?    where Code_formateur=?");
+            pr = c.prepareStatement("UPDATE formateur SET Nom=?,Prenom=?,Email=?,N_tel=?,Code_organisme=?,code_domaine=?   where Code_formateur=?");
             pr.setString(1, formateur.getNom());
             pr.setString(2, formateur.getPrenom());
             pr.setString(3, formateur.getEmail());
             pr.setInt(4, formateur.getN_tel());
-            pr.setInt(5, formateur.getCode_formateur());
+            pr.setInt(5, formateur.getCode_organisme());
+            pr.setInt(6, formateur.getCode_domaine());
+            pr.setInt(7, formateur.getCode_formateur());
             pr.executeUpdate();
             state = true;
         } catch (SQLException e) {
@@ -79,7 +83,7 @@ public class FormateurDao implements Crud<Formateur> {
             ResultSet resultSet = st.executeQuery("SELECT  * FROM formateur");
 
             while (resultSet.next()) {
-                Formateur temp = new Formateur(resultSet.getInt("code_formateur"), resultSet.getInt("n_tel"), resultSet.getString("nom"), resultSet.getString("prenom"), resultSet.getString("email"));
+                Formateur temp = new Formateur(resultSet.getInt("code_formateur"), resultSet.getInt("n_tel"), resultSet.getString("nom"), resultSet.getString("prenom"), resultSet.getString("email"), resultSet.getInt("Code_organisme"), resultSet.getInt("code_domaine"));
                 output.add(temp);
             }
         } catch (SQLException e) {

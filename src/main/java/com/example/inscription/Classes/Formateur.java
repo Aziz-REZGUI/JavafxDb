@@ -1,7 +1,7 @@
 package com.example.inscription.Classes;
 
 public class Formateur {
-    private  int code_formateur,n_tel;
+    private  int code_formateur,n_tel,Code_organisme,code_domaine;
     private String nom,prenom,email;
 
     public int getCode_formateur() {
@@ -44,16 +44,36 @@ public class Formateur {
         this.email = email;
     }
 
-    public Formateur(int n_tel, String nom, String prenom, String email) {
+    public int getCode_organisme() {
+        return Code_organisme;
+    }
+
+    public void setCode_organisme(int code_organisme) {
+        Code_organisme = code_organisme;
+    }
+
+    public int getCode_domaine() {
+        return code_domaine;
+    }
+
+    public void setCode_domaine(int code_domaine) {
+        this.code_domaine = code_domaine;
+    }
+
+    public Formateur(int n_tel, String nom, String prenom, String email,int code_organisme, int code_domaine) {
         this.n_tel = n_tel;
+        Code_organisme = code_organisme;
+        this.code_domaine = code_domaine;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
     }
 
-    public Formateur(int code_formateur, int n_tel, String nom, String prenom, String email) {
+    public Formateur(int code_formateur, int n_tel, String nom, String prenom, String email, int code_organisme, int code_domaine) {
         this.code_formateur = code_formateur;
         this.n_tel = n_tel;
+        Code_organisme = code_organisme;
+        this.code_domaine = code_domaine;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;

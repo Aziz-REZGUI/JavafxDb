@@ -20,7 +20,7 @@ public class ParticipantDao implements Crud<Participant> {
             ResultSet resultSet = st.executeQuery("SELECT  * FROM participant");
 
             while (resultSet.next()) {
-                Participant temp = new Participant(resultSet.getInt("matricule"), resultSet.getString("nom"), resultSet.getString("prenom"));
+                Participant temp = new Participant(resultSet.getInt("matricule"), resultSet.getString("nom"), resultSet.getString("prenom") ,resultSet.getDate("date_naissance"), resultSet.getInt("Code_profil"));
                 output.add(temp);
             }
         } catch (SQLException e) {
@@ -38,11 +38,13 @@ public class ParticipantDao implements Crud<Participant> {
         try {
             java.sql.Statement st = c.createStatement();
 
-            pr = c.prepareStatement("UPDATE participant SET nom=?,prenom=?,date_naissance=? where matricule=?");
-            pr.setInt(1, participant.getMatricule());
-            pr.setString(2, participant.getNom());
-            pr.setString(3, participant.getPrenom());
-            pr.setDate(4, (java.sql.Date) participant.getDate_naissance());
+            pr = c.prepareStatement("UPDATE participant SET nom=?,prenom=?,date_naissance=?,Code_profil=? where matricule=?");
+
+            pr.setString(1, participant.getNom());
+            pr.setString(2, participant.getPrenom());
+            pr.setDate(3, (java.sql.Date) participant.getDate_naissance());
+            pr.setInt(4, participant.getCode_profil());
+            pr.setInt(5, participant.getMatricule());
             pr.executeUpdate();
             state = true;
         } catch (SQLException e) {
@@ -60,10 +62,12 @@ public class ParticipantDao implements Crud<Participant> {
 
         try {
             //   java.sql.Statement st = c.createStatement();
-            PreparedStatement pr = c.prepareStatement("insert into participant(matricule,nom,prenom,date_naissance) values(?,?,?,?) ");
-            pr.setString(2, participant.getNom());
-            pr.setString(3, participant.getPrenom());
-            pr.setDate(4, (java.sql.Date) participant.getDate_naissance());
+            PreparedStatement pr = c.prepareStatement("insert into participant(nom,prenom,date_naissance,Code_profil) values(?,?,?,?) ");
+
+            pr.setString(1, participant.getNom());
+            pr.setString(2, participant.getPrenom());
+            pr.setDate(3, (java.sql.Date) participant.getDate_naissance());
+            pr.setInt(4, participant.getCode_profil());
             pr.executeUpdate();
             System.out.println("participant a été ajouté avec succès.");
             state = true;
@@ -81,7 +85,7 @@ public class ParticipantDao implements Crud<Participant> {
         try {
             java.sql.Statement st = c.createStatement();
 
-            pr = c.prepareStatement("DELETE FROM participant(matricule,nom,prenom,date_naissance) where matricule=" + participant.getMatricule());
+            pr = c.prepareStatement("DELETE FROM participant where matricule=" + participant.getMatricule());
             pr.executeUpdate();
             state = true;
         } catch (SQLException e) {
@@ -100,7 +104,7 @@ public class ParticipantDao implements Crud<Participant> {
         try {
             java.sql.Statement st = c.createStatement();
 
-            ResultSet resultSet = st.executeQuery("SELECT  * FROM participant(matricule,nom,prenom,date_naissance) where matricule=" + participant.getMatricule());
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM participant where matricule=" + participant.getMatricule());
 
             if (resultSet.next()) {
                 state = true;

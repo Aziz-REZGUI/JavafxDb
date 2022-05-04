@@ -18,12 +18,14 @@ public class FormationDao implements Crud<Formation> {
 
         try {
             //   java.sql.Statement st = c.createStatement();
-            PreparedStatement pst = c.prepareStatement("insert into formation(nombre_jour,annee,mois,nombre_participant,intitule) values(?,?,?,?,?) ");
+            PreparedStatement pst = c.prepareStatement("insert into formation(nombre_jour,annee,mois,nombre_participant,intitule,Code_formateur,code_domaine) values(?,?,?,?,?,?,?) ");
             pr.setInt(1, formation.getNombre_jours());
             pr.setInt(2, formation.getAnnee());
             pr.setInt(3, formation.getMois());
             pr.setInt(4, formation.getNombre_participants());
             pr.setString(5, formation.getIntitule());
+            pr.setInt(6, formation.getCode_formateur());
+            pr.setInt(7, formation.getCode_domaine());
             pr.executeUpdate();
             System.out.println("formation a été ajouté avec succès.");
             state = true;
@@ -39,13 +41,15 @@ public class FormationDao implements Crud<Formation> {
     public boolean update(Formation formation) {
         boolean state = false;
         try {
-            pr = c.prepareStatement("UPDATE formation set intitule =?, nombre_jour=? ,annee=?,mois=?,nombre_participant=? where  code_formation=?");
+            pr = c.prepareStatement("UPDATE formation set intitule =?, nombre_jour=? ,annee=?,mois=?,nombre_participant=?,Code_formateur=?,code_domaine=? where  code_formation=?");
             pr.setString(1, formation.getIntitule());
             pr.setInt(2, formation.getNombre_jours());
             pr.setInt(3, formation.getAnnee());
             pr.setInt(4, formation.getMois());
             pr.setInt(5, formation.getNombre_participants());
-            pr.setInt(6, formation.getCode_formation());
+            pr.setInt(6, formation.getCode_formateur());
+            pr.setInt(7, formation.getCode_formateur());
+            pr.setInt(8, formation.getCode_domaine());
             pr.executeUpdate();
             state = true;
         } catch (SQLException e) {
@@ -79,7 +83,7 @@ public class FormationDao implements Crud<Formation> {
             ResultSet resultSet = st.executeQuery("SELECT  * FROM formation ");
 
             while (resultSet.next()) {
-                Formation temp = new Formation(resultSet.getInt("code_formation"), resultSet.getInt("nombre_jours"), resultSet.getInt("annee"), resultSet.getInt("mois"), resultSet.getInt("nombre_participants"), resultSet.getString("intitule"));
+                Formation temp = new Formation(resultSet.getInt("code_formation"), resultSet.getInt("nombre_jours"), resultSet.getInt("annee"), resultSet.getInt("mois"), resultSet.getInt("nombre_participants"), resultSet.getString("intitule"),resultSet.getInt("Code_formateur"), resultSet.getInt("code_domaine"));
                 output.add(temp);
             }
         } catch (SQLException e) {
