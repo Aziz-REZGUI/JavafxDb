@@ -36,6 +36,8 @@ public class ParticipationDao implements Crud<Participation> {
 
     @Override
     public boolean update(Participation participation) {
+
+        //TODO check return
         boolean state = false;
         try {
             java.sql.Statement st = c.createStatement();
