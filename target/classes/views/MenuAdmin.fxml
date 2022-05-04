@@ -16,7 +16,7 @@
     <children>
         <Label fx:id="welcomeLabel" layoutX="14.0" layoutY="10.0" text="Welcome" />
         <Button fx:id="signOutButton" layoutX="669.0" layoutY="15.0" mnemonicParsing="false" onAction="#signOut" text="Sign Out" />
-        <TabPane layoutX="1.0" layoutY="66.0" prefHeight="509.0" prefWidth="778.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="TabPane" layoutX="1.0" layoutY="66.0" prefHeight="509.0" prefWidth="778.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab fx:id="UserHandlerTab" text="Gerer Utilisateur">
                     <content>

@@ -31,6 +31,25 @@ public class DomainDao implements Crud<Domaine> {
 
     }
 
+    public List<Integer> findIds()
+    {
+        List<Integer> output = new ArrayList<>();
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  code_domaine FROM domaine");
+
+            while (resultSet.next()) {
+                output.add(resultSet.getInt("code_domaine"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+    }
+
+
     @Override
     public boolean create(Domaine domaine) {
         boolean state;

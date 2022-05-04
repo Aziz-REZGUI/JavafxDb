@@ -17,6 +17,12 @@ public class Participant {
         this.prenom = prenom;
         this.date_naissance = date_naissance;
     }
+    public Participant( String nom, String prenom,Date date_naissance,int code_profil) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.Code_profil= code_profil;
+        this.date_naissance = date_naissance;
+    }
 
     public void setMatricule(int matricule) {
         this.matricule = matricule;

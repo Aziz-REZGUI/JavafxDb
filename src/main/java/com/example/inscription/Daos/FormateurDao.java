@@ -94,6 +94,25 @@ public class FormateurDao implements Crud<Formateur> {
         return output;
     }
 
+    public List<Integer> findIds()
+    {
+        List<Integer> output = new ArrayList<>();
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  Code_formateur FROM formateur");
+
+            while (resultSet.next()) {
+              //  int temp = new Formateur(resultSet.getInt("code_formateur"), resultSet.getInt("n_tel"), resultSet.getString("nom"), resultSet.getString("prenom"), resultSet.getString("email"), resultSet.getInt("Code_organisme"), resultSet.getInt("code_domaine"));
+                output.add(resultSet.getInt("Code_formateur"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+    }
+
     @Override
     public boolean exists(Formateur formateur) {
         boolean state = false;

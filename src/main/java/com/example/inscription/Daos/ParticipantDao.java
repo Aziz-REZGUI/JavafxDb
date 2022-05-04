@@ -20,7 +20,9 @@ public class ParticipantDao implements Crud<Participant> {
             ResultSet resultSet = st.executeQuery("SELECT  * FROM participant");
 
             while (resultSet.next()) {
-                Participant temp = new Participant(resultSet.getInt("matricule"), resultSet.getString("nom"), resultSet.getString("prenom") ,resultSet.getDate("date_naissance"), resultSet.getInt("Code_profil"));
+                Participant temp = new Participant(resultSet.getInt("matricule"), resultSet.getString("nom"),
+                        resultSet.getString("prenom") ,resultSet.getDate("date_naissance"),
+                        resultSet.getInt("Code_profil"));
                 output.add(temp);
             }
         } catch (SQLException e) {
@@ -30,6 +32,23 @@ public class ParticipantDao implements Crud<Participant> {
         }
         return output;
 
+    }
+    public List<Integer> findIds()
+    {
+        List<Integer> output = new ArrayList<>();
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  code_domaine FROM domaine");
+
+            while (resultSet.next()) {
+                output.add(resultSet.getInt("Code_domaine"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
     }
 
     @Override

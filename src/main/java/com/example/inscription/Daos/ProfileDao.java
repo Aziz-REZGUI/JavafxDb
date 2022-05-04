@@ -31,6 +31,24 @@ public class ProfileDao implements Crud<Profil> {
         return output;
 
     }
+    public List<Integer> findIds()
+    {
+        List<Integer> output = new ArrayList<>();
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  Code_profil FROM profil");
+
+            while (resultSet.next()) {
+                output.add(resultSet.getInt("Code_profil"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+    }
+
 
     @Override
     public boolean create(Profil profil) {
