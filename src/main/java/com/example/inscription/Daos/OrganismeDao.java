@@ -108,7 +108,7 @@ public class OrganismeDao implements Crud<Organisme> {
         boolean state = false;
         try {
 
-            pr = c.prepareStatement("UPDATE organisme set libelle=? where code_organisme=?)");
+            pr = c.prepareStatement("UPDATE organisme set Libelle=? where code_organisme=?)");
             pr.setString(1, organisme.getLibelle());
             pr.setInt(2, organisme.getCode_organisme());
             pr.executeUpdate();

@@ -227,7 +227,7 @@ public class MenuAdminController implements Initializable {
     }
 
     @FXML
-    public void refreshTable(ActionEvent Action) {
+    public void refreshTableUtilisateur(ActionEvent Action) {
         TabPane.getSelectionModel().select(UserHandlerTab);
 
         tableUser.getItems().clear();
@@ -237,7 +237,14 @@ public class MenuAdminController implements Initializable {
 //Gerer Domaine
 
 
+    @FXML
+    public void refreshTableDomaine(ActionEvent Action) {
+        TabPane.getSelectionModel().select(DomaineHandlerTab);
 
+        tableDomaine.getItems().clear();
+        tableDomaine.getItems().addAll(domainDao.findAll());
+
+    }
 
 
     @FXML
@@ -287,23 +294,30 @@ public class MenuAdminController implements Initializable {
 
 
     @FXML
-    void Modifier_org(ActionEvent event) {
+    void Modifier_org(ActionEvent event) throws Exception{
         TabPane.getSelectionModel().select(OrganismeHandlerTab);
-
-
+        RoutingClass.goTo("Modify_Organisme.fxml", "Supprimer organisme", 604, 251);
     }
 
 
 
 
     @FXML
-    void Supprimer_org(ActionEvent event) {
+    void Supprimer_org(ActionEvent event) throws Exception{
         TabPane.getSelectionModel().select(OrganismeHandlerTab);
+        RoutingClass.goTo("Delete_Organisme.fxml", "Supprimer organisme", 604, 251);
+
 
 
     }
+    @FXML
+    public void refreshTableOrganisme(ActionEvent Action) {
+        TabPane.getSelectionModel().select(OrganismeHandlerTab);
 
-    //Gerer Organisme
+        tableOrganisme.getItems().clear();
+        tableOrganisme.getItems().addAll(organismeDao.findAll());
+
+    }
 
 
 }

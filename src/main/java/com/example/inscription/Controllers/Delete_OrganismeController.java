@@ -18,10 +18,7 @@ public class Delete_OrganismeController {
     @FXML
     void Supprimer_organisme(ActionEvent event) {
         OrganismeDao organismeDao = new OrganismeDao();
-
         Organisme organisme = new Organisme(CodeOrganismeTextField.getText().trim());
-
         organismeDao.delete(organisme);
-
     }
 }

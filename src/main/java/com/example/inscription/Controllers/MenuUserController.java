@@ -240,7 +240,10 @@ private TableView<Participation> tableParticipation;
     }
 
     @FXML
-    void Chercher_formateur(ActionEvent event) {
+    void Chercher_formateur(ActionEvent event) throws Exception {
+        TabPane1.getSelectionModel().select(FormateurHandlerTab);
+
+        RoutingClass.goTo("Find_formateur.fxml", "Modifier", 604, 418);
 
     }
 
