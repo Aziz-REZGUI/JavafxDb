@@ -12,6 +12,74 @@ public class ParticipationDao implements Crud<Participation> {
     Connection c = Databaseconnection.getConnection();
     PreparedStatement pr = null;
 
+    public List<Integer> findparticipantIds()
+    {
+        List<Integer> output = new ArrayList<>();
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  Matricule FROM participant");
+
+            while (resultSet.next()) {
+                output.add(resultSet.getInt("Matricule"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+    }
+    public String find_intitule(int id)
+    {
+        String output="intitule invalide" ;
+
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  intitule FROM formation where code_formation="+id);
+            while (resultSet.next()) {
+                output=resultSet.getString("intitule");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+    }
+    public String find_nom(int id)
+    {
+        String output="nom invalide" ;
+
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  Nom FROM participant where Matricule="+id);
+            while (resultSet.next()) {
+                output=resultSet.getString("Nom");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+    }
+    public List<Integer> findformationIds()
+    {
+        List<Integer> output = new ArrayList<>();
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  code_formation FROM formation");
+
+            while (resultSet.next()) {
+                output.add(resultSet.getInt("code_formation"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+    }
     @Override
     public boolean create(Participation participation) {
         boolean state;
@@ -113,4 +181,5 @@ public class ParticipationDao implements Crud<Participation> {
         }
         return state;
     }
+
 }
