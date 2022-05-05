@@ -29,7 +29,7 @@ public class Add_formationController {
     private TextField Code_formateurTextField;
 
     @FXML
-    private ChoiceBox<Domaine> CodedomaineChoiceBox;
+    private ChoiceBox<Integer> CodedomaineChoiceBox;
 
     @FXML
     private ChoiceBox<Integer> CodeformateurChoiceBox;
@@ -51,7 +51,7 @@ public class Add_formationController {
     @FXML
     private void initialize() {
         CodeformateurChoiceBox.setItems(list);
-        CodeformateurChoiceBox.setItems(list1);
+        CodedomaineChoiceBox.setItems(list1);
 
     }
     @FXML

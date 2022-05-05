@@ -31,14 +31,30 @@ public class OrganismeDao implements Crud<Organisme> {
         return output;
 
     }
+    public List<Integer> findIds()
+    {
+        List<Integer> output = new ArrayList<>();
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  code_organisme FROM organisme");
 
+            while (resultSet.next()) {
+                output.add(resultSet.getInt("code_organisme"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+    }
     @Override
     public boolean create(Organisme organisme) {
         boolean state;
 
         try {
             //   java.sql.Statement st = c.createStatement();
-            PreparedStatement pst = c.prepareStatement("insert into organisme(libelle) values(?) ");
+            PreparedStatement pr = c.prepareStatement("insert into organisme(Libelle) values(?) ");
             pr.setString(1, organisme.getLibelle());
             pr.executeUpdate();
             System.out.println("organisme a été ajouté avec succès.");

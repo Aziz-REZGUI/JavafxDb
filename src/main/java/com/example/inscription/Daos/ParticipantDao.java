@@ -61,7 +61,8 @@ public class ParticipantDao implements Crud<Participant> {
 
             pr.setString(1, participant.getNom());
             pr.setString(2, participant.getPrenom());
-            pr.setDate(3, (java.sql.Date) participant.getDate_naissance());
+            java.sql.Date datenais=new  java.sql.Date(participant.getDate_naissance().getTime());
+            pr.setDate(3, datenais);
             pr.setInt(4, participant.getCode_profil());
             pr.setInt(5, participant.getMatricule());
             pr.executeUpdate();
@@ -85,7 +86,8 @@ public class ParticipantDao implements Crud<Participant> {
 
             pr.setString(1, participant.getNom());
             pr.setString(2, participant.getPrenom());
-            pr.setDate(3, (java.sql.Date) participant.getDate_naissance());
+            java.sql.Date datenais=new  java.sql.Date(participant.getDate_naissance().getTime());
+            pr.setDate(3, datenais);
             pr.setInt(4, participant.getCode_profil());
             pr.executeUpdate();
             System.out.println("participant a été ajouté avec succès.");

@@ -18,7 +18,7 @@ public class FormationDao implements Crud<Formation> {
 
         try {
             //   java.sql.Statement st = c.createStatement();
-            PreparedStatement pst = c.prepareStatement("insert into formation(nombre_jour,annee,mois,nombre_participant,intitule,Code_formateur,code_domaine) values(?,?,?,?,?,?,?) ");
+            PreparedStatement pr = c.prepareStatement("insert into formation(nombre_jour,annee,mois,nombre_participant,intitule,Code_formateur,code_domaine) values(?,?,?,?,?,?,?) ");
             pr.setInt(1, formation.getNombre_jours());
             pr.setInt(2, formation.getAnnee());
             pr.setInt(3, formation.getMois());
@@ -48,8 +48,8 @@ public class FormationDao implements Crud<Formation> {
             pr.setInt(4, formation.getMois());
             pr.setInt(5, formation.getNombre_participants());
             pr.setInt(6, formation.getCode_formateur());
-            pr.setInt(7, formation.getCode_formateur());
-            pr.setInt(8, formation.getCode_domaine());
+            pr.setInt(7, formation.getCode_domaine());
+            pr.setInt(8, formation.getCode_formation());
             pr.executeUpdate();
             state = true;
         } catch (SQLException e) {

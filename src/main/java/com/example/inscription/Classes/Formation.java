@@ -88,4 +88,9 @@ public class Formation {
         this.Code_formateur=Code_formateur;
         this.code_domaine=code_domaine;
     }
+    public Formation(int code_formation)
+    {        this.code_formation = code_formation;
+
+
+    }
 }

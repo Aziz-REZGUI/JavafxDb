@@ -267,9 +267,10 @@ public class MenuAdminController implements Initializable {
         RoutingClass.goTo("Delete_Domain.fxml", "Supprimer", 604, 251);
 
     }
+    //Gerer Organisme
     @FXML
     void Ajouter_org(ActionEvent event) throws IOException {
-        TabPane.getSelectionModel().select(DomaineHandlerTab);
+        TabPane.getSelectionModel().select(OrganismeHandlerTab);
         RoutingClass.goTo("Add_Organisme.fxml", "Supprimer", 604, 251);
 
 

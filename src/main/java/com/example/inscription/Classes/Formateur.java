@@ -78,4 +78,9 @@ public class Formateur {
         this.prenom = prenom;
         this.email = email;
     }
+    public Formateur(int code_formateur)
+    {        this.code_formateur = code_formateur;
+
+
+    }
 }
