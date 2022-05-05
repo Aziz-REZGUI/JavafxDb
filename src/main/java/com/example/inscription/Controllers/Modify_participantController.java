@@ -38,6 +38,8 @@ public class Modify_participantController {
     @FXML
     private TextField PrenomTextField;
     @FXML
+    private TextField IDTextField;
+    @FXML
     private void initialize() {
         CodeprofileChoiceBox.setItems(list);
 
@@ -46,7 +48,7 @@ public class Modify_participantController {
     @FXML
     void Modify_participant(ActionEvent event) {
 
-        Participant participant = new Participant(NomTextField.getText(),
+        Participant participant = new Participant(Integer.parseInt(IDTextField.getText()),NomTextField.getText(),
                 PrenomTextField.getText() , Date.from(DatePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
                 CodeprofileChoiceBox.getValue());
         ParticipantDao participantDao = new ParticipantDao();

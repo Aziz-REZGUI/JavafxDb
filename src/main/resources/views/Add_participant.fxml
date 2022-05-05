@@ -60,7 +60,7 @@
         </Label>
         <Button fx:id="BtnAjouterParticipant" mnemonicParsing="false" onAction="#Add_participant" prefHeight="26.0" prefWidth="77.0" styleClass="my-button" text="Ajouter" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
         <ChoiceBox fx:id="CodeprofileChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <DatePicker fx:id="DatePicker" onAction="#getDate" GridPane.rowIndex="5" />
+      <DatePicker fx:id="DatePicker" GridPane.rowIndex="5" />
     </children>
     <padding>
         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

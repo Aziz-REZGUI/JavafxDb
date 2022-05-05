@@ -49,14 +49,15 @@ public class Modify_formationController {
     ObservableList<Integer> list = FXCollections.observableArrayList(formateurDao.findIds());
     @FXML
     ObservableList<Integer> list1 = FXCollections.observableArrayList(domainDao.findIds());
+    @FXML
     private void initialize() {
         CodeformateurChoiceBox.setItems(list);
-        CodeformateurChoiceBox.setItems(list1);
+        CodedomaineChoiceBox.setItems(list1);
 
     }
     @FXML
     void Modify_Formation(ActionEvent event) {
-        Formation formation = new Formation(Integer.parseInt(NbjourTextField.getText()), Integer.parseInt(anneeTextField.getText()),
+        Formation formation = new Formation(Integer.parseInt(IDTextField.getText()),Integer.parseInt(NbjourTextField.getText()), Integer.parseInt(anneeTextField.getText()),
                 Integer.parseInt(moisTextField.getText()), Integer.parseInt(NbParticipantTextField.getText()),
                 intituleTextField.getText(),
                 Integer.parseInt(CodeformateurChoiceBox.getValue().toString()),

@@ -4,26 +4,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import com.example.inscription.Classes.*;
 import com.example.inscription.Daos.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.Date;
@@ -143,7 +134,26 @@ private TableColumn<Participant, String> col_PrenomPar;
 
     @FXML
     private TableView<Participant> tableParticipant;
+    //Gerer participation
+    @FXML
+    private Tab ParticipationHandlerTab;
 
+    private  ParticipationDao participationDao = new ParticipationDao();
+    ObservableList<Participation> list3 = FXCollections.observableArrayList(participationDao.findAll());
+
+
+
+@FXML
+private TableView<Participation> tableParticipation;
+    @FXML
+    private TableColumn<Participation, Integer> col_MatriculeParticipation;
+    @FXML
+    private TableColumn<Participation, String> col_nomParticipation;
+    @FXML
+    private TableColumn<Participation, Integer> col_code_formation;
+    @FXML
+    private TableColumn<Participation, String> col_intituleParticipation;
+            ;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -185,7 +195,15 @@ private TableColumn<Participant, String> col_PrenomPar;
         col_Date_naissancePar.setCellValueFactory(new PropertyValueFactory<Participant, Date>("date_naissance"));
         tableParticipant.setItems(list2);
         TabPane1.getSelectionModel().select(ParticipantHandlerTab);
+         //affiche table participation
+        col_MatriculeParticipation.setCellValueFactory(new PropertyValueFactory<Participation, Integer>("matricule"));
+        col_intituleParticipation.setCellValueFactory(new PropertyValueFactory<Participation, String>("intitule"));
+        col_code_formation.setCellValueFactory(new PropertyValueFactory<Participation, Integer>("code_formation"));
 
+        col_nomParticipation.setCellValueFactory(new PropertyValueFactory<Participation, String>("nom"));
+
+        tableParticipation.setItems(list3);
+        TabPane1.getSelectionModel().select(ParticipationHandlerTab);
 
     }
     @FXML
@@ -230,7 +248,7 @@ private TableColumn<Participant, String> col_PrenomPar;
     void Modifier_formateur(ActionEvent event)  throws Exception{
         TabPane1.getSelectionModel().select(FormateurHandlerTab);
 
-        RoutingClass.goTo("Modify_formateur.fxml", "Modifier", 604, 251);
+        RoutingClass.goTo("Modify_formateur.fxml", "Modifier", 604, 418);
 
     }
 
@@ -238,7 +256,7 @@ private TableColumn<Participant, String> col_PrenomPar;
     void Modifier_formation(ActionEvent event)  throws Exception{
         TabPane1.getSelectionModel().select(FormationHandlerTab);
 
-        RoutingClass.goTo("Modify_formation.fxml", "Modifier", 604, 251);
+        RoutingClass.goTo("Modify_formation.fxml", "Modifier", 604, 418);
 
     }
 
@@ -246,36 +264,85 @@ private TableColumn<Participant, String> col_PrenomPar;
     void Modifier_participant(ActionEvent event)  throws Exception{
         TabPane1.getSelectionModel().select(ParticipantHandlerTab);
 
-        RoutingClass.goTo("Modify_participant.fxml", "Modifier", 604, 251);
+        RoutingClass.goTo("Modify_participant.fxml", "Modifier", 604, 418);
 
     }
 
     @FXML
     void Supprimer_formateur(ActionEvent event)  throws Exception{
+        TabPane1.getSelectionModel().select(FormateurHandlerTab);
 
+        RoutingClass.goTo("Delete_formteur.fxml", "Supprimer formateur", 604, 251);
     }
 
     @FXML
     void Supprimer_formation(ActionEvent event)  throws Exception{
+        TabPane1.getSelectionModel().select(FormationHandlerTab);
+
+        RoutingClass.goTo("Delete_formtion.fxml", "Supprimer formation", 604, 251);
 
     }
 
     @FXML
     void Supprimer_participant(ActionEvent event)  throws Exception{
+        TabPane1.getSelectionModel().select(ParticipantHandlerTab);
+
+        RoutingClass.goTo("Delete_participant.fxml", "Supprimer participant", 604, 251);
 
     }
 
     @FXML
     void refreshTableFormation(ActionEvent event) {
+        TabPane1.getSelectionModel().select(FormationHandlerTab);
 
+        tableFormation.getItems().clear();
+        tableFormation.getItems().addAll(formationDao.findAll());
+
+    }
+    @FXML
+    void refreshTableParticipation(ActionEvent event) {
+        TabPane1.getSelectionModel().select(ParticipationHandlerTab);
+        tableParticipation.getItems().clear();
+        tableParticipation.getItems().addAll(participationDao.findAll());
     }
 
     @FXML
     void signOut(ActionEvent event) throws Exception {
 
-
             //AdminDao.cleanUserSession();
             RoutingClass.goTo((Stage)signOutButton.getScene().getWindow(),"login.fxml","login");
     }
 
+    public void refreshTableFormateur(ActionEvent event) {
+        TabPane1.getSelectionModel().select(FormateurHandlerTab);
+        tableFormateur.getItems().clear();
+        tableFormateur.getItems().addAll(formateurDao.findAll());
+    }
+    public void  refreshTableParticipant(ActionEvent event) {
+        TabPane1.getSelectionModel().select(ParticipantHandlerTab);
+
+        tableParticipant.getItems().clear();
+        tableParticipant.getItems().addAll(participantDao.findAll());
+    }
+
+
+    public void Ajouter_participation(ActionEvent event)throws Exception {
+            TabPane1.getSelectionModel().select(ParticipationHandlerTab);
+
+            RoutingClass.goTo("Add_participation.fxml", "Ajouter participation", 604, 251);
+
+        }
+
+    public void Supprimer_participation(ActionEvent event) throws Exception{
+        TabPane1.getSelectionModel().select(ParticipationHandlerTab);
+        RoutingClass.goTo("Delete_participation.fxml", "Supprimer participation", 604, 251);
+
+
+
+    }
+
+    public void Modifier_participation(ActionEvent event) throws Exception {
+        TabPane1.getSelectionModel().select(ParticipationHandlerTab);
+        RoutingClass.goTo("Modify_participation.fxml", "Modifier participation", 604, 251);
+    }
 }

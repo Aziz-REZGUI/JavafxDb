@@ -18,12 +18,13 @@ public class FormateurDao implements Crud<Formateur> {
 
         try {
             //   java.sql.Statement st = c.createStatement();
-            PreparedStatement pst = c.prepareStatement("insert into formateur(Nom,Prenom,Email,Code_organisme,code_domaine) values(?,?,?,?,?) ");
+            PreparedStatement pr = c.prepareStatement("insert into formateur(Nom,Prenom,Email,Code_organisme,code_domaine,N_tel) values(?,?,?,?,?,?) ");
             pr.setString(1, formateur.getNom());
             pr.setString(2, formateur.getPrenom());
             pr.setString(3, formateur.getEmail());
-            pr.setInt(3, formateur.getCode_organisme());
-            pr.setInt(3, formateur.getCode_domaine());
+            pr.setInt(4, formateur.getCode_organisme());
+            pr.setInt(5, formateur.getCode_domaine());
+            pr.setInt(6,formateur.getN_tel());
             pr.executeUpdate();
             System.out.println("formateur a été ajouté avec succès.");
             state = true;

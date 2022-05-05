@@ -51,7 +51,7 @@ public class Add_formationController {
     @FXML
     private void initialize() {
         CodeformateurChoiceBox.setItems(list);
-        CodeformateurChoiceBox.setItems(list1);
+        CodedomaineChoiceBox.setItems(list1);
 
     }
     @FXML

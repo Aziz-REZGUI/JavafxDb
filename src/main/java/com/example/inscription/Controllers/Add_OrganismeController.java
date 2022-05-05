@@ -25,7 +25,7 @@ public class Add_OrganismeController {
                 Organisme organisme = new Organisme(LibelleTextField.getText().trim());
                 OrganismeDao organismeDao = new OrganismeDao();
                 if (organismeDao.create(organisme)) {
-                    RoutingClass.alert("Domain is successfully added!");
+                    RoutingClass.alert("Organisme is successfully added!");
                 } else {
                     RoutingClass.alert("problem");
 
