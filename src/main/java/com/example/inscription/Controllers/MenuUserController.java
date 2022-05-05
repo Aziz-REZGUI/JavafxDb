@@ -205,7 +205,7 @@ private TableColumn<Participant, String> col_PrenomPar;
 
     @FXML
     void Ajouter_participant(ActionEvent event) throws Exception {
-        TabPane1.getSelectionModel().select(FormateurHandlerTab);
+        TabPane1.getSelectionModel().select(ParticipantHandlerTab);
 
         RoutingClass.goTo("Add_participant.fxml", "Ajouter", 604, 251);
 

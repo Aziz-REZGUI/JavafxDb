@@ -1,6 +1,5 @@
 package com.example.inscription.Controllers;
 
-import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Classes.Formation;
 import com.example.inscription.Daos.DomainDao;
 import com.example.inscription.Daos.FormateurDao;
@@ -13,17 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
-public class Add_formationController {
-    FormateurDao formateurDao = new FormateurDao();
-    DomainDao domainDao = new DomainDao();
+public class Modify_formationController {
 
     @FXML
-    ObservableList<Integer> list = FXCollections.observableArrayList(formateurDao.findIds());
-    @FXML
-    ObservableList<Integer> list1 = FXCollections.observableArrayList(domainDao.findIds());
-
-    @FXML
-    private Button BtnAjouterFormation;
+    private Button BtnmodifierFormation;
 
     @FXML
     private TextField Code_formateurTextField;
@@ -33,6 +25,9 @@ public class Add_formationController {
 
     @FXML
     private ChoiceBox<Integer> CodeformateurChoiceBox;
+
+    @FXML
+    private TextField IDTextField;
 
     @FXML
     private TextField NbParticipantTextField;
@@ -48,27 +43,34 @@ public class Add_formationController {
 
     @FXML
     private TextField moisTextField;
+    FormateurDao formateurDao = new FormateurDao();
+    DomainDao domainDao = new DomainDao();
     @FXML
+    ObservableList<Integer> list = FXCollections.observableArrayList(formateurDao.findIds());
+    @FXML
+    ObservableList<Integer> list1 = FXCollections.observableArrayList(domainDao.findIds());
     private void initialize() {
         CodeformateurChoiceBox.setItems(list);
         CodeformateurChoiceBox.setItems(list1);
 
     }
     @FXML
-    void Add_Formation(ActionEvent event) {
+    void Modify_Formation(ActionEvent event) {
         Formation formation = new Formation(Integer.parseInt(NbjourTextField.getText()), Integer.parseInt(anneeTextField.getText()),
                 Integer.parseInt(moisTextField.getText()), Integer.parseInt(NbParticipantTextField.getText()),
                 intituleTextField.getText(),
                 Integer.parseInt(CodeformateurChoiceBox.getValue().toString()),
                 Integer.parseInt(CodedomaineChoiceBox.getValue().toString()));
         FormationDao formationDao = new FormationDao();
-        if (formationDao.create(formation)) {
-            RoutingClass.alert("Formation is successfully added!");
+        if (formationDao.update(formation)){
+            RoutingClass.alert("success");
         } else {
             RoutingClass.alert("problem");
 
-
         }
 
+
+
     }
+
 }
