@@ -11,9 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0"
-          prefWidth="604.0" vgap="8.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="com.example.inscription.Controllers.Modify_formationController">
+<GridPane hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="604.0" vgap="8.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inscription.Controllers.Modify_formationController">
 
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -72,11 +70,8 @@
                 <Insets top="16.0" />
             </padding>
         </Label>
-        <Button fx:id="BtnmodifierFormation" mnemonicParsing="false" onAction="#Modify_Formation" prefHeight="26.0"
-                prefWidth="77.0" styleClass="my-button" text="Modifier" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
-                GridPane.rowIndex="12" />
-        <TextField fx:id="NbParticipantTextField" prefHeight="26.0" prefWidth="147.0" style="-fx-background-radius: 0;"
-                   GridPane.rowIndex="9" />
+        <Button fx:id="BtnmodifierFormation" mnemonicParsing="false" onAction="#Modify_Formation" prefHeight="26.0" prefWidth="77.0" styleClass="my-button" text="Modifier" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="12" />
+        <TextField fx:id="NbParticipantTextField" prefHeight="26.0" prefWidth="147.0" style="-fx-background-radius: 0;" GridPane.rowIndex="9" />
         <Label alignment="BOTTOM_LEFT" text="Code Formateur" GridPane.rowIndex="10">
             <padding>
                 <Insets top="16.0" />

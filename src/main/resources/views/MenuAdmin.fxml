@@ -66,7 +66,7 @@
                               <Image url="@../Images/TWO.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="btnRefresh" layoutX="721.0" layoutY="19.0" mnemonicParsing="false" onAction="#refreshTable" text="Refresh" />
+                        <Button fx:id="btnRefresh" layoutX="721.0" layoutY="19.0" mnemonicParsing="false" onAction="#refreshTableUtilisateur" text="Refresh" />
 
                             </children>
                         </Pane>
@@ -93,6 +93,7 @@
                                         <Font name="System Bold Italic" size="17.0" />
                                     </font>
                                 </Button>
+                        <Button fx:id="btnRefresh2" layoutX="717.0" layoutY="19.0" mnemonicParsing="false" onAction="#refreshTableDomaine" text="Refresh" />
                                 <Button fx:id="BtnModiyDomaine" layoutX="225.0" layoutY="338.0" mnemonicParsing="false" onAction="#Modifier_domaine" prefHeight="38.0" prefWidth="172.0" text="Modifier">
                                     <font>
                                         <Font name="System Bold Italic" size="17.0" />
@@ -128,6 +129,7 @@
                                         <Font name="System Bold Italic" size="17.0" />
                                     </font>
                                 </Button>
+                        <Button fx:id="btnRefresh3" layoutX="708.0" layoutY="18.0" mnemonicParsing="false" onAction="#refreshTableOrganisme" text="Refresh" />
                                 <Button fx:id="BtnDeleteOrg" layoutX="439.0" layoutY="338.0" mnemonicParsing="false" onAction="#Supprimer_org" prefHeight="38.0" prefWidth="172.0" text="Supprimer">
                                     <font>
                                         <Font name="System Bold Italic" size="17.0" />

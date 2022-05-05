@@ -26,7 +26,7 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Label maxWidth="1.7976931348623157E308" text="Modifier domaine" GridPane.columnSpan="2147483647">
+        <Label maxWidth="1.7976931348623157E308" text="Modifier organisme" GridPane.columnSpan="2147483647">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
@@ -43,13 +43,8 @@
         <TextField fx:id="LibelleTextField" style="-fx-background-radius: 0;" GridPane.rowIndex="4" />
         <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
             <children>
-                <Button fx:id="BtnUpdatedomaine" mnemonicParsing="false" onAction="#Update_domaine" prefHeight="26.0" prefWidth="77.0" styleClass="my-button" text="Modifier" />
+                <Button fx:id="BtnUpdatedomaine" mnemonicParsing="false" onAction="#Update_organisme" prefHeight="26.0" prefWidth="77.0" styleClass="my-button" text="Modifier" />
             </children>
-            <padding>
-                <Insets bottom="8.0" top="8.0" />
-            </padding>
-        </HBox>
-        <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
             <padding>
                 <Insets bottom="8.0" top="8.0" />
             </padding>
