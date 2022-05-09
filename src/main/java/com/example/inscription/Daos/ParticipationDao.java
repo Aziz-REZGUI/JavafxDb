@@ -86,10 +86,12 @@ public class ParticipationDao implements Crud<Participation> {
 
         try {
             //   java.sql.Statement st = c.createStatement();
-            PreparedStatement pr = c.prepareStatement("insert into participation(Matricule, code_formation) values(?,?) ");
+            PreparedStatement pr = c.prepareStatement("insert into participation(Matricule, code_formation,Nom,intitule) values(?,?,?,?) ");
 
             pr.setInt(1, participation.getMatricule());
             pr.setInt(2, participation.getCode_formation());
+            pr.setString(3,participation.getNom());
+            pr.setString(4,participation.getIntitule());
             pr.executeUpdate();
             System.out.println("participantion a été ajouté avec succès.");
             state = true;

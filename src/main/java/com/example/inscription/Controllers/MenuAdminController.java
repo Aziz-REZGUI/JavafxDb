@@ -167,7 +167,7 @@ public class MenuAdminController implements Initializable {
     void signOut(ActionEvent event) throws IOException {
 
         //AdminDao.cleanUserSession();
-        RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login");
+        RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login", 450, 650);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("/views/login.fxml"));
         LoginController controller = new LoginController();
@@ -181,7 +181,7 @@ public class MenuAdminController implements Initializable {
     private void Ajouter_user(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(UserHandlerTab);
 
-        RoutingClass.goTo("Add_user.fxml", "Ajouter", 604, 251);
+        RoutingClass.goTo("Add_user.fxml", "Ajouter", 450, 650);
         /* Stage SecondStage = new Stage();
         Pane root = FXMLLoader.load(this.getClass().getResource("/views/Add_user.fxml"));
         Scene sceneX = new Scene(root, 604, 251);

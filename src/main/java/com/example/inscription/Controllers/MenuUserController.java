@@ -313,7 +313,7 @@ private TableView<Participation> tableParticipation;
     void signOut(ActionEvent event) throws Exception {
 
             //AdminDao.cleanUserSession();
-            RoutingClass.goTo((Stage)signOutButton.getScene().getWindow(),"login.fxml","login");
+            RoutingClass.goTo((Stage)signOutButton.getScene().getWindow(),"login.fxml","login",778, 569);
     }
 
     public void refreshTableFormateur(ActionEvent event) {
