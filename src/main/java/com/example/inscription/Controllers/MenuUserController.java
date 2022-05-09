@@ -252,7 +252,7 @@ public class MenuUserController implements Initializable {
             RoutingClass.alert("please select a line ");
         }
     }
-//TODO complete send to the other classes 
+//TODO complete send to the other classes
     @FXML
     void Modifier_formation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(FormationHandlerTab);
