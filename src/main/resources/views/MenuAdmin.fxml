@@ -51,22 +51,22 @@
                                         <Font name="System Bold Italic" size="17.0" />
                                     </font>
                                 </Button>
-                        <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="146.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/icons8_Add_User_Male_96px.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="576.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/ONE.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="354.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/TWO.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="btnRefresh" layoutX="721.0" layoutY="19.0" mnemonicParsing="false" onAction="#refreshTableUtilisateur" text="Refresh" />
+                                <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="146.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../Images/icons8_Add_User_Male_96px.png" />
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="576.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../Images/ONE.png" />
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="354.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../Images/TWO.png" />
+                                    </image>
+                                </ImageView>
+                                <Button fx:id="btnRefresh" layoutX="721.0" layoutY="19.0" mnemonicParsing="false" onAction="#refreshTableUtilisateur" text="Refresh" />
 
                             </children>
                         </Pane>
@@ -93,7 +93,7 @@
                                         <Font name="System Bold Italic" size="17.0" />
                                     </font>
                                 </Button>
-                        <Button fx:id="btnRefresh2" layoutX="717.0" layoutY="19.0" mnemonicParsing="false" onAction="#refreshTableDomaine" text="Refresh" />
+                                <Button fx:id="btnRefresh2" layoutX="717.0" layoutY="19.0" mnemonicParsing="false" onAction="#refreshTableDomaine" text="Refresh" />
                                 <Button fx:id="BtnModiyDomaine" layoutX="225.0" layoutY="338.0" mnemonicParsing="false" onAction="#Modifier_domaine" prefHeight="38.0" prefWidth="172.0" text="Modifier">
                                     <font>
                                         <Font name="System Bold Italic" size="17.0" />
@@ -129,13 +129,49 @@
                                         <Font name="System Bold Italic" size="17.0" />
                                     </font>
                                 </Button>
-                        <Button fx:id="btnRefresh3" layoutX="708.0" layoutY="18.0" mnemonicParsing="false" onAction="#refreshTableOrganisme" text="Refresh" />
+                                <Button fx:id="btnRefresh3" layoutX="708.0" layoutY="18.0" mnemonicParsing="false" onAction="#refreshTableOrganisme" text="Refresh" />
                                 <Button fx:id="BtnDeleteOrg" layoutX="439.0" layoutY="338.0" mnemonicParsing="false" onAction="#Supprimer_org" prefHeight="38.0" prefWidth="172.0" text="Supprimer">
                                     <font>
                                         <Font name="System Bold Italic" size="17.0" />
                                     </font>
                                 </Button>
                                 <Button fx:id="BtnModifyOrg" layoutX="225.0" layoutY="338.0" mnemonicParsing="false" onAction="#Modifier_org" prefHeight="38.0" prefWidth="172.0" text="Modifier">
+                                    <font>
+                                        <Font name="System Bold Italic" size="17.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </Pane>
+                    </content>
+                </Tab>
+                <Tab fx:id="ProfilHandlerTab" text="Gerer Profil">
+                    <content>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="TextfieldProfil" layoutX="15.0" layoutY="9.0" prefHeight="44.0" prefWidth="599.0" promptText="Find organisme" text="Find Profil" />
+                                <Button fx:id="BtnSearchProfil" layoutX="627.0" layoutY="9.0" mnemonicParsing="false" onAction="#Chercher_profil" prefHeight="44.0" prefWidth="81.0" text="Search" textFill="#01010d">
+                                    <font>
+                                        <Font name="System Bold Italic" size="13.0" />
+                                    </font>
+                                </Button>
+                                <TableView fx:id="tableProfil" layoutX="13.0" layoutY="64.0" prefHeight="255.0" prefWidth="708.0">
+                                    <columns>
+                                        <TableColumn fx:id="col_idprofil" prefWidth="99.20002746582031" text="Code profil" />
+                                        <TableColumn fx:id="col_libelleprofil" minWidth="0.0" prefWidth="606.4000778198242" text="Libelle" />
+                                    </columns>
+                                </TableView>
+                                <Button fx:id="BtnAddProfil" layoutX="15.0" layoutY="338.0" mnemonicParsing="false" onAction="#Ajouter_profil" prefHeight="38.0" prefWidth="172.0" text="Ajouter">
+                                    <font>
+                                        <Font name="System Bold Italic" size="17.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="btnRefresh4" layoutX="708.0" layoutY="18.0" mnemonicParsing="false" onAction="#refreshTableProfil" text="Refresh" />
+                                <Button fx:id="BtnDeleteProfil" layoutX="439.0" layoutY="338.0" mnemonicParsing="false" onAction="#Supprimer_profil" prefHeight="38.0" prefWidth="172.0" text="Supprimer">
+                                    <font>
+                                        <Font name="System Bold Italic" size="17.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="BtnModifyProfil" layoutX="225.0" layoutY="338.0" mnemonicParsing="false" onAction="#Modifier_profil" prefHeight="38.0" prefWidth="172.0" text="Modifier">
                                     <font>
                                         <Font name="System Bold Italic" size="17.0" />
                                     </font>

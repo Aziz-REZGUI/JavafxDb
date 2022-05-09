@@ -1,11 +1,7 @@
 package com.example.inscription.Controllers;
 
-import com.example.inscription.Classes.Domaine;
-import com.example.inscription.Classes.Organisme;
-import com.example.inscription.Classes.User;
-import com.example.inscription.Daos.DomainDao;
-import com.example.inscription.Daos.OrganismeDao;
-import com.example.inscription.Daos.UserDao;
+import com.example.inscription.Classes.*;
+import com.example.inscription.Daos.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +22,7 @@ public class MenuAdminController implements Initializable {
     private UserDao userDao = new UserDao();
     private DomainDao domainDao = new DomainDao();
     private OrganismeDao organismeDao = new OrganismeDao();
+    private ProfileDao profileDao = new ProfileDao();
     @FXML
     TabPane TabPane;
     @FXML
@@ -33,7 +30,6 @@ public class MenuAdminController implements Initializable {
 
     @FXML
     private Button BtnAddOrg;
-
 
 
     @FXML
@@ -64,7 +60,6 @@ public class MenuAdminController implements Initializable {
     private Button BtnSearchUser;
 
 
-
     @FXML
     private Tab OrhanismeHandlerTab;
 
@@ -76,7 +71,6 @@ public class MenuAdminController implements Initializable {
 
     @FXML
     private TextField Textfielddomaine;
-
 
 
     @FXML
@@ -131,6 +125,11 @@ public class MenuAdminController implements Initializable {
     ObservableList<Organisme> list2 = FXCollections.observableArrayList(organismeDao.findAll());
 
 
+    //Table view Profil
+    @FXML
+    private TableView<Profil> tableProfil;
+    @FXML
+    private Tab ProfilHandlerTab;
 
 
     @Override
@@ -147,14 +146,12 @@ public class MenuAdminController implements Initializable {
         TabPane.getSelectionModel().select(UserHandlerTab);
 
 
-
         //affiche table Domaine
 
         col_iddomaine.setCellValueFactory(new PropertyValueFactory<Domaine, Integer>("code_domaine"));
         col_libelledomaine.setCellValueFactory(new PropertyValueFactory<Domaine, String>("libelle"));
         tableDomaine.setItems(list1);
         TabPane.getSelectionModel().select(DomaineHandlerTab);
-
 
 
         //affiche table Organisme
@@ -170,7 +167,7 @@ public class MenuAdminController implements Initializable {
     void signOut(ActionEvent event) throws IOException {
 
         //AdminDao.cleanUserSession();
-        RoutingClass.goTo((Stage)signOutButton.getScene().getWindow(),"login.fxml","login");
+        RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("/views/login.fxml"));
         LoginController controller = new LoginController();
@@ -200,13 +197,7 @@ public class MenuAdminController implements Initializable {
         TabPane.getSelectionModel().select(UserHandlerTab);
 
         RoutingClass.goTo("Modify_user.fxml", "Modifier", 604, 251);
-        /*Stage SecondStage = new Stage();
-        Pane root = FXMLLoader.load(this.getClass().getResource("/views/Modify_user.fxml"));
-        Scene sceneX = new Scene(root, 604, 251);
-        //SecondStage.setMaximized(true);
-        SecondStage.setScene(sceneX);
-        SecondStage.setTitle("Modifier");
-        SecondStage.show();*/
+
 
     }
 
@@ -217,13 +208,6 @@ public class MenuAdminController implements Initializable {
 
         RoutingClass.goTo("Delete_user.fxml", "Supprimer", 604, 251);
 
-        /*Stage SecondStage = new Stage();
-        Pane root = FXMLLoader.load(this.getClass().getResource("/views/Delete_user.fxml"));
-        Scene sceneX = new Scene(root, 604, 251);
-        //SecondStage.setMaximized(true);
-        SecondStage.setScene(sceneX);
-        SecondStage.setTitle("Supprimer");
-        SecondStage.show();*/
     }
 
     @FXML
@@ -258,7 +242,6 @@ public class MenuAdminController implements Initializable {
     }
 
 
-
     @FXML
     void Modifier_domaine(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(DomaineHandlerTab);
@@ -274,6 +257,7 @@ public class MenuAdminController implements Initializable {
         RoutingClass.goTo("Delete_Domain.fxml", "Supprimer", 604, 251);
 
     }
+
     //Gerer Organisme
     @FXML
     void Ajouter_org(ActionEvent event) throws IOException {
@@ -292,24 +276,22 @@ public class MenuAdminController implements Initializable {
     }
 
 
-
     @FXML
-    void Modifier_org(ActionEvent event) throws Exception{
+    void Modifier_org(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(OrganismeHandlerTab);
         RoutingClass.goTo("Modify_Organisme.fxml", "Supprimer organisme", 604, 251);
     }
 
 
-
-
     @FXML
-    void Supprimer_org(ActionEvent event) throws Exception{
-        TabPane.getSelectionModel().select(OrganismeHandlerTab);
-        RoutingClass.goTo("Delete_Organisme.fxml", "Supprimer organisme", 604, 251);
+    void Supprimer_org(ActionEvent event) throws Exception {
 
+        TabPane.getSelectionModel().select(OrganismeHandlerTab);
+            RoutingClass.goTo("Delete_Organisme.fxml", "Supprimer organisme", 604, 251);
 
 
     }
+
     @FXML
     public void refreshTableOrganisme(ActionEvent Action) {
         TabPane.getSelectionModel().select(OrganismeHandlerTab);
@@ -318,6 +300,45 @@ public class MenuAdminController implements Initializable {
         tableOrganisme.getItems().addAll(organismeDao.findAll());
 
     }
+
+    //Gerer profil
+    @FXML
+    void Chercher_profil(ActionEvent event) throws Exception {
+        TabPane.getSelectionModel().select(ProfilHandlerTab);
+
+        RoutingClass.goTo("Find_profil.fxml", "Modifier", 604, 251);
+
+    }
+
+
+@FXML
+    void refreshTableProfile(ActionEvent event) {
+        TabPane.getSelectionModel().select(ProfilHandlerTab);
+        tableProfil.getItems().clear();
+        tableProfil.getItems().addAll(profileDao.findAll());
+    }
+    @FXML
+
+    void Modifier_profile(ActionEvent event) throws Exception {
+        TabPane.getSelectionModel().select(ProfilHandlerTab);
+        RoutingClass.goTo("Modify_profil.fxml", "Modifier", 604, 251);
+
+
+    }
+    @FXML
+
+    void Ajouter_profile(ActionEvent event) throws Exception {
+        TabPane.getSelectionModel().select(ProfilHandlerTab);
+        RoutingClass.goTo("Add_profil.fxml", "Modifier", 604, 251);
+
+    }
+    @FXML
+
+    void Supprimer_profile(ActionEvent event) throws Exception {
+        TabPane.getSelectionModel().select(ProfilHandlerTab);
+
+    }
+
 
 
 }

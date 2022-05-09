@@ -44,16 +44,7 @@ public class LoginController {
     @FXML
     public void sign_up(javafx.scene.input.MouseEvent mouseEvent) throws Exception {
         RoutingClass.goTo((Stage) sign_up.getScene().getWindow(), "register.fxml", "Sign up");
-        /*Parent signUp = FXMLLoader.load(this.getClass().getResource("/views/register.fxml"));
-        Scene scene = new Scene(signUp, 1500, 870);
-        scene.getStylesheets().add(this.getClass().getResource("/views/login.css").toExternalForm());
 
-        //This line gets the stage information
-        window = (Stage) sign_up.getScene().getWindow();
-        window.setScene(scene);
-        window.setTitle("Sign up");
-        window.setMaximized(true);
-        window.show();*/
     }
 
     public void loginButtonOnAction(ActionEvent event) throws IOException {
@@ -66,9 +57,9 @@ public class LoginController {
             UserDao userDao = new UserDao();
             if (userDao.login(user)) {
                 if (userDao.isAdmin(user)) {
-                    RoutingClass.goTo((Stage) sign_up.getScene().getWindow(), "MenuAdmin.fxml", "Menuadmin ", 778, 563);
+                    RoutingClass.goTo((Stage) sign_up.getScene().getWindow(), "MenuAdmin.fxml", "Menuadmin ", 778, 569);
                 } else {
-                    RoutingClass.goTo((Stage) sign_up.getScene().getWindow(), "MenuUser.fxml", "MenuUser ", 778, 563);
+                    RoutingClass.goTo((Stage) sign_up.getScene().getWindow(), "MenuUser.fxml", "MenuUser ", 778, 569);
                 }
                     /* Parent signUp = FXMLLoader.load(this.getClass().getResource("/views/MenuAdmin.fxml"));
                 Scene scene = new Scene(signUp, 778, 563);

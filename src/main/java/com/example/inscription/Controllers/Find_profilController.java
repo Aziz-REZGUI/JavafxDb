@@ -1,12 +1,4 @@
 package com.example.inscription.Controllers;
 
-
-public class RegisterController {
-
-
+public class Find_profilController {
 }
-
-
-
-
-
