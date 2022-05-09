@@ -24,7 +24,7 @@ public class Add_participationController {
     private TextField CodeFormationTextField;
     @FXML
     ObservableList<Integer> list = FXCollections.observableArrayList(participationDao.findformationIds());
-    @FXML
+   // @FXML
     ObservableList<Integer> list1 = FXCollections.observableArrayList(participationDao.findparticipantIds());
 
     @FXML

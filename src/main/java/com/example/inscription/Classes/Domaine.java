@@ -13,6 +13,11 @@ public class Domaine {
         this.libelle = libelle;
     }
 
+    @Override
+    public String toString() {
+        return libelle;
+    }
+
     public int getCode_domaine() {
         return code_domaine;
     }

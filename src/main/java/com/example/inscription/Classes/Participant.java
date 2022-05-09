@@ -10,6 +10,11 @@ public class Participant {
     private String nom, prenom;
     private Date date_naissance;
 
+    @Override
+    public String toString() {
+        return nom+"  "+prenom;
+    }
+
     //constructeur
     public Participant(int matricule, String nom, String prenom,Date date_naissance,int code_profil) {
         this.matricule = matricule;

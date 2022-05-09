@@ -61,25 +61,14 @@ public class LoginController {
                 } else {
                     RoutingClass.goTo((Stage) sign_up.getScene().getWindow(), "MenuUser.fxml", "MenuUser ", 778, 569);
                 }
-                    /* Parent signUp = FXMLLoader.load(this.getClass().getResource("/views/MenuAdmin.fxml"));
-                Scene scene = new Scene(signUp, 778, 563);
-                //scene.getStylesheets().add(this.getClass().getResource("/views/login.css").toExternalForm());
 
-                //This line gets the stage information
-                window = (Stage) sign_up.getScene().getWindow();
-                window.setScene(scene);
-                window.setTitle("Menuadmin ");
-                window.setMaximized(true);
-                window.show();*/
+            } else {
+                RoutingClass.alert("The entered password is wrong!");
 
-
-        } else{
-            RoutingClass.alert("The entered password is wrong!");
+            }
 
         }
-
     }
-}
 
 
    /* public static Alert alert(String alertText) {

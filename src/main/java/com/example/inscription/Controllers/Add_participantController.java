@@ -1,6 +1,7 @@
 package com.example.inscription.Controllers;
 
 import com.example.inscription.Classes.Participant;
+import com.example.inscription.Classes.Profil;
 import com.example.inscription.Daos.ParticipantDao;
 import com.example.inscription.Daos.ProfileDao;
 import javafx.collections.FXCollections;
@@ -20,13 +21,13 @@ public class Add_participantController {
     ProfileDao profileDao = new ProfileDao();
 
     @FXML
-    ObservableList<String> list = FXCollections.observableArrayList(profileDao.findIds());
+    ObservableList<Profil> list = FXCollections.observableArrayList(profileDao.findAll());
 
     @FXML
     private Button BtnAjouterParticipant;
 
     @FXML
-    private ChoiceBox<String> CodeprofileChoiceBox;
+    private ChoiceBox<Profil> CodeprofileChoiceBox;
 
     @FXML
     private DatePicker DatePicker;
@@ -46,11 +47,9 @@ public class Add_participantController {
     void Add_participant(ActionEvent event) {
         //TODO verify sql date and java date
         ParticipantDao participantDao = new ParticipantDao();
-        String lib=CodeprofileChoiceBox.getValue().trim();
-        int code_profil=profileDao.findId(lib);
         Participant participant = new Participant(NomTextField.getText(),
                 PrenomTextField.getText() , Date.from(DatePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
-              code_profil);
+                CodeprofileChoiceBox.getValue().getCode_profil());
 
         if (participantDao.create(participant)) {
             RoutingClass.alert("Participant is successfully added!");

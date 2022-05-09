@@ -68,7 +68,12 @@ public class Formation {
         this.code_domaine = code_domaine;
     }
 
-    public Formation(int nombre_jours, int annee, int mois, int nombre_participants, String intitule,int Code_formateur,int code_domaine) {
+    @Override
+    public String toString() {
+        return intitule;
+
+    }
+    public Formation(int nombre_jours, int annee, int mois, int nombre_participants, String intitule, int Code_formateur, int code_domaine) {
         this.nombre_jours = nombre_jours;
         this.annee = annee;
         this.mois = mois;

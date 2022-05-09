@@ -25,6 +25,11 @@ public class Organisme {
         this.libelle = libelle;
     }
 
+    @Override
+    public String toString() {
+        return  libelle ;
+    }
+
     public Organisme(int code_organisme, String libelle) {
         this.code_organisme = code_organisme;
         this.libelle = libelle;

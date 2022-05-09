@@ -13,6 +13,11 @@ public class Profil {
         this.libelle = libelle;
     }
 
+    @Override
+    public String toString() {
+        return libelle;
+    }
+
     public int getCode_profil() {
         return code_profil;
     }

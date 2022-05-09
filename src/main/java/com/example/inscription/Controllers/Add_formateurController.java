@@ -1,7 +1,9 @@
 package com.example.inscription.Controllers;
 
+import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Classes.Formateur;
 import com.example.inscription.Classes.Formation;
+import com.example.inscription.Classes.Organisme;
 import com.example.inscription.Daos.DomainDao;
 import com.example.inscription.Daos.FormateurDao;
 import com.example.inscription.Daos.FormationDao;
@@ -19,18 +21,18 @@ public class Add_formateurController {
     DomainDao domainDao = new DomainDao();
 
     @FXML
-    ObservableList<String> list = FXCollections.observableArrayList(organismeDao.findIds());
+    ObservableList<Organisme> list = FXCollections.observableArrayList(organismeDao.findAll());
     @FXML
-    ObservableList<String> list1 = FXCollections.observableArrayList(domainDao.findIds());
+    ObservableList<Domaine> list1 = FXCollections.observableArrayList(domainDao.findAll());
 
     @FXML
     private Button BtnAjouterFormateur;
 
     @FXML
-    private ChoiceBox<String> CodedomaineChoiceBox;
+    private ChoiceBox<Domaine> CodedomaineChoiceBox;
 
     @FXML
-    private ChoiceBox<String> CodeorganismeChoiceBox;
+    private ChoiceBox<Organisme> CodeorganismeChoiceBox;
 
     @FXML
     private TextField EmailTextField;
@@ -53,7 +55,7 @@ public class Add_formateurController {
     void Add_Formateur(ActionEvent event) {
         Formateur formateur = new Formateur(Integer.parseInt(NumtelTextField.getText()), NomTextField.getText(),
         PrenomTextField.getText(), EmailTextField.getText(),organismeDao.findId(CodeorganismeChoiceBox.getValue().toString()),
-                domainDao.findId(CodedomaineChoiceBox.getValue().toString()));
+                CodedomaineChoiceBox.getValue().getCode_domaine());
         FormateurDao formateurDao = new FormateurDao();
         if (formateurDao.create(formateur)) {
             RoutingClass.alert("Formateur is successfully added!");

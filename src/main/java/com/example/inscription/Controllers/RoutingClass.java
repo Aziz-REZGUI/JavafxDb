@@ -15,7 +15,7 @@ import java.io.IOException;
 import static javafx.scene.control.Alert.AlertType.ERROR;
 import static javafx.scene.control.ButtonType.OK;
 
-public class RoutingClass extends Application {
+public class RoutingClass  <S> extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane root = FXMLLoader.load(this.getClass().getResource("/views/login.fxml"));
@@ -26,7 +26,6 @@ public class RoutingClass extends Application {
         primaryStage.setTitle("Sign in");
         primaryStage.show();
     }
-
     static public void goTo(Stage stage, String fileName, String title, float width, float height) throws IOException {
         Parent signUp = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
         Scene scene = new Scene(signUp, width, height);
@@ -35,6 +34,20 @@ public class RoutingClass extends Application {
         //This line gets the stage information
         stage = (Stage) stage.getScene().getWindow();
         stage.setScene(scene);
+
+        stage.setTitle(title);
+        stage.setMaximized(true);
+        stage.show();
+    }
+    static public void goTo(Stage stage, String fileName, String title, float width, float height,Object data) throws IOException {
+        Parent signUp = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
+        Scene scene = new Scene(signUp, width, height);
+        scene.getStylesheets().add(RoutingClass.class.getResource("/views/login.css").toExternalForm());
+
+        //This line gets the stage information
+        stage = (Stage) stage.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setUserData(data);
         stage.setTitle(title);
         stage.setMaximized(true);
         stage.show();

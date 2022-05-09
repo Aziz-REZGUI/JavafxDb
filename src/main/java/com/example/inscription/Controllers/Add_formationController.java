@@ -21,7 +21,7 @@ public class Add_formationController {
     @FXML
     ObservableList<Formateur> list = FXCollections.observableArrayList(formateurDao.findAll());
     @FXML
-    ObservableList<String> list1 = FXCollections.observableArrayList(domainDao.findIds());
+    ObservableList<Domaine> list1 = FXCollections.observableArrayList(domainDao.findAll());
 
     @FXML
     private Button BtnAjouterFormation;
@@ -30,7 +30,7 @@ public class Add_formationController {
     private TextField Code_formateurTextField;
 
     @FXML
-    private ChoiceBox<String> CodedomaineChoiceBox;
+    private ChoiceBox<Domaine> CodedomaineChoiceBox;
 
     @FXML
     private ChoiceBox<Formateur> CodeformateurChoiceBox;
@@ -61,7 +61,7 @@ public class Add_formationController {
                 Integer.parseInt(moisTextField.getText()), Integer.parseInt(NbParticipantTextField.getText()),
                 intituleTextField.getText(),
                 CodeformateurChoiceBox.getValue().getCode_formateur(),
-                domainDao.findId(CodedomaineChoiceBox.getValue()));
+                CodedomaineChoiceBox.getValue().getCode_domaine());
         FormationDao formationDao = new FormationDao();
         if (formationDao.create(formation)) {
             RoutingClass.alert("Formation is successfully added!");

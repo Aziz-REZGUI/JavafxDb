@@ -93,7 +93,7 @@ public class ProfileDao implements Crud<Profil> {
 
         try {
             //   java.sql.Statement st = c.createStatement();
-            PreparedStatement pst = c.prepareStatement("insert into profil(libelle) values(?) ");
+            PreparedStatement pr = c.prepareStatement("insert into profil(libelle) values(?) ");
             pr.setString(1, profil.getLibelle());
             pr.executeUpdate();
             System.out.println("profile a été ajouté avec succès.");

@@ -32,6 +32,11 @@ public class User {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return login;
+    }
+
     // ena zedet he4a
     public User(String Codeutilisateur) {
         this.Codeutilisateur = Integer.parseInt(Codeutilisateur);
