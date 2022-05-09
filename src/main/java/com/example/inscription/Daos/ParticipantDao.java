@@ -21,7 +21,7 @@ public class ParticipantDao implements Crud<Participant> {
 
             while (resultSet.next()) {
                 Participant temp = new Participant(resultSet.getInt("matricule"), resultSet.getString("nom"),
-                        resultSet.getString("prenom") ,resultSet.getDate("date_naissance"),
+                        resultSet.getString("prenom"), resultSet.getDate("date_naissance"),
                         resultSet.getInt("Code_profil"));
                 output.add(temp);
             }
@@ -32,16 +32,38 @@ public class ParticipantDao implements Crud<Participant> {
         }
         return output;
 
+
     }
-    public List<Integer> findIds()
-    {
-        List<Integer> output = new ArrayList<>();
+
+
+    public int findId(String lib) {
+        int output = -1;
+        try {
+
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  code_domaine FROM domaine where Libelle=" + lib);
+            output= resultSet.getInt("code_domaine");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+
+    }
+
+    /*
+    returns list of id's
+     */
+    public List<String> findIds() {
+        List<String> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  code_domaine FROM domaine");
+            ResultSet resultSet = st.executeQuery("SELECT  Libelle FROM domaine");
 
             while (resultSet.next()) {
-                output.add(resultSet.getInt("Code_domaine"));
+                output.add(resultSet.getString("Libelle"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -61,7 +83,7 @@ public class ParticipantDao implements Crud<Participant> {
 
             pr.setString(1, participant.getNom());
             pr.setString(2, participant.getPrenom());
-            java.sql.Date datenais=new  java.sql.Date(participant.getDate_naissance().getTime());
+            java.sql.Date datenais = new java.sql.Date(participant.getDate_naissance().getTime());
             pr.setDate(3, datenais);
             pr.setInt(4, participant.getCode_profil());
             pr.setInt(5, participant.getMatricule());
@@ -86,7 +108,7 @@ public class ParticipantDao implements Crud<Participant> {
 
             pr.setString(1, participant.getNom());
             pr.setString(2, participant.getPrenom());
-            java.sql.Date datenais=new  java.sql.Date(participant.getDate_naissance().getTime());
+            java.sql.Date datenais = new java.sql.Date(participant.getDate_naissance().getTime());
             pr.setDate(3, datenais);
             pr.setInt(4, participant.getCode_profil());
             pr.executeUpdate();

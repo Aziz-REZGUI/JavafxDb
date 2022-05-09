@@ -1,6 +1,7 @@
 package com.example.inscription.Controllers;
 
 import com.example.inscription.Classes.Domaine;
+import com.example.inscription.Classes.Formateur;
 import com.example.inscription.Classes.Formation;
 import com.example.inscription.Daos.DomainDao;
 import com.example.inscription.Daos.FormateurDao;
@@ -18,9 +19,9 @@ public class Add_formationController {
     DomainDao domainDao = new DomainDao();
 
     @FXML
-    ObservableList<Integer> list = FXCollections.observableArrayList(formateurDao.findIds());
+    ObservableList<Formateur> list = FXCollections.observableArrayList(formateurDao.findAll());
     @FXML
-    ObservableList<Integer> list1 = FXCollections.observableArrayList(domainDao.findIds());
+    ObservableList<String> list1 = FXCollections.observableArrayList(domainDao.findIds());
 
     @FXML
     private Button BtnAjouterFormation;
@@ -29,10 +30,10 @@ public class Add_formationController {
     private TextField Code_formateurTextField;
 
     @FXML
-    private ChoiceBox<Integer> CodedomaineChoiceBox;
+    private ChoiceBox<String> CodedomaineChoiceBox;
 
     @FXML
-    private ChoiceBox<Integer> CodeformateurChoiceBox;
+    private ChoiceBox<Formateur> CodeformateurChoiceBox;
 
     @FXML
     private TextField NbParticipantTextField;
@@ -59,8 +60,8 @@ public class Add_formationController {
         Formation formation = new Formation(Integer.parseInt(NbjourTextField.getText()), Integer.parseInt(anneeTextField.getText()),
                 Integer.parseInt(moisTextField.getText()), Integer.parseInt(NbParticipantTextField.getText()),
                 intituleTextField.getText(),
-                Integer.parseInt(CodeformateurChoiceBox.getValue().toString()),
-                Integer.parseInt(CodedomaineChoiceBox.getValue().toString()));
+                CodeformateurChoiceBox.getValue().getCode_formateur(),
+                domainDao.findId(CodedomaineChoiceBox.getValue()));
         FormationDao formationDao = new FormationDao();
         if (formationDao.create(formation)) {
             RoutingClass.alert("Formation is successfully added!");

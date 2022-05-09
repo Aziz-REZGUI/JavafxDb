@@ -21,13 +21,13 @@ public class Modify_participantController {
     ProfileDao profileDao = new ProfileDao();
 
     @FXML
-    ObservableList<Integer> list = FXCollections.observableArrayList(profileDao.findIds());
+    ObservableList<String> list = FXCollections.observableArrayList(profileDao.findIds());
 
     @FXML
     private Button BtnModifierParticipant;
 
     @FXML
-    private ChoiceBox<Integer> CodeprofileChoiceBox;
+    private ChoiceBox<String> CodeprofileChoiceBox;
 
     @FXML
     private DatePicker DatePicker;
@@ -50,7 +50,7 @@ public class Modify_participantController {
 
         Participant participant = new Participant(Integer.parseInt(IDTextField.getText()),NomTextField.getText(),
                 PrenomTextField.getText() , Date.from(DatePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
-                CodeprofileChoiceBox.getValue());
+                Integer.parseInt(CodeprofileChoiceBox.getValue()));
         ParticipantDao participantDao = new ParticipantDao();
         if (participantDao.update(participant)){
             RoutingClass.alert("success");

@@ -19,18 +19,18 @@ public class Add_formateurController {
     DomainDao domainDao = new DomainDao();
 
     @FXML
-    ObservableList<Integer> list = FXCollections.observableArrayList(organismeDao.findIds());
+    ObservableList<String> list = FXCollections.observableArrayList(organismeDao.findIds());
     @FXML
-    ObservableList<Integer> list1 = FXCollections.observableArrayList(domainDao.findIds());
+    ObservableList<String> list1 = FXCollections.observableArrayList(domainDao.findIds());
 
     @FXML
     private Button BtnAjouterFormateur;
 
     @FXML
-    private ChoiceBox<Integer> CodedomaineChoiceBox;
+    private ChoiceBox<String> CodedomaineChoiceBox;
 
     @FXML
-    private ChoiceBox<Integer> CodeorganismeChoiceBox;
+    private ChoiceBox<String> CodeorganismeChoiceBox;
 
     @FXML
     private TextField EmailTextField;
@@ -52,8 +52,8 @@ public class Add_formateurController {
     @FXML
     void Add_Formateur(ActionEvent event) {
         Formateur formateur = new Formateur(Integer.parseInt(NumtelTextField.getText()), NomTextField.getText(),
-        PrenomTextField.getText(), EmailTextField.getText(),Integer.parseInt(CodeorganismeChoiceBox.getValue().toString()),
-                Integer.parseInt(CodedomaineChoiceBox.getValue().toString()));
+        PrenomTextField.getText(), EmailTextField.getText(),organismeDao.findId(CodeorganismeChoiceBox.getValue().toString()),
+                domainDao.findId(CodedomaineChoiceBox.getValue().toString()));
         FormateurDao formateurDao = new FormateurDao();
         if (formateurDao.create(formateur)) {
             RoutingClass.alert("Formateur is successfully added!");

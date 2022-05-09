@@ -22,6 +22,7 @@ public class ProfileDao implements Crud<Profil> {
             while (resultSet.next()) {
                 Profil temp = new Profil(resultSet.getInt("code_profil"), resultSet.getString("libelle"));
                 output.add(temp);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -31,15 +32,32 @@ public class ProfileDao implements Crud<Profil> {
         return output;
 
     }
-    public List<Integer> findIds()
-    {
-        List<Integer> output = new ArrayList<>();
+
+    public int findId(String lib) {
+        int output = -1;
+        try {
+
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  Code_profil FROM profil where Libelle='" + lib+"'");
+            while (resultSet.next()) {
+                output = resultSet.getInt("Code_profil");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+    }
+
+    public List<String> findIds() {
+        List<String> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  Code_profil FROM profil");
+            ResultSet resultSet = st.executeQuery("SELECT  Libelle FROM profil");
 
             while (resultSet.next()) {
-                output.add(resultSet.getInt("Code_profil"));
+                output.add(resultSet.getString("Libelle"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -48,6 +66,7 @@ public class ProfileDao implements Crud<Profil> {
         }
         return output;
     }
+
     public boolean exists(String libelle) {
         boolean state = false;
         try {

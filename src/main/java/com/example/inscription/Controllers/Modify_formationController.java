@@ -21,7 +21,7 @@ public class Modify_formationController {
     private TextField Code_formateurTextField;
 
     @FXML
-    private ChoiceBox<Integer> CodedomaineChoiceBox;
+    private ChoiceBox<String> CodedomaineChoiceBox;
 
     @FXML
     private ChoiceBox<Integer> CodeformateurChoiceBox;
@@ -48,7 +48,7 @@ public class Modify_formationController {
     @FXML
     ObservableList<Integer> list = FXCollections.observableArrayList(formateurDao.findIds());
     @FXML
-    ObservableList<Integer> list1 = FXCollections.observableArrayList(domainDao.findIds());
+    ObservableList<String> list1 = FXCollections.observableArrayList(domainDao.findIds());
     @FXML
     private void initialize() {
         CodeformateurChoiceBox.setItems(list);

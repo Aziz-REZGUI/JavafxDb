@@ -18,10 +18,10 @@ public class Modify_formateurController {
     private Button BtnModifierFormateur;
 
     @FXML
-    private ChoiceBox<Integer> CodedomaineChoiceBox;
+    private ChoiceBox<String> CodedomaineChoiceBox;
 
     @FXML
-    private ChoiceBox<Integer> CodeorganismeChoiceBox;
+    private ChoiceBox<String> CodeorganismeChoiceBox;
 
     @FXML
     private TextField EmailTextField;
@@ -41,9 +41,9 @@ public class Modify_formateurController {
     OrganismeDao organismeDao = new OrganismeDao();
     DomainDao domainDao = new DomainDao();
     @FXML
-    ObservableList<Integer> list = FXCollections.observableArrayList(organismeDao.findIds());
+    ObservableList<String> list = FXCollections.observableArrayList(organismeDao.findIds());
     @FXML
-    ObservableList<Integer> list1 = FXCollections.observableArrayList(domainDao.findIds());
+    ObservableList<String> list1 = FXCollections.observableArrayList(domainDao.findIds());
     @FXML
     private void initialize() {
         CodeorganismeChoiceBox.setItems(list);

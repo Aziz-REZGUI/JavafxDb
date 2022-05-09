@@ -20,13 +20,13 @@ public class Add_participantController {
     ProfileDao profileDao = new ProfileDao();
 
     @FXML
-    ObservableList<Integer> list = FXCollections.observableArrayList(profileDao.findIds());
+    ObservableList<String> list = FXCollections.observableArrayList(profileDao.findIds());
 
     @FXML
     private Button BtnAjouterParticipant;
 
     @FXML
-    private ChoiceBox<Integer> CodeprofileChoiceBox;
+    private ChoiceBox<String> CodeprofileChoiceBox;
 
     @FXML
     private DatePicker DatePicker;
@@ -45,10 +45,13 @@ public class Add_participantController {
     @FXML
     void Add_participant(ActionEvent event) {
         //TODO verify sql date and java date
+        ParticipantDao participantDao = new ParticipantDao();
+        String lib=CodeprofileChoiceBox.getValue().trim();
+        int code_profil=profileDao.findId(lib);
         Participant participant = new Participant(NomTextField.getText(),
                 PrenomTextField.getText() , Date.from(DatePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
-                CodeprofileChoiceBox.getValue());
-        ParticipantDao participantDao = new ParticipantDao();
+              code_profil);
+
         if (participantDao.create(participant)) {
             RoutingClass.alert("Participant is successfully added!");
         } else {

@@ -48,6 +48,11 @@ public class Formateur {
         return Code_organisme;
     }
 
+    @Override
+    public String toString() {
+        return nom+"  "+prenom;
+    }
+
     public void setCode_organisme(int code_organisme) {
         Code_organisme = code_organisme;
     }

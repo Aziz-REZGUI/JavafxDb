@@ -31,15 +31,15 @@ public class OrganismeDao implements Crud<Organisme> {
         return output;
 
     }
-    public List<Integer> findIds()
+    public List<String> findIds()
     {
-        List<Integer> output = new ArrayList<>();
+        List<String> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  code_organisme FROM organisme");
+            ResultSet resultSet = st.executeQuery("SELECT  Libelle FROM organisme");
 
             while (resultSet.next()) {
-                output.add(resultSet.getInt("code_organisme"));
+                output.add(resultSet.getString("Libelle"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,6 +81,22 @@ public class OrganismeDao implements Crud<Organisme> {
         }
         return state;
 
+    }
+    public int findId(String lib) {
+        int output = -1;
+        try {
+
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT Code_organisme   FROM organisme where Libelle='" + lib+"'");
+            while (resultSet.next()) {
+                output = resultSet.getInt("Code_profil");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
     }
     public boolean exists(String libelle) {
         boolean state = false;

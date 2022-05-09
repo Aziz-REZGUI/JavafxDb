@@ -12,6 +12,22 @@ public class DomainDao implements Crud<Domaine> {
     Connection c = Databaseconnection.getConnection();
     PreparedStatement pr = null;
 
+
+    public int findId(String lib) {
+        int output = -1;
+        try {
+            Statement st = c.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT  code_domaine FROM domaine where Libelle='" + lib+"'");
+            while (resultSet.next()) {
+                output = resultSet.getInt("code_domaine");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+        return output;
+    }
     public List<Domaine> findAll() {
         List<Domaine> output = new ArrayList<>();
         try {
@@ -31,15 +47,15 @@ public class DomainDao implements Crud<Domaine> {
 
     }
 
-    public List<Integer> findIds()
+    public List<String> findIds()
     {
-        List<Integer> output = new ArrayList<>();
+        List<String> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  code_domaine FROM domaine");
+            ResultSet resultSet = st.executeQuery("SELECT  Libelle FROM domaine");
 
             while (resultSet.next()) {
-                output.add(resultSet.getInt("code_domaine"));
+                output.add(resultSet.getString("Libelle"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -48,6 +64,7 @@ public class DomainDao implements Crud<Domaine> {
         }
         return output;
     }
+
 
 
     @Override
