@@ -130,6 +130,24 @@ public class UserDao implements Crud<User> {
 
         return state;
     }
+    public boolean exists(String login) {
+        boolean state = false;
+        try {
+            pr = c.prepareStatement("select count(1) from utilisateur where login = '" + login + "'");
+            ResultSet rs = pr.executeQuery();
+            while (rs.next()) {
+                state = rs.getInt(1) == 1;
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+
+        return state;
+    }
     public   boolean isAdmin(User user)
     { boolean state = false;
         try {

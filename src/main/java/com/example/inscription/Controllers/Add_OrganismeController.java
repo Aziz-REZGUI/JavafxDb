@@ -24,16 +24,21 @@ public class Add_OrganismeController {
         void Add_organisme(ActionEvent event) {
                 Organisme organisme = new Organisme(LibelleTextField.getText().trim());
                 OrganismeDao organismeDao = new OrganismeDao();
+
+           if(!organismeDao.exists(LibelleTextField.getText().trim())) {
                 if (organismeDao.create(organisme)) {
                     RoutingClass.alert("Organisme is successfully added!");
                 } else {
                     RoutingClass.alert("problem");
 
 
-
                 }
 
-
+            }
+           else
+           {
+               RoutingClass.alert("organisme already exists");
+           }
             }
 
         }

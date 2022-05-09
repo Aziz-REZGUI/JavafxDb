@@ -121,4 +121,22 @@ public class DomainDao implements Crud<Domaine> {
         return state;
 
     }
+    public boolean exists(String libelle) {
+        boolean state = false;
+        try {
+            pr = c.prepareStatement("select count(1) from domaine where Libelle  = '" + libelle + "'");
+            ResultSet rs = pr.executeQuery();
+            while (rs.next()) {
+                state = rs.getInt(1) == 1;
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+
+        }
+
+        return state;
+    }
 }
