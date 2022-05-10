@@ -24,14 +24,14 @@ public class Add_domaineController {
         if (!domainDao.exists(LibelleTextField.getText().trim())) {
             if (domainDao.create(domaine)) {
                 RoutingClass.alert("Domain is successfully added!");
-                MenuAdminController menuAdminController=new MenuAdminController();
+              /*  MenuAdminController menuAdminController=new MenuAdminController();
                 ObservableList<Domaine> list1 = FXCollections.observableArrayList(domainDao.findAll());
 
                 menuAdminController.getTableDomaine().getItems().clear();
 
                 menuAdminController.getTableDomaine().setItems(list1);
 
-                menuAdminController.getTableDomaine().refresh();
+                menuAdminController.getTableDomaine().refresh();*/
             } else {
                 RoutingClass.alert("problem");
 
