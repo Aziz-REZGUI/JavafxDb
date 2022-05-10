@@ -1,7 +1,13 @@
 package com.example.inscription.Controllers;
 
-import com.example.inscription.Classes.*;
-import com.example.inscription.Daos.*;
+import com.example.inscription.Classes.Domaine;
+import com.example.inscription.Classes.Organisme;
+import com.example.inscription.Classes.Profil;
+import com.example.inscription.Classes.User;
+import com.example.inscription.Daos.DomainDao;
+import com.example.inscription.Daos.OrganismeDao;
+import com.example.inscription.Daos.ProfileDao;
+import com.example.inscription.Daos.UserDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -135,9 +141,10 @@ public class MenuAdminController implements Initializable {
     private TableView<Profil> tableProfil;
     @FXML
     private Tab ProfilHandlerTab;
-@FXML
-private  Button btnRefresh2;
-    boolean is_selected=false;
+    @FXML
+    private Button btnRefresh2;
+    boolean is_selected = false;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -151,35 +158,6 @@ private  Button btnRefresh2;
         tableUser.setItems(list);
         TabPane.getSelectionModel().select(UserHandlerTab);
         //Chercher dans table user
-        FilteredList<User> filteredData = new FilteredList<>(list, b -> true);
-
-        TextFieldUSer.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(user -> {
-
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (user.getLogin().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
-                    return true;
-                } else if (user.getPassword().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                }
-                else if (String.valueOf(user.getCodeutilisateur()).indexOf(lowerCaseFilter)!=-1)
-                    return true;
-                else
-                    return false;
-            });
-        });
-
-        SortedList<User> sortedData = new SortedList<>(filteredData);
-
-
-        sortedData.comparatorProperty().bind(tableUser.comparatorProperty());
-
-        tableUser.setItems(sortedData);
-
 
 
         //affiche table Domaine
@@ -187,7 +165,7 @@ private  Button btnRefresh2;
         col_iddomaine.setCellValueFactory(new PropertyValueFactory<Domaine, Integer>("code_domaine"));
         col_libelledomaine.setCellValueFactory(new PropertyValueFactory<Domaine, String>("libelle"));
         list1.addAll();
-        if(!is_selected) {
+        if (!is_selected) {
             //chercher dans table domaine
             FilteredList<Domaine> filteredData1 = new FilteredList<>(list1, b -> true);
             Textfielddomaine.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -215,11 +193,43 @@ private  Button btnRefresh2;
         //affiche table Organisme
 
 
-
         col_idorg.setCellValueFactory(new PropertyValueFactory<Organisme, Integer>("code_organisme"));
         col_lielleorg.setCellValueFactory(new PropertyValueFactory<Organisme, String>("libelle"));
         tableOrganisme.setItems(list2);
         TabPane.getSelectionModel().select(OrganismeHandlerTab);
+
+
+    }
+
+    @FXML
+    void sort(ActionEvent event) {
+        FilteredList<User> filteredData = new FilteredList<>(list, b -> true);
+
+        TextFieldUSer.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(user -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (user.getLogin().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (user.getPassword().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(user.getCodeutilisateur()).indexOf(lowerCaseFilter) != -1)
+                    return true;
+                else
+                    return false;
+            });
+        });
+
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+
+
+        sortedData.comparatorProperty().bind(tableUser.comparatorProperty());
+
+        tableUser.setItems(sortedData);
 
 
     }
@@ -251,10 +261,10 @@ private  Button btnRefresh2;
     private void Modifier_user(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(UserHandlerTab);
         if (tableUser.getSelectionModel().getSelectedIndex() > -1) {
-        RoutingClass.goTo("Modify_user.fxml", "Modifier", 604, 251,tableUser.getSelectionModel().getSelectedItem());
-    } else {
-        RoutingClass.alert("please select a line ");
-    }
+            RoutingClass.goTo("Modify_user.fxml", "Modifier", 604, 251, tableUser.getSelectionModel().getSelectedItem());
+        } else {
+            RoutingClass.alert("please select a line ");
+        }
 
     }
 
@@ -263,16 +273,16 @@ private  Button btnRefresh2;
     private void Supprimer_user(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(UserHandlerTab);
         if (tableUser.getSelectionModel().getSelectedIndex() > -1) {
-        RoutingClass.goTo("Delete_user.fxml", "Supprimer", 604, 251,tableUser.getSelectionModel().getSelectedItem());
-    } else {
-        RoutingClass.alert("please select a line ");
+            RoutingClass.goTo("Delete_user.fxml", "Supprimer", 604, 251, tableUser.getSelectionModel().getSelectedItem());
+        } else {
+            RoutingClass.alert("please select a line ");
         }
     }
 
     @FXML
     public void refreshTableUtilisateur(ActionEvent Action) {
         TabPane.getSelectionModel().select(UserHandlerTab);
-        tableUser.refresh();
+        tableUser.getItems().clear();
         tableUser.getItems().addAll(userDao.findAll());
 
     }
@@ -281,12 +291,12 @@ private  Button btnRefresh2;
 
     @FXML
     public void refreshTableDomaine(ActionEvent Action) {
-        is_selected=true;
+        is_selected = true;
         TabPane.getSelectionModel().select(DomaineHandlerTab);
 
         tableDomaine.setItems(list1);
         tableDomaine.refresh();
-        is_selected=false;
+        is_selected = false;
     }
 
 
@@ -305,20 +315,20 @@ private  Button btnRefresh2;
     void Modifier_domaine(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(DomaineHandlerTab);
         if (tableDomaine.getSelectionModel().getSelectedIndex() > -1) {
-        RoutingClass.goTo("Modify_Domaine.fxml", "Modifier", 604, 251,tableDomaine.getSelectionModel().getSelectedItem());
-            } else {
+            RoutingClass.goTo("Modify_Domaine.fxml", "Modifier", 604, 251, tableDomaine.getSelectionModel().getSelectedItem());
+        } else {
             RoutingClass.alert("please select a line ");
-            }
+        }
     }
 
     @FXML
     void Supprimer_domaine(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(DomaineHandlerTab);
         if (tableDomaine.getSelectionModel().getSelectedIndex() > -1) {
-        RoutingClass.goTo("Delete_Domain.fxml", "Supprimer", 604, 251,tableDomaine.getSelectionModel().getSelectedItem());
-            } else {
+            RoutingClass.goTo("Delete_Domain.fxml", "Supprimer", 604, 251, tableDomaine.getSelectionModel().getSelectedItem());
+        } else {
             RoutingClass.alert("please select a line ");
-            }
+        }
     }
 
     //Gerer Organisme
@@ -343,10 +353,10 @@ private  Button btnRefresh2;
     void Modifier_org(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(OrganismeHandlerTab);
         if (tableOrganisme.getSelectionModel().getSelectedIndex() > -1) {
-        RoutingClass.goTo("Modify_Organisme.fxml", "Supprimer organisme", 604, 251,tableOrganisme.getSelectionModel().getSelectedItem());
-            } else {
+            RoutingClass.goTo("Modify_Organisme.fxml", "Supprimer organisme", 604, 251, tableOrganisme.getSelectionModel().getSelectedItem());
+        } else {
             RoutingClass.alert("please select a line ");
-            }
+        }
     }
 
 
@@ -356,21 +366,21 @@ private  Button btnRefresh2;
         TabPane.getSelectionModel().select(OrganismeHandlerTab);
         if (tableOrganisme.getSelectionModel().getSelectedIndex() > -1) {
 
-            RoutingClass.goTo("Delete_Organisme.fxml", "Supprimer organisme", 604, 251,tableOrganisme.getSelectionModel().getSelectedItem());
-            } else {
+            RoutingClass.goTo("Delete_Organisme.fxml", "Supprimer organisme", 604, 251, tableOrganisme.getSelectionModel().getSelectedItem());
+        } else {
             RoutingClass.alert("please select a line ");
-            }
+        }
 
     }
 
     @FXML
     public void refreshTableOrganisme(ActionEvent Action) {
-        is_selected=true;
+        is_selected = true;
         TabPane.getSelectionModel().select(OrganismeHandlerTab);
         ObservableList<Organisme> list1 = FXCollections.observableArrayList(organismeDao.findAll());
         tableOrganisme.setItems(list1);
         tableOrganisme.refresh();
-        is_selected=false;
+        is_selected = false;
 
 
     }
@@ -378,44 +388,42 @@ private  Button btnRefresh2;
     //Gerer profil
 
 
-
-@FXML
+    @FXML
     void refreshTableProfile(ActionEvent event) {
         TabPane.getSelectionModel().select(ProfilHandlerTab);
         tableProfil.getItems().clear();
         tableProfil.getItems().addAll(profileDao.findAll());
     }
-    @FXML
 
+    @FXML
     void Modifier_profile(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(ProfilHandlerTab);
         if (tableProfil.getSelectionModel().getSelectedIndex() > -1) {
 
-            RoutingClass.goTo("Modify_profil.fxml", "Modifier", 604, 251,tableProfil.getSelectionModel().getSelectedItem());
+            RoutingClass.goTo("Modify_profil.fxml", "Modifier", 604, 251, tableProfil.getSelectionModel().getSelectedItem());
 
-            } else {
+        } else {
             RoutingClass.alert("please select a line ");
-            }
+        }
     }
-    @FXML
 
+    @FXML
     void Ajouter_profile(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(ProfilHandlerTab);
         RoutingClass.goTo("Add_profil.fxml", "Modifier", 604, 251);
 
     }
-    @FXML
 
+    @FXML
     void Supprimer_profile(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(ProfilHandlerTab);
         if (tableProfil.getSelectionModel().getSelectedIndex() > -1) {
-            RoutingClass.goTo("Delete_profil.fxml", "Supprimer", 604, 251,tableProfil.getSelectionModel().getSelectedItem());
+            RoutingClass.goTo("Delete_profil.fxml", "Supprimer", 604, 251, tableProfil.getSelectionModel().getSelectedItem());
 
-            } else {
+        } else {
             RoutingClass.alert("please select a line ");
-            }
+        }
     }
-
 
 
 }
