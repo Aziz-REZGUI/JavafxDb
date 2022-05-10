@@ -99,6 +99,7 @@ public class RoutingClass<S> extends Application {
         ft.play();
     }
 
+
     public static void alert(String alertText) {
         Alert alert = new Alert(ERROR, alertText, OK);
         DialogPane dialogPane = alert.getDialogPane();
