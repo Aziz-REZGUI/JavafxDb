@@ -142,7 +142,7 @@
                         <Pane prefHeight="200.0" prefWidth="200.0">
                             <children>
                                 <TextField fx:id="TextfieldProfil" layoutX="15.0" layoutY="9.0" prefHeight="44.0" prefWidth="599.0" promptText="Find organisme" text="Find Profil" />
-                                <Button fx:id="BtnSearchProfil" layoutX="627.0" layoutY="9.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="81.0" text="Search" textFill="#01010d">
+                                <Button fx:id="BtnSearchProfil" layoutX="627.0" layoutY="9.0" mnemonicParsing="false"  prefHeight="44.0" prefWidth="81.0" text="Search" textFill="#01010d">
                                     <font>
                                         <Font name="System Bold Italic" size="13.0" />
                                     </font>
