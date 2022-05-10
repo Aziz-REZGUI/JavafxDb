@@ -268,9 +268,13 @@ public class MenuUserController implements Initializable {
     @FXML
     void Modifier_participant(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(ParticipantHandlerTab);
+        if (tableParticipant.getSelectionModel().getSelectedIndex() > -1) {
 
-        RoutingClass.goTo("Modify_participant.fxml", "Modifier", 604, 418);
+        RoutingClass.goTo("Modify_participant.fxml", "Modifier", 604, 418,tableParticipant.getSelectionModel().getSelectedItem());
+    } else {
+        RoutingClass.alert("please select a line ");
 
+    }
     }
 
     @FXML
