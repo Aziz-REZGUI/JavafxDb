@@ -252,13 +252,17 @@ public class MenuUserController implements Initializable {
             RoutingClass.alert("please select a line ");
         }
     }
-//TODO complete send to the other classes
+
+    //TODO complete send to the other classes
     @FXML
     void Modifier_formation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(FormationHandlerTab);
+        if (tableFormation.getSelectionModel().getSelectedIndex() > -1) {
+            RoutingClass.goTo("Modify_formation.fxml", "Modifier", 604, 418, tableFormateur.getSelectionModel().getSelectedItem());
+        } else {
+            RoutingClass.alert("please select a line ");
 
-        RoutingClass.goTo("Modify_formation.fxml", "Modifier", 604, 418);
-
+        }
     }
 
     @FXML
@@ -345,6 +349,10 @@ public class MenuUserController implements Initializable {
 
     public void Modifier_participation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(ParticipationHandlerTab);
-        RoutingClass.goTo("Modify_participation.fxml", "Modifier participation", 604, 251);
+        if (tableParticipation.getSelectionModel().getSelectedIndex() > -1) {
+            RoutingClass.goTo("Modify_participation.fxml", "Modifier participation", 604, 251,tableParticipation.getSelectionModel().getSelectedItem());
+        } else {
+            RoutingClass.alert("please select a line ");
+        }
     }
 }
