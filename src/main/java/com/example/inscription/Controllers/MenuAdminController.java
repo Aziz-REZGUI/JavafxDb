@@ -10,12 +10,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MenuAdminController implements Initializable {
@@ -211,8 +215,10 @@ private  Button btnRefresh2;
             sortedData1.comparatorProperty().bind(tableDomaine.comparatorProperty());
             tableDomaine.setItems(sortedData1);
             tableDomaine.refresh();
+
         }
-        //affiche table Organisme
+
+            //affiche table Organisme
 
 
 
@@ -314,11 +320,33 @@ private  Button btnRefresh2;
     @FXML
     void Supprimer_domaine(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(DomaineHandlerTab);
+
+        //List<Domaine> domaineList = tableDomaine.getSelectionModel().getSelectedItems();
         if (tableDomaine.getSelectionModel().getSelectedIndex() > -1) {
-        RoutingClass.goTo("Delete_Domain.fxml", "Supprimer", 604, 251,tableDomaine.getSelectionModel().getSelectedItem());
+            RoutingClass.goTo("Delete_Domain.fxml", "Ajouter", 604, 251);
+
+/*
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+
+            alert.initOwner(stage);
+            alert.setTitle("Confirmation de supprition");
+            alert.setHeaderText(null);
+            alert.setContentText("Êtes-vous sûr de vouloir supprimer?");
+            Optional<ButtonType> action = alert.showAndWait();
+            if(action.get()==ButtonType.OK) {
+                Node node = (Node) event.getSource();
+
+                Domaine domaine = (Domaine) node.getUserData();
+
+                domainDao.delete(domaine);
+}
+ */
+
             } else {
             RoutingClass.alert("please select a line ");
             }
+
     }
 
     //Gerer Organisme
@@ -409,6 +437,7 @@ private  Button btnRefresh2;
     void Supprimer_profile(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(ProfilHandlerTab);
         if (tableProfil.getSelectionModel().getSelectedIndex() > -1) {
+
             RoutingClass.goTo("Delete_profil.fxml", "Supprimer", 604, 251,tableProfil.getSelectionModel().getSelectedItem());
 
             } else {
