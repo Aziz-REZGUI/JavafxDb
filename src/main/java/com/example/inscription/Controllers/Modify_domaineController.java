@@ -31,6 +31,7 @@ public class Modify_domaineController {
             DomainDao domaineDao = new DomainDao();
             if (domaineDao.update(domaine)) {
                 RoutingClass.alert("success");
+
             } else {
                 RoutingClass.alert("problem");
 

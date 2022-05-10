@@ -4,6 +4,8 @@ import com.example.inscription.Classes.*;
 import com.example.inscription.Daos.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -108,11 +110,13 @@ public class MenuAdminController implements Initializable {
     @FXML
     private TableColumn<Domaine, Integer> col_iddomaine;
 
+
     @FXML
     private TableColumn<Domaine, String> col_libelledomaine;
-    ObservableList<Domaine> list1 = FXCollections.observableArrayList(domainDao.findAll());
 
-
+    public TableView<Domaine> getTableDomaine() {
+        return tableDomaine;
+    }
 // Table View organisme
 
     @FXML
@@ -123,6 +127,7 @@ public class MenuAdminController implements Initializable {
     private TableColumn<Organisme, String> col_lielleorg;
 
     ObservableList<Organisme> list2 = FXCollections.observableArrayList(organismeDao.findAll());
+    ObservableList<Domaine> list1 = FXCollections.observableArrayList(domainDao.findAll());
 
 
     //Table view Profil
@@ -130,8 +135,9 @@ public class MenuAdminController implements Initializable {
     private TableView<Profil> tableProfil;
     @FXML
     private Tab ProfilHandlerTab;
-
-
+@FXML
+private  Button btnRefresh2;
+    boolean is_selected=false;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -144,17 +150,72 @@ public class MenuAdminController implements Initializable {
         col_role.setCellValueFactory(new PropertyValueFactory<User, String>("Role"));
         tableUser.setItems(list);
         TabPane.getSelectionModel().select(UserHandlerTab);
+        //Chercher dans table user
+        FilteredList<User> filteredData = new FilteredList<>(list, b -> true);
+
+        TextFieldUSer.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(user -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (user.getLogin().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+                    return true;
+                } else if (user.getPassword().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                }
+                else if (String.valueOf(user.getCodeutilisateur()).indexOf(lowerCaseFilter)!=-1)
+                    return true;
+                else
+                    return false;
+            });
+        });
+
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+
+
+        sortedData.comparatorProperty().bind(tableUser.comparatorProperty());
+
+        tableUser.setItems(sortedData);
+
 
 
         //affiche table Domaine
 
         col_iddomaine.setCellValueFactory(new PropertyValueFactory<Domaine, Integer>("code_domaine"));
         col_libelledomaine.setCellValueFactory(new PropertyValueFactory<Domaine, String>("libelle"));
-        tableDomaine.setItems(list1);
-        TabPane.getSelectionModel().select(DomaineHandlerTab);
+        list1.addAll();
+        if(!is_selected) {
+            //chercher dans table domaine
+            FilteredList<Domaine> filteredData1 = new FilteredList<>(list1, b -> true);
+            Textfielddomaine.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredData1.setPredicate(domaine -> {
 
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
 
+                    if (domaine.getLibelle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                        return true;
+                    } else if (String.valueOf(domaine.getCode_domaine()).indexOf(lowerCaseFilter) != -1)
+                        return true;
+                    else
+                        return false;
+                });
+            });
+
+            SortedList<Domaine> sortedData1 = new SortedList<>(filteredData1);
+            sortedData1.comparatorProperty().bind(tableDomaine.comparatorProperty());
+            tableDomaine.setItems(sortedData1);
+            tableDomaine.refresh();
+        }
         //affiche table Organisme
+
+
+
         col_idorg.setCellValueFactory(new PropertyValueFactory<Organisme, Integer>("code_organisme"));
         col_lielleorg.setCellValueFactory(new PropertyValueFactory<Organisme, String>("libelle"));
         tableOrganisme.setItems(list2);
@@ -182,13 +243,7 @@ public class MenuAdminController implements Initializable {
         TabPane.getSelectionModel().select(UserHandlerTab);
 
         RoutingClass.goTo("Add_user.fxml", "Ajouter", 450, 650);
-        /* Stage SecondStage = new Stage();
-        Pane root = FXMLLoader.load(this.getClass().getResource("/views/Add_user.fxml"));
-        Scene sceneX = new Scene(root, 604, 251);
-        //SecondStage.setMaximized(true);
-        SecondStage.setScene(sceneX);
-        SecondStage.setTitle("Ajouter");
-        SecondStage.show();*/
+
 
     }
 
@@ -213,8 +268,7 @@ public class MenuAdminController implements Initializable {
     @FXML
     public void refreshTableUtilisateur(ActionEvent Action) {
         TabPane.getSelectionModel().select(UserHandlerTab);
-
-        tableUser.getItems().clear();
+        tableUser.refresh();
         tableUser.getItems().addAll(userDao.findAll());
 
     }
@@ -223,11 +277,12 @@ public class MenuAdminController implements Initializable {
 
     @FXML
     public void refreshTableDomaine(ActionEvent Action) {
+        is_selected=true;
         TabPane.getSelectionModel().select(DomaineHandlerTab);
 
-        tableDomaine.getItems().clear();
-        tableDomaine.getItems().addAll(domainDao.findAll());
-
+        tableDomaine.setItems(list1);
+        tableDomaine.refresh();
+        is_selected=false;
     }
 
 
@@ -294,21 +349,18 @@ public class MenuAdminController implements Initializable {
 
     @FXML
     public void refreshTableOrganisme(ActionEvent Action) {
-        TabPane.getSelectionModel().select(OrganismeHandlerTab);
+        is_selected=true;
+        TabPane.getSelectionModel().select(DomaineHandlerTab);
+        ObservableList<Domaine> list1 = FXCollections.observableArrayList(domainDao.findAll());
+        tableDomaine.setItems(list1);
+        tableDomaine.refresh();
+        is_selected=false;
 
-        tableOrganisme.getItems().clear();
-        tableOrganisme.getItems().addAll(organismeDao.findAll());
 
     }
 
     //Gerer profil
-    @FXML
-    void Chercher_profil(ActionEvent event) throws Exception {
-        TabPane.getSelectionModel().select(ProfilHandlerTab);
 
-        RoutingClass.goTo("Find_profil.fxml", "Modifier", 604, 251);
-
-    }
 
 
 @FXML

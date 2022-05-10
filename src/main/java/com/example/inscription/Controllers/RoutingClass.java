@@ -26,6 +26,8 @@ public class RoutingClass<S> extends Application {
 
         primaryStage.setScene(sceneX);
         primaryStage.setTitle("Sign in");
+        primaryStage.setResizable(false);
+
         primaryStage.show();
     }
 
@@ -39,6 +41,8 @@ public class RoutingClass<S> extends Application {
         stage.setScene(scene);
 
         stage.setTitle(title);
+        stage.setResizable(false);
+
 
         stage.show();
     }
@@ -53,6 +57,8 @@ public class RoutingClass<S> extends Application {
         stage.setScene(scene);
         stage.setUserData(data);
         stage.setTitle(title);
+        stage.setResizable(false);
+
 
         stage.show();
     }
@@ -64,6 +70,8 @@ public class RoutingClass<S> extends Application {
         SecondStage.setScene(sceneX);
         SecondStage.setUserData(data);
         SecondStage.setTitle(title);
+        SecondStage.setResizable(false);
+
         SecondStage.show();
     }
 
