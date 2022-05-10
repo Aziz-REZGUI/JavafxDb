@@ -258,7 +258,7 @@ public class MenuUserController implements Initializable {
     void Modifier_formation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(FormationHandlerTab);
         if (tableFormation.getSelectionModel().getSelectedIndex() > -1) {
-            RoutingClass.goTo("Modify_formation.fxml", "Modifier", 604, 418, tableFormateur.getSelectionModel().getSelectedItem());
+            RoutingClass.goTo("Modify_formation.fxml", "Modifier", 604, 418, tableFormation.getSelectionModel().getSelectedItem());
         } else {
             RoutingClass.alert("please select a line ");
 

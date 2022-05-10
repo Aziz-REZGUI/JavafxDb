@@ -1,5 +1,7 @@
 package com.example.inscription.Controllers;
 
+import com.example.inscription.Classes.Domaine;
+import com.example.inscription.Classes.Formateur;
 import com.example.inscription.Classes.Formation;
 import com.example.inscription.Daos.DomainDao;
 import com.example.inscription.Daos.FormateurDao;
@@ -8,9 +10,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class Modify_formationController {
 
@@ -21,10 +25,10 @@ public class Modify_formationController {
     private TextField Code_formateurTextField;
 
     @FXML
-    private ChoiceBox<String> CodedomaineChoiceBox;
+    private ChoiceBox<Domaine> CodedomaineChoiceBox;
 
     @FXML
-    private ChoiceBox<Integer> CodeformateurChoiceBox;
+    private ChoiceBox<Formateur> CodeformateurChoiceBox;
 
     @FXML
     private TextField IDTextField;
@@ -46,9 +50,9 @@ public class Modify_formationController {
     FormateurDao formateurDao = new FormateurDao();
     DomainDao domainDao = new DomainDao();
     @FXML
-    ObservableList<Integer> list = FXCollections.observableArrayList(formateurDao.findIds());
+    ObservableList<Formateur> list = FXCollections.observableArrayList(formateurDao.findAll());
     @FXML
-    ObservableList<String> list1 = FXCollections.observableArrayList(domainDao.findIds());
+    ObservableList<Domaine> list1 = FXCollections.observableArrayList(domainDao.findAll());
     @FXML
     private void initialize() {
         CodeformateurChoiceBox.setItems(list);
@@ -57,11 +61,40 @@ public class Modify_formationController {
     }
     @FXML
     void Modify_Formation(ActionEvent event) {
-        Formation formation = new Formation(Integer.parseInt(IDTextField.getText()),Integer.parseInt(NbjourTextField.getText()), Integer.parseInt(anneeTextField.getText()),
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Formation formation = (Formation) stage.getUserData();
+      /*  Formation formation = new Formation(Integer.parseInt(IDTextField.getText()),Integer.parseInt(NbjourTextField.getText()), Integer.parseInt(anneeTextField.getText()),
                 Integer.parseInt(moisTextField.getText()), Integer.parseInt(NbParticipantTextField.getText()),
                 intituleTextField.getText(),
-                Integer.parseInt(CodeformateurChoiceBox.getValue().toString()),
-                Integer.parseInt(CodedomaineChoiceBox.getValue().toString()));
+                CodeformateurChoiceBox.getValue().getCode_formateur(),
+                CodedomaineChoiceBox.getValue().getCode_domaine());*/
+        if(!NbjourTextField.getText().isEmpty())
+        {
+            formation.setNombre_jours(Integer.parseInt(NbjourTextField.getText()));
+        }
+        if(!anneeTextField.getText().isEmpty())
+        {
+            formation.setAnnee(Integer.parseInt(anneeTextField.getText()));
+        }
+        if(!moisTextField.getText().isEmpty())
+        {
+            formation.setMois(Integer.parseInt(moisTextField.getText()));
+        }
+        if(!NbParticipantTextField.getText().isEmpty())
+        {
+            formation.setNombre_participants(Integer.parseInt(NbParticipantTextField.getText()));
+
+        }
+        if(CodeformateurChoiceBox.getSelectionModel().getSelectedIndex()>-1)
+        {
+            formation.setCode_formation(CodeformateurChoiceBox.getSelectionModel().getSelectedItem().getCode_formateur());
+        }
+        if(CodedomaineChoiceBox.getSelectionModel().getSelectedIndex()>-1)
+        {
+            formation.setCode_domaine(CodedomaineChoiceBox.getSelectionModel().getSelectedItem().getCode_domaine());
+
+        }
         FormationDao formationDao = new FormationDao();
         if (formationDao.update(formation)){
             RoutingClass.alert("success");
