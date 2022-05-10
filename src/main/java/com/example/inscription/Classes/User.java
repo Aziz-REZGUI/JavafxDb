@@ -69,7 +69,25 @@ public class User {
         return fullname;
     }
 
+    public void setCodeutilisateur(int codeutilisateur) {
+        Codeutilisateur = codeutilisateur;
+    }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 }
 
 

@@ -270,34 +270,46 @@ public class MenuUserController implements Initializable {
         TabPane1.getSelectionModel().select(ParticipantHandlerTab);
         if (tableParticipant.getSelectionModel().getSelectedIndex() > -1) {
 
-        RoutingClass.goTo("Modify_participant.fxml", "Modifier", 604, 418,tableParticipant.getSelectionModel().getSelectedItem());
-    } else {
-        RoutingClass.alert("please select a line ");
+            RoutingClass.goTo("Modify_participant.fxml", "Modifier", 604, 418, tableParticipant.getSelectionModel().getSelectedItem());
+        } else {
+            RoutingClass.alert("please select a line ");
 
-    }
+        }
     }
 
     @FXML
     void Supprimer_formateur(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(FormateurHandlerTab);
+        if (tableFormateur.getSelectionModel().getSelectedIndex() > -1) {
+            RoutingClass.goTo("Delete_formteur.fxml", "Supprimer formateur", 604, 251, tableFormateur.getSelectionModel().getSelectedItem());
+        } else {
+            RoutingClass.alert("please select a line ");
 
-        RoutingClass.goTo("Delete_formteur.fxml", "Supprimer formateur", 604, 251);
+        }
     }
 
     @FXML
     void Supprimer_formation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(FormationHandlerTab);
+        if (tableFormation.getSelectionModel().getSelectedIndex() > -1) {
+            RoutingClass.goTo("Delete_formtion.fxml", "Supprimer formation", 604, 251, tableFormation.getSelectionModel().getSelectedItem());
+        } else {
+            RoutingClass.alert("please select a line ");
 
-        RoutingClass.goTo("Delete_formtion.fxml", "Supprimer formation", 604, 251);
-
+        }
     }
 
     @FXML
     void Supprimer_participant(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(ParticipantHandlerTab);
+        if (tableParticipant.getSelectionModel().getSelectedIndex() > -1) {
 
-        RoutingClass.goTo("Delete_participant.fxml", "Supprimer participant", 604, 251);
 
+            RoutingClass.goTo("Delete_participant.fxml", "Supprimer participant", 604, 251, tableParticipant.getSelectionModel().getSelectedItem());
+        } else {
+            RoutingClass.alert("please select a line ");
+
+        }
     }
 
     @FXML
@@ -346,15 +358,19 @@ public class MenuUserController implements Initializable {
 
     public void Supprimer_participation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(ParticipationHandlerTab);
-        RoutingClass.goTo("Delete_participation.fxml", "Supprimer participation", 604, 251);
+        if (tableParticipation.getSelectionModel().getSelectedIndex() > -1) {
+            RoutingClass.goTo("Delete_participation.fxml", "Supprimer participation", 604, 251,tableParticipation.getSelectionModel().getSelectedItem());
+        } else {
+            RoutingClass.alert("please select a line ");
 
+        }
 
     }
 
     public void Modifier_participation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(ParticipationHandlerTab);
         if (tableParticipation.getSelectionModel().getSelectedIndex() > -1) {
-            RoutingClass.goTo("Modify_participation.fxml", "Modifier participation", 604, 251,tableParticipation.getSelectionModel().getSelectedItem());
+            RoutingClass.goTo("Modify_participation.fxml", "Modifier participation", 604, 251, tableParticipation.getSelectionModel().getSelectedItem());
         } else {
             RoutingClass.alert("please select a line ");
         }

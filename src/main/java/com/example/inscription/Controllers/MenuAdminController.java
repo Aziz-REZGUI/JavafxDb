@@ -250,9 +250,11 @@ private  Button btnRefresh2;
     @FXML
     private void Modifier_user(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(UserHandlerTab);
-
-        RoutingClass.goTo("Modify_user.fxml", "Modifier", 604, 251);
-
+        if (tableUser.getSelectionModel().getSelectedIndex() > -1) {
+        RoutingClass.goTo("Modify_user.fxml", "Modifier", 604, 251,tableUser.getSelectionModel().getSelectedItem());
+    } else {
+        RoutingClass.alert("please select a line ");
+    }
 
     }
 
@@ -260,9 +262,11 @@ private  Button btnRefresh2;
     @FXML
     private void Supprimer_user(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(UserHandlerTab);
-
-        RoutingClass.goTo("Delete_user.fxml", "Supprimer", 604, 251);
-
+        if (tableUser.getSelectionModel().getSelectedIndex() > -1) {
+        RoutingClass.goTo("Delete_user.fxml", "Supprimer", 604, 251,tableUser.getSelectionModel().getSelectedItem());
+    } else {
+        RoutingClass.alert("please select a line ");
+        }
     }
 
     @FXML
@@ -300,17 +304,21 @@ private  Button btnRefresh2;
     @FXML
     void Modifier_domaine(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(DomaineHandlerTab);
-
-        RoutingClass.goTo("Modify_Domaine.fxml", "Modifier", 604, 251);
-
+        if (tableDomaine.getSelectionModel().getSelectedIndex() > -1) {
+        RoutingClass.goTo("Modify_Domaine.fxml", "Modifier", 604, 251,tableDomaine.getSelectionModel().getSelectedItem());
+            } else {
+            RoutingClass.alert("please select a line ");
+            }
     }
 
     @FXML
     void Supprimer_domaine(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(DomaineHandlerTab);
-
-        RoutingClass.goTo("Delete_Domain.fxml", "Supprimer", 604, 251);
-
+        if (tableDomaine.getSelectionModel().getSelectedIndex() > -1) {
+        RoutingClass.goTo("Delete_Domain.fxml", "Supprimer", 604, 251,tableDomaine.getSelectionModel().getSelectedItem());
+            } else {
+            RoutingClass.alert("please select a line ");
+            }
     }
 
     //Gerer Organisme
@@ -334,7 +342,11 @@ private  Button btnRefresh2;
     @FXML
     void Modifier_org(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(OrganismeHandlerTab);
-        RoutingClass.goTo("Modify_Organisme.fxml", "Supprimer organisme", 604, 251);
+        if (tableOrganisme.getSelectionModel().getSelectedIndex() > -1) {
+        RoutingClass.goTo("Modify_Organisme.fxml", "Supprimer organisme", 604, 251,tableOrganisme.getSelectionModel().getSelectedItem());
+            } else {
+            RoutingClass.alert("please select a line ");
+            }
     }
 
 
@@ -342,18 +354,22 @@ private  Button btnRefresh2;
     void Supprimer_org(ActionEvent event) throws Exception {
 
         TabPane.getSelectionModel().select(OrganismeHandlerTab);
-            RoutingClass.goTo("Delete_Organisme.fxml", "Supprimer organisme", 604, 251);
+        if (tableOrganisme.getSelectionModel().getSelectedIndex() > -1) {
 
+            RoutingClass.goTo("Delete_Organisme.fxml", "Supprimer organisme", 604, 251,tableOrganisme.getSelectionModel().getSelectedItem());
+            } else {
+            RoutingClass.alert("please select a line ");
+            }
 
     }
 
     @FXML
     public void refreshTableOrganisme(ActionEvent Action) {
         is_selected=true;
-        TabPane.getSelectionModel().select(DomaineHandlerTab);
-        ObservableList<Domaine> list1 = FXCollections.observableArrayList(domainDao.findAll());
-        tableDomaine.setItems(list1);
-        tableDomaine.refresh();
+        TabPane.getSelectionModel().select(OrganismeHandlerTab);
+        ObservableList<Organisme> list1 = FXCollections.observableArrayList(organismeDao.findAll());
+        tableOrganisme.setItems(list1);
+        tableOrganisme.refresh();
         is_selected=false;
 
 
@@ -373,9 +389,13 @@ private  Button btnRefresh2;
 
     void Modifier_profile(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(ProfilHandlerTab);
-        RoutingClass.goTo("Modify_profil.fxml", "Modifier", 604, 251);
+        if (tableProfil.getSelectionModel().getSelectedIndex() > -1) {
 
+            RoutingClass.goTo("Modify_profil.fxml", "Modifier", 604, 251,tableProfil.getSelectionModel().getSelectedItem());
 
+            } else {
+            RoutingClass.alert("please select a line ");
+            }
     }
     @FXML
 
@@ -388,7 +408,12 @@ private  Button btnRefresh2;
 
     void Supprimer_profile(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(ProfilHandlerTab);
+        if (tableProfil.getSelectionModel().getSelectedIndex() > -1) {
+            RoutingClass.goTo("Delete_profil.fxml", "Supprimer", 604, 251,tableProfil.getSelectionModel().getSelectedItem());
 
+            } else {
+            RoutingClass.alert("please select a line ");
+            }
     }
 
 
