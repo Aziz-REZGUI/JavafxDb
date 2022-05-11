@@ -386,7 +386,7 @@ public class MenuUserController implements Initializable {
     void signOut(ActionEvent event) throws Exception {
 
         //AdminDao.cleanUserSession();
-        RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login", 778, 569);
+        RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login", 450, 650);
     }
 
     public void refreshTableFormateur(ActionEvent event) {
