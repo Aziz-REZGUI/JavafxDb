@@ -45,7 +45,6 @@ public class Add_participantController {
 
     @FXML
     void Add_participant(ActionEvent event) {
-        //TODO verify sql date and java date
         ParticipantDao participantDao = new ParticipantDao();
         Participant participant = new Participant(NomTextField.getText(),
                 PrenomTextField.getText() , Date.from(DatePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),

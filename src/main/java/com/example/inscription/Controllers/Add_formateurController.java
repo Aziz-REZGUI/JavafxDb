@@ -53,7 +53,6 @@ public class Add_formateurController {
     }
     @FXML
     void Add_Formateur(ActionEvent event) {
-        //TODO famma problème fi ajout
         Formateur formateur = new Formateur(Integer.parseInt(NumtelTextField.getText()), NomTextField.getText(),
         PrenomTextField.getText(), EmailTextField.getText(),CodeorganismeChoiceBox.getValue().getCode_organisme()
                 ,
