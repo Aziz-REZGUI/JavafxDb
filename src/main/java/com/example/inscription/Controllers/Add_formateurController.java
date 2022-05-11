@@ -53,8 +53,10 @@ public class Add_formateurController {
     }
     @FXML
     void Add_Formateur(ActionEvent event) {
+        //TODO famma problème fi ajout
         Formateur formateur = new Formateur(Integer.parseInt(NumtelTextField.getText()), NomTextField.getText(),
-        PrenomTextField.getText(), EmailTextField.getText(),organismeDao.findId(CodeorganismeChoiceBox.getValue().toString()),
+        PrenomTextField.getText(), EmailTextField.getText(),CodeorganismeChoiceBox.getValue().getCode_organisme()
+                ,
                 CodedomaineChoiceBox.getValue().getCode_domaine());
         FormateurDao formateurDao = new FormateurDao();
         if (formateurDao.create(formateur)) {

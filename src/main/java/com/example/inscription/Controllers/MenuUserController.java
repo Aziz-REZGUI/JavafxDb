@@ -1,24 +1,20 @@
 package com.example.inscription.Controllers;
 
-import com.example.inscription.Classes.Formateur;
-import com.example.inscription.Classes.Formation;
-import com.example.inscription.Classes.Participant;
-import com.example.inscription.Classes.Participation;
-import com.example.inscription.Daos.FormateurDao;
-import com.example.inscription.Daos.FormationDao;
-import com.example.inscription.Daos.ParticipantDao;
-import com.example.inscription.Daos.ParticipationDao;
+import com.example.inscription.Classes.*;
+import com.example.inscription.Daos.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -280,36 +276,94 @@ public class MenuUserController implements Initializable {
     @FXML
     void Supprimer_formateur(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(FormateurHandlerTab);
-        if (tableFormateur.getSelectionModel().getSelectedIndex() > -1) {
-            RoutingClass.goTo("Delete_formteur.fxml", "Supprimer formateur", 604, 251, tableFormateur.getSelectionModel().getSelectedItem());
-        } else {
-            RoutingClass.alert("please select a line ");
 
+        if (tableFormateur.getSelectionModel().getSelectedIndex() > -1) {
+
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+
+            alert.setTitle("Confirmation de supprition");
+            alert.setHeaderText(null);
+            alert.setContentText("Êtes-vous sûr de vouloir supprimer?");
+            Optional<ButtonType> action = alert.showAndWait();
+            if (action.get() == ButtonType.OK) {
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.setUserData(tableFormateur.getSelectionModel().getSelectedItem());
+
+                Formateur formateur = (Formateur) stage.getUserData();
+                FormateurDao formateurDao = new FormateurDao();
+                formateurDao.delete(formateur);
+            }
+
+
+        } else {
+            RoutingClass.alert("Sélectionner une ligne ");
         }
+
     }
 
     @FXML
     void Supprimer_formation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(FormationHandlerTab);
-        if (tableFormation.getSelectionModel().getSelectedIndex() > -1) {
-            RoutingClass.goTo("Delete_formtion.fxml", "Supprimer formation", 604, 251, tableFormation.getSelectionModel().getSelectedItem());
-        } else {
-            RoutingClass.alert("please select a line ");
 
+        if (tableFormation.getSelectionModel().getSelectedIndex() > -1) {
+
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+
+            alert.setTitle("Confirmation de supprition");
+            alert.setHeaderText(null);
+            alert.setContentText("Êtes-vous sûr de vouloir supprimer?");
+            Optional<ButtonType> action = alert.showAndWait();
+            if (action.get() == ButtonType.OK) {
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.setUserData(tableFormation.getSelectionModel().getSelectedItem());
+
+                Formation formation = (Formation) stage.getUserData();
+                FormationDao formationDao = new FormationDao();
+                formationDao.delete(formation);
+            }
+
+
+        } else {
+            RoutingClass.alert("Sélectionner une ligne ");
         }
+
     }
 
     @FXML
     void Supprimer_participant(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(ParticipantHandlerTab);
+
         if (tableParticipant.getSelectionModel().getSelectedIndex() > -1) {
 
 
-            RoutingClass.goTo("Delete_participant.fxml", "Supprimer participant", 604, 251, tableParticipant.getSelectionModel().getSelectedItem());
-        } else {
-            RoutingClass.alert("please select a line ");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
+
+            alert.setTitle("Confirmation de supprition");
+            alert.setHeaderText(null);
+            alert.setContentText("Êtes-vous sûr de vouloir supprimer?");
+            Optional<ButtonType> action = alert.showAndWait();
+            if (action.get() == ButtonType.OK) {
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.setUserData(tableParticipant.getSelectionModel().getSelectedItem());
+
+                Participant participant = (Participant) stage.getUserData();
+                ParticipantDao participantDao = new ParticipantDao();
+                participantDao.delete(participant);
+            }
+
+
+        } else {
+            RoutingClass.alert("Sélectionner une ligne ");
         }
+
     }
 
     @FXML
