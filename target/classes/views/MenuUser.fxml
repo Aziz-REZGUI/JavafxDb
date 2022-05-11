@@ -69,6 +69,7 @@
                                     </image>
                                 </ImageView>
                                 <Button fx:id="btnRefresh2" layoutX="721.0" layoutY="19.0" mnemonicParsing="false" onAction="#refreshTableFormation" text="Refresh" />
+                        <Button layoutX="16.0" layoutY="385.0" mnemonicParsing="false" text="Ajouter participation" />
 
                             </children>
                         </Pane>

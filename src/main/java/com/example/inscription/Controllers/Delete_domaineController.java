@@ -4,8 +4,10 @@ import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Daos.DomainDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class Delete_domaineController {
 
@@ -18,8 +20,9 @@ public class Delete_domaineController {
     @FXML
     void Supprimer_domaine(ActionEvent event) {
 
-        Domaine domaine = new Domaine(CodedomaineTextField.getText());
-
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Domaine domaine = (Domaine) stage.getUserData();
         DomainDao domainDao = new DomainDao();
         if (domainDao.exists(domaine)) {
             domainDao.delete(domaine);
