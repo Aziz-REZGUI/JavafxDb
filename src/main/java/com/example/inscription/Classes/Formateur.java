@@ -50,7 +50,7 @@ public class Formateur {
 
     @Override
     public String toString() {
-        return nom+"  "+prenom;
+        return nom + "  " + prenom;
     }
 
     public void setCode_organisme(int code_organisme) {

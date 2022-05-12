@@ -13,7 +13,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -37,6 +36,7 @@ public class Add_participantController {
 
     @FXML
     private TextField PrenomTextField;
+
     @FXML
     private void initialize() {
         CodeprofileChoiceBox.setItems(list);
@@ -47,7 +47,7 @@ public class Add_participantController {
     void Add_participant(ActionEvent event) {
         ParticipantDao participantDao = new ParticipantDao();
         Participant participant = new Participant(NomTextField.getText(),
-                PrenomTextField.getText() , Date.from(DatePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                PrenomTextField.getText(), Date.from(DatePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
                 CodeprofileChoiceBox.getValue().getCode_profil());
 
         if (participantDao.create(participant)) {
@@ -59,9 +59,7 @@ public class Add_participantController {
         }
 
 
-
     }
-
 
 
 }

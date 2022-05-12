@@ -42,7 +42,7 @@ public class ParticipantDao implements Crud<Participant> {
 
             Statement st = c.createStatement();
             ResultSet resultSet = st.executeQuery("SELECT  code_domaine FROM domaine where Libelle=" + lib);
-            output= resultSet.getInt("code_domaine");
+            output = resultSet.getInt("code_domaine");
 
         } catch (SQLException e) {
             e.printStackTrace();

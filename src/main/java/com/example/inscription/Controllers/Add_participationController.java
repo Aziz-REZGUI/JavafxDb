@@ -65,7 +65,7 @@ public class Add_participationController {
     @FXML
     void Add_participation(ActionEvent event) {
         Participation participation = new Participation(listIdParticipant.getValue().getMatricule(), listIdParticipant.getValue().getNom(),
-              listIdFormation.getValue().getCode_formateur(), listIdFormation.getValue().getIntitule());
+                listIdFormation.getValue().getCode_formateur(), listIdFormation.getValue().getIntitule());
         ParticipationDao participationDao = new ParticipationDao();
 
         if (participationDao.create(participation)) {

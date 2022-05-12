@@ -12,8 +12,7 @@ public class ParticipationDao implements Crud<Participation> {
     Connection c = Databaseconnection.getConnection();
     PreparedStatement pr = null;
 
-    public List<Integer> findparticipantIds()
-    {
+    public List<Integer> findparticipantIds() {
         List<Integer> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
@@ -29,15 +28,15 @@ public class ParticipationDao implements Crud<Participation> {
         }
         return output;
     }
-    public String find_intitule(int id)
-    {
-        String output="intitule invalide" ;
+
+    public String find_intitule(int id) {
+        String output = "intitule invalide";
 
         try {
             Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  intitule FROM formation where code_formation="+id);
+            ResultSet resultSet = st.executeQuery("SELECT  intitule FROM formation where code_formation=" + id);
             while (resultSet.next()) {
-                output=resultSet.getString("intitule");
+                output = resultSet.getString("intitule");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,15 +45,15 @@ public class ParticipationDao implements Crud<Participation> {
         }
         return output;
     }
-    public String find_nom(int id)
-    {
-        String output="nom invalide" ;
+
+    public String find_nom(int id) {
+        String output = "nom invalide";
 
         try {
             Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  Nom FROM participant where Matricule="+id);
+            ResultSet resultSet = st.executeQuery("SELECT  Nom FROM participant where Matricule=" + id);
             while (resultSet.next()) {
-                output=resultSet.getString("Nom");
+                output = resultSet.getString("Nom");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,8 +62,8 @@ public class ParticipationDao implements Crud<Participation> {
         }
         return output;
     }
-    public List<Integer> findformationIds()
-    {
+
+    public List<Integer> findformationIds() {
         List<Integer> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
@@ -80,6 +79,7 @@ public class ParticipationDao implements Crud<Participation> {
         }
         return output;
     }
+
     @Override
     public boolean create(Participation participation) {
         boolean state;
@@ -90,8 +90,8 @@ public class ParticipationDao implements Crud<Participation> {
 
             pr.setInt(1, participation.getMatricule());
             pr.setInt(2, participation.getCode_formation());
-            pr.setString(3,participation.getNom());
-            pr.setString(4,participation.getIntitule());
+            pr.setString(3, participation.getNom());
+            pr.setString(4, participation.getIntitule());
             pr.executeUpdate();
             System.out.println("participantion a été ajouté avec succès.");
             state = true;

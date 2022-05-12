@@ -1,7 +1,13 @@
 package com.example.inscription.Controllers;
 
-import com.example.inscription.Classes.*;
-import com.example.inscription.Daos.*;
+import com.example.inscription.Classes.Domaine;
+import com.example.inscription.Classes.Organisme;
+import com.example.inscription.Classes.Profil;
+import com.example.inscription.Classes.User;
+import com.example.inscription.Daos.DomainDao;
+import com.example.inscription.Daos.OrganismeDao;
+import com.example.inscription.Daos.ProfileDao;
+import com.example.inscription.Daos.UserDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -11,14 +17,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -32,13 +36,6 @@ public class MenuAdminController implements Initializable {
     TabPane TabPane;
 
 
-
-
-
-
-
-
-
     @FXML
     private TextField TextFieldUSer;
 
@@ -48,9 +45,9 @@ public class MenuAdminController implements Initializable {
     @FXML
     private TextField Textfielddomaine;
     @FXML
-    private Button  signOutButton;
+    private Button signOutButton;
     @FXML
-     Tab ProfilHandlerTab;
+    Tab ProfilHandlerTab;
     @FXML
     Tab DomaineHandlerTab;
     @FXML
@@ -161,7 +158,7 @@ public class MenuAdminController implements Initializable {
         sortedData.comparatorProperty().bind(tableUser.comparatorProperty());
 
         tableUser.setItems(sortedData);
-
+        refresh();
 
         //affiche table Domaine
 
@@ -198,13 +195,10 @@ public class MenuAdminController implements Initializable {
         //affiche table Organisme
 
 
-
         col_idorg.setCellValueFactory(new PropertyValueFactory<Organisme, Integer>("code_organisme"));
         col_lielleorg.setCellValueFactory(new PropertyValueFactory<Organisme, String>("libelle"));
         tableOrganisme.setItems(list2);
         TabPane.getSelectionModel().select(OrganismeHandlerTab);
-
-
 
 
         //affiche table Profil
@@ -293,14 +287,47 @@ public class MenuAdminController implements Initializable {
 
     @FXML
     public void refreshTableDomaine(ActionEvent Action) {
+        refresh();
+    }
+
+
+    void refresh() {
         is_selected = true;
         TabPane.getSelectionModel().select(DomaineHandlerTab);
 
         tableDomaine.setItems(list1);
         tableDomaine.refresh();
+        col_iddomaine.setCellValueFactory(new PropertyValueFactory<Domaine, Integer>("code_domaine"));
+        col_libelledomaine.setCellValueFactory(new PropertyValueFactory<Domaine, String>("libelle"));
+        list1.addAll();
+        if (!is_selected) {
+            //chercher dans table domaine
+            FilteredList<Domaine> filteredData1 = new FilteredList<>(list1, b -> true);
+            Textfielddomaine.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredData1.setPredicate(domaine -> {
+
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
+
+                    if (domaine.getLibelle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                        return true;
+                    } else if (String.valueOf(domaine.getCode_domaine()).indexOf(lowerCaseFilter) != -1)
+                        return true;
+                    else
+                        return false;
+                });
+            });
+
+            SortedList<Domaine> sortedData1 = new SortedList<>(filteredData1);
+            sortedData1.comparatorProperty().bind(tableDomaine.comparatorProperty());
+            tableDomaine.setItems(sortedData1);
+            tableDomaine.refresh();
+        }
+
         is_selected = false;
     }
-
 
     @FXML
     void Ajouter_Domaine(ActionEvent event) throws Exception {

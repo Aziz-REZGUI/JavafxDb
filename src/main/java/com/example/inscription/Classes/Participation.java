@@ -1,8 +1,8 @@
 package com.example.inscription.Classes;
 
 public class Participation {
-    private  int matricule,code_formation;
-    private String nom,intitule;
+    private int matricule, code_formation;
+    private String nom, intitule;
 
     public String getNom() {
         return nom;

@@ -1,7 +1,7 @@
 package com.example.inscription.Classes;
 
 public class Domaine {
-    private  int code_domaine;
+    private int code_domaine;
     private String libelle;
 
     public Domaine(String libelle) {

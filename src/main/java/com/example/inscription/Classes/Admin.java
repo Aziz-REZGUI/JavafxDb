@@ -1,14 +1,9 @@
 package com.example.inscription.Classes;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.List;
-
 public class Admin {
     private int code_admin;
 
-    private String login,password;
+    private String login, password;
 
     public Admin(int code_admin, String login, String password) {
         this.code_admin = code_admin;
@@ -44,7 +39,6 @@ public class Admin {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 
 }

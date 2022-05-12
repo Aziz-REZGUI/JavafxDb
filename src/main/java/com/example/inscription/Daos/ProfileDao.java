@@ -38,7 +38,7 @@ public class ProfileDao implements Crud<Profil> {
         try {
 
             Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  Code_profil FROM profil where Libelle='" + lib+"'");
+            ResultSet resultSet = st.executeQuery("SELECT  Code_profil FROM profil where Libelle='" + lib + "'");
             while (resultSet.next()) {
                 output = resultSet.getInt("Code_profil");
             }

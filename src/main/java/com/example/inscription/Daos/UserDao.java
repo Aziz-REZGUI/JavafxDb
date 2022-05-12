@@ -130,6 +130,7 @@ public class UserDao implements Crud<User> {
 
         return state;
     }
+
     public boolean exists(String login) {
         boolean state = false;
         try {

@@ -49,12 +49,14 @@ public class Add_formationController {
 
     @FXML
     private TextField moisTextField;
+
     @FXML
     private void initialize() {
         CodeformateurChoiceBox.setItems(list);
         CodedomaineChoiceBox.setItems(list1);
 
     }
+
     @FXML
     void Add_Formation(ActionEvent event) {
         Formation formation = new Formation(Integer.parseInt(NbjourTextField.getText()), Integer.parseInt(anneeTextField.getText()),

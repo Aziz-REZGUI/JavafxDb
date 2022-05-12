@@ -37,7 +37,7 @@ public class Add_userController {
         //if((emailTextField.getText().matches("\\b[a-z0-9._-]+@[a-z0-9.-]+\\.[a-z]{2,}\\b"))&&(!passwordTextField.getText().isBlank())) {
         User user = new User(emailTextField.getText().trim(), passwordTextField.getText(), "test", roleChoiceBox.getValue().toString());
         UserDao userDao = new UserDao();
-        if(!(userDao.exists(emailTextField.getText().trim()))){
+        if (!(userDao.exists(emailTextField.getText().trim()))) {
             if (userDao.create(user)) {
                 successLabel.setText("success");
                 RoutingClass.alert("The user is successfully added!");
@@ -45,9 +45,8 @@ public class Add_userController {
                 successLabel.setText("problem");
 
             }
-        }
-        else {
-           // RoutingClass.alert("Username exists");
+        } else {
+            // RoutingClass.alert("Username exists");
             successLabel.setText("username exists");
         }
 

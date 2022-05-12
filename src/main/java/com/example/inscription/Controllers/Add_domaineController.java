@@ -2,13 +2,10 @@ package com.example.inscription.Controllers;
 
 import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Daos.DomainDao;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Add_domaineController {
     @FXML

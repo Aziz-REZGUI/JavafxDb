@@ -2,7 +2,7 @@ package com.example.inscription.Classes;
 
 public class Organisme {
     private int code_organisme;
-    private  String libelle;
+    private String libelle;
 
     public int getCode_organisme() {
         return code_organisme;
@@ -27,7 +27,7 @@ public class Organisme {
 
     @Override
     public String toString() {
-        return  libelle ;
+        return libelle;
     }
 
     public Organisme(int code_organisme, String libelle) {

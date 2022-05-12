@@ -1,9 +1,6 @@
 package com.example.inscription.Controllers;
 
-import com.example.inscription.Classes.Domaine;
-import com.example.inscription.Classes.Formateur;
 import com.example.inscription.Classes.Organisme;
-import com.example.inscription.Daos.FormateurDao;
 import com.example.inscription.Daos.OrganismeDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,12 +26,11 @@ public class Modify_OrganismeController {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Organisme organisme = (Organisme) stage.getUserData();
-        if (!LibelleTextField.getText().isEmpty())
-        {
+        if (!LibelleTextField.getText().isEmpty()) {
             organisme.setLibelle(LibelleTextField.getText().trim());
         }
         OrganismeDao organismeDao = new OrganismeDao();
-        if (organismeDao.update(organisme)){
+        if (organismeDao.update(organisme)) {
             RoutingClass.alert("success");
         } else {
             RoutingClass.alert("problem");

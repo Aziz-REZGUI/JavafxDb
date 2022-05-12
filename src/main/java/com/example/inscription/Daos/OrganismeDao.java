@@ -31,8 +31,8 @@ public class OrganismeDao implements Crud<Organisme> {
         return output;
 
     }
-    public List<String> findIds()
-    {
+
+    public List<String> findIds() {
         List<String> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
@@ -48,6 +48,7 @@ public class OrganismeDao implements Crud<Organisme> {
         }
         return output;
     }
+
     @Override
     public boolean create(Organisme organisme) {
         boolean state;
@@ -72,7 +73,7 @@ public class OrganismeDao implements Crud<Organisme> {
         boolean state = false;
         try {
 
-            pr = c.prepareStatement("DELETE FROM organisme where code_Organisme='" + organisme.getCode_organisme()+"'");
+            pr = c.prepareStatement("DELETE FROM organisme where code_Organisme='" + organisme.getCode_organisme() + "'");
             pr.executeUpdate();
             state = true;
         } catch (SQLException e) {
@@ -82,12 +83,13 @@ public class OrganismeDao implements Crud<Organisme> {
         return state;
 
     }
+
     public int findId(String lib) {
         int output = -1;
         try {
 
             Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT Code_organisme   FROM organisme where Libelle='" + lib+"'");
+            ResultSet resultSet = st.executeQuery("SELECT Code_organisme   FROM organisme where Libelle='" + lib + "'");
             while (resultSet.next()) {
                 output = resultSet.getInt("Code_profil");
             }
@@ -98,6 +100,7 @@ public class OrganismeDao implements Crud<Organisme> {
         }
         return output;
     }
+
     public boolean exists(String libelle) {
         boolean state = false;
         try {

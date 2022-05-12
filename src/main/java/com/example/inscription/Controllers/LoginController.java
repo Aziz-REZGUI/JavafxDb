@@ -41,11 +41,11 @@ public class LoginController {
         primaryStage.show();
     }*/
 
-    @FXML
+    /*@FXML
     public void sign_up(javafx.scene.input.MouseEvent mouseEvent) throws Exception {
         RoutingClass.goTo((Stage) sign_up.getScene().getWindow(), "register.fxml", "Sign up");
 
-    }
+    }*/
 
     public void loginButtonOnAction(ActionEvent event) throws IOException {
         if (username.getText().isBlank() || password.getText().isBlank()) {
@@ -71,14 +71,6 @@ public class LoginController {
     }
 
 
-   /* public static Alert alert(String alertText) {
-        Alert alert = new Alert(ERROR, alertText, OK);
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(LoginController.class.getResource("/views/login.css").toExternalForm());
-        dialogPane.getStyleClass().add("myDialog");
-        alert.show();
-        return alert;
-    }*/
 
 
 }

@@ -1,6 +1,5 @@
 package com.example.inscription.Controllers;
 
-import com.example.inscription.Classes.Participant;
 import com.example.inscription.Classes.User;
 import com.example.inscription.Daos.UserDao;
 import javafx.collections.FXCollections;
@@ -12,9 +11,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.time.ZoneId;
-import java.util.Date;
 
 public class Modify_userController {
 

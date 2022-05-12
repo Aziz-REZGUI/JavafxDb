@@ -84,7 +84,7 @@ public class FormationDao implements Crud<Formation> {
 
             while (resultSet.next()) {
                 Formation temp = new Formation(resultSet.getInt("code_formation"), resultSet.getInt("nombre_jour"), resultSet.getInt("annee"),
-                        resultSet.getInt("mois"), resultSet.getInt("nombre_participant"), resultSet.getString("intitule"),resultSet.getInt("Code_formateur"), resultSet.getInt("code_domaine"));
+                        resultSet.getInt("mois"), resultSet.getInt("nombre_participant"), resultSet.getString("intitule"), resultSet.getInt("Code_formateur"), resultSet.getInt("code_domaine"));
                 output.add(temp);
             }
         } catch (SQLException e) {

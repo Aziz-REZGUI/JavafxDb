@@ -1,37 +1,36 @@
 package com.example.inscription.Classes;
 
-import java.sql.PreparedStatement;
 import java.util.Date;
-import java.util.List;
 
 public class Participant {
-    private int matricule,Code_profil;
+    private int matricule, Code_profil;
 
     private String nom, prenom;
     private Date date_naissance;
 
     @Override
     public String toString() {
-        return nom+"  "+prenom;
+        return nom + "  " + prenom;
     }
 
     //constructeur
-    public Participant(int matricule, String nom, String prenom,Date date_naissance,int code_profil) {
+    public Participant(int matricule, String nom, String prenom, Date date_naissance, int code_profil) {
         this.matricule = matricule;
         this.nom = nom;
         this.prenom = prenom;
         this.date_naissance = date_naissance;
         this.Code_profil = code_profil;
     }
-    public Participant( String nom, String prenom,Date date_naissance,int code_profil) {
+
+    public Participant(String nom, String prenom, Date date_naissance, int code_profil) {
         this.nom = nom;
         this.prenom = prenom;
-        this.Code_profil= code_profil;
+        this.Code_profil = code_profil;
         this.date_naissance = date_naissance;
     }
-    public  Participant (int matricule)
-    {
-        this.matricule= matricule;
+
+    public Participant(int matricule) {
+        this.matricule = matricule;
 
     }
 

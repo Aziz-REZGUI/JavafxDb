@@ -19,7 +19,7 @@ import java.util.Optional;
 import static javafx.scene.control.Alert.AlertType.ERROR;
 import static javafx.scene.control.ButtonType.OK;
 
-public class RoutingClass<S> extends Application {
+public class RoutingClass extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane root = FXMLLoader.load(this.getClass().getResource("/views/login.fxml"));
@@ -69,6 +69,7 @@ public class RoutingClass<S> extends Application {
         Stage SecondStage = new Stage();
         Pane root = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
         Scene sceneX = new Scene(root, width, height);
+        sceneX.getStylesheets().add(RoutingClass.class.getResource("/views/login.css").toExternalForm());
         SecondStage.setScene(sceneX);
         SecondStage.setUserData(data);
         SecondStage.setTitle(title);
@@ -94,7 +95,7 @@ public class RoutingClass<S> extends Application {
         Stage SecondStage = new Stage();
         Pane root = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
         Scene sceneX = new Scene(root, width, height);
-        //sceneX.getStylesheets().add(RoutingClass.class.getResource("/views/login.css").toExternalForm());
+        sceneX.getStylesheets().add(RoutingClass.class.getResource("/views/login.css").toExternalForm());
 
 
         SecondStage.setScene(sceneX);

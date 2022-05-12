@@ -1,7 +1,13 @@
 package com.example.inscription.Controllers;
 
-import com.example.inscription.Classes.*;
-import com.example.inscription.Daos.*;
+import com.example.inscription.Classes.Formateur;
+import com.example.inscription.Classes.Formation;
+import com.example.inscription.Classes.Participant;
+import com.example.inscription.Classes.Participation;
+import com.example.inscription.Daos.FormateurDao;
+import com.example.inscription.Daos.FormationDao;
+import com.example.inscription.Daos.ParticipantDao;
+import com.example.inscription.Daos.ParticipationDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -413,7 +419,7 @@ public class MenuUserController implements Initializable {
     public void Supprimer_participation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(ParticipationHandlerTab);
         if (tableParticipation.getSelectionModel().getSelectedIndex() > -1) {
-            RoutingClass.goTo("Delete_participation.fxml", "Supprimer participation", 604, 251,tableParticipation.getSelectionModel().getSelectedItem());
+            RoutingClass.goTo("Delete_participation.fxml", "Supprimer participation", 604, 251, tableParticipation.getSelectionModel().getSelectedItem());
         } else {
             RoutingClass.alert("please select a line ");
 

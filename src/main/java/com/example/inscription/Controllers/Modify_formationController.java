@@ -53,12 +53,14 @@ public class Modify_formationController {
     ObservableList<Formateur> list = FXCollections.observableArrayList(formateurDao.findAll());
     @FXML
     ObservableList<Domaine> list1 = FXCollections.observableArrayList(domainDao.findAll());
+
     @FXML
     private void initialize() {
         CodeformateurChoiceBox.setItems(list);
         CodedomaineChoiceBox.setItems(list1);
 
     }
+
     @FXML
     void Modify_Formation(ActionEvent event) {
         Node node = (Node) event.getSource();
@@ -69,40 +71,33 @@ public class Modify_formationController {
                 intituleTextField.getText(),
                 CodeformateurChoiceBox.getValue().getCode_formateur(),
                 CodedomaineChoiceBox.getValue().getCode_domaine());*/
-        if(!NbjourTextField.getText().isEmpty())
-        {
+        if (!NbjourTextField.getText().isEmpty()) {
             formation.setNombre_jours(Integer.parseInt(NbjourTextField.getText()));
         }
-        if(!anneeTextField.getText().isEmpty())
-        {
+        if (!anneeTextField.getText().isEmpty()) {
             formation.setAnnee(Integer.parseInt(anneeTextField.getText()));
         }
-        if(!moisTextField.getText().isEmpty())
-        {
+        if (!moisTextField.getText().isEmpty()) {
             formation.setMois(Integer.parseInt(moisTextField.getText()));
         }
-        if(!NbParticipantTextField.getText().isEmpty())
-        {
+        if (!NbParticipantTextField.getText().isEmpty()) {
             formation.setNombre_participants(Integer.parseInt(NbParticipantTextField.getText()));
 
         }
-        if(CodeformateurChoiceBox.getSelectionModel().getSelectedIndex()>-1)
-        {
+        if (CodeformateurChoiceBox.getSelectionModel().getSelectedIndex() > -1) {
             formation.setCode_formation(CodeformateurChoiceBox.getSelectionModel().getSelectedItem().getCode_formateur());
         }
-        if(CodedomaineChoiceBox.getSelectionModel().getSelectedIndex()>-1)
-        {
+        if (CodedomaineChoiceBox.getSelectionModel().getSelectedIndex() > -1) {
             formation.setCode_domaine(CodedomaineChoiceBox.getSelectionModel().getSelectedItem().getCode_domaine());
 
         }
         FormationDao formationDao = new FormationDao();
-        if (formationDao.update(formation)){
+        if (formationDao.update(formation)) {
             RoutingClass.alert("success");
         } else {
             RoutingClass.alert("problem");
 
         }
-
 
 
     }

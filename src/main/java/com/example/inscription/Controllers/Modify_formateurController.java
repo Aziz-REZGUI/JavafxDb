@@ -69,8 +69,7 @@ public class Modify_formateurController {
             formateur.setN_tel(Integer.parseInt(NumtelTextField.getText().trim()));
         }
 
-        if (!NomTextField.getText().isEmpty())
-        {
+        if (!NomTextField.getText().isEmpty()) {
             formateur.setNom(NomTextField.getText().trim());
         }
         if (!PrenomTextField.getText().isEmpty())
