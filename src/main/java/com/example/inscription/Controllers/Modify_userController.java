@@ -50,6 +50,7 @@ public class Modify_userController {
         UserDao userDao = new UserDao();
         if (userDao.update(user)) {
             successLabel.setText("success");
+
         } else {
             successLabel.setText("problem");
         }
