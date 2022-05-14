@@ -61,7 +61,7 @@ public class Add_participationController {
         Stage stage = (Stage) node.getScene().getWindow();
         Formation formation = (Formation) stage.getUserData();
         Participation participation = new Participation(listIdParticipant.getValue().getMatricule(), listIdParticipant.getValue().getNom(),
-                formation.getCode_formateur(), formation.getIntitule());
+                formation.getCode_formation(), formation.getIntitule());
         ParticipationDao participationDao = new ParticipationDao();
 
         if (participationDao.create(participation)) {

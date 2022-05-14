@@ -55,26 +55,30 @@ public class Add_formateurController {
 
     @FXML
     void Add_Formateur(ActionEvent event) {
+        /*  */
+        if ((EmailTextField.getText().isEmpty()) || (PrenomTextField.getText().isEmpty()) || (NomTextField.getText().isEmpty()) || (NumtelTextField.getText().isEmpty())||(CodedomaineChoiceBox.getSelectionModel().getSelectedIndex()<0)||(CodeorganismeChoiceBox.getSelectionModel().getSelectedIndex()<0) ){
 
-
-        if (!StringUtils.isStrictlyNumeric(NumtelTextField.getText()) || (NumtelTextField.getText().isEmpty())) {
-            RoutingClass.alert("le numero de tel doit strictement contient un nombre ");
+            RoutingClass.alert("veillez remplir toutes les champs ");
         } else {
-            if ((EmailTextField.getText().isEmpty()) || (PrenomTextField.getText().isEmpty()) || (NomTextField.getText().isEmpty())) {
-                RoutingClass.alert("veillez remplir toutes les champs ");
+            if (!StringUtils.isStrictlyNumeric(NumtelTextField.getText())) {
+                RoutingClass.alert("le numero de tel doit strictement contient un nombre ");
             } else {
-                Formateur formateur = new Formateur(Integer.parseInt(NumtelTextField.getText()), NomTextField.getText(),
-                        PrenomTextField.getText(), EmailTextField.getText(), CodeorganismeChoiceBox.getValue().getCode_organisme(),
-                        CodedomaineChoiceBox.getValue().getCode_domaine());
-                FormateurDao formateurDao = new FormateurDao();
-                if (formateurDao.create(formateur)) {
-                    RoutingClass.alert("Formateur is successfully added!");
+                if (NumtelTextField.getText().length() != 8) {
+                    RoutingClass.alert("le numero de tel doit de taille 8 ");
                 } else {
-                    RoutingClass.alert("problem");
+                    Formateur formateur = new Formateur(Integer.parseInt(NumtelTextField.getText()), NomTextField.getText(),
+                            PrenomTextField.getText(), EmailTextField.getText(), CodeorganismeChoiceBox.getValue().getCode_organisme(),
+                            CodedomaineChoiceBox.getValue().getCode_domaine());
+                    FormateurDao formateurDao = new FormateurDao();
+                    if (formateurDao.create(formateur)) {
+                        RoutingClass.alert("Formateur is successfully added!");
+                    } else {
+                        RoutingClass.alert("problem");
 
+
+                    }
 
                 }
-
             }
         }
 

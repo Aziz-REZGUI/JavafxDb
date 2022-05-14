@@ -7,6 +7,7 @@ import com.example.inscription.Controllers.RoutingClass;
 import com.example.inscription.Daos.DomainDao;
 import com.example.inscription.Daos.FormateurDao;
 import com.example.inscription.Daos.OrganismeDao;
+import com.mysql.cj.util.StringUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,36 +20,28 @@ import javafx.stage.Stage;
 
 public class Modify_formateurController {
 
-    @FXML
-    private Button BtnModifierFormateur;
-
-    @FXML
-    private ChoiceBox<Domaine> CodedomaineChoiceBox;
-
-    @FXML
-    private ChoiceBox<Organisme> CodeorganismeChoiceBox;
-
-    @FXML
-    private TextField EmailTextField;
-
-    @FXML
-    private TextField IDTextField;
-
-    @FXML
-    private TextField NomTextField;
-
-    @FXML
-    private TextField NumtelTextField;
-
-    @FXML
-    private TextField PrenomTextField;
-
     OrganismeDao organismeDao = new OrganismeDao();
     DomainDao domainDao = new DomainDao();
     @FXML
     ObservableList<Organisme> list = FXCollections.observableArrayList(organismeDao.findAll());
     @FXML
     ObservableList<Domaine> list1 = FXCollections.observableArrayList(domainDao.findAll());
+    @FXML
+    private Button BtnModifierFormateur;
+    @FXML
+    private ChoiceBox<Domaine> CodedomaineChoiceBox;
+    @FXML
+    private ChoiceBox<Organisme> CodeorganismeChoiceBox;
+    @FXML
+    private TextField EmailTextField;
+    @FXML
+    private TextField IDTextField;
+    @FXML
+    private TextField NomTextField;
+    @FXML
+    private TextField NumtelTextField;
+    @FXML
+    private TextField PrenomTextField;
 
     @FXML
     private void initialize() {
@@ -65,8 +58,8 @@ public class Modify_formateurController {
                 Integer.parseInt(CodedomaineChoiceBox.getValue().toString()));*/
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
-        Formateur formateur = (Formateur) stage.getUserData();
-        if (!NumtelTextField.getText().isEmpty()) {
+        Formateur formateurd = (Formateur) stage.getUserData();
+       /* if (!NumtelTextField.getText().isEmpty()) {
             formateur.setN_tel(Integer.parseInt(NumtelTextField.getText().trim()));
         }
 
@@ -86,15 +79,34 @@ public class Modify_formateurController {
         }
         if (CodedomaineChoiceBox.getSelectionModel().getSelectedIndex()>-1) {
             formateur.setCode_domaine(CodedomaineChoiceBox.getValue().getCode_domaine());
-        }
+        }*/
 
-        FormateurDao formateurDao = new FormateurDao();
-        if (formateurDao.update(formateur)) {
-            RoutingClass.alert("success");
+        if ((EmailTextField.getText().isEmpty()) || (PrenomTextField.getText().isEmpty()) || (NomTextField.getText().isEmpty()) || (NumtelTextField.getText().isEmpty()) || (CodedomaineChoiceBox.getSelectionModel().getSelectedIndex() < 0) || (CodeorganismeChoiceBox.getSelectionModel().getSelectedIndex() < 0)) {
+
+            RoutingClass.alert("veillez remplir toutes les champs ");
         } else {
-            RoutingClass.alert("problem");
+            if (!StringUtils.isStrictlyNumeric(NumtelTextField.getText())) {
+                RoutingClass.alert("le numero de tel doit strictement contient un nombre ");
+            } else {
+                if (NumtelTextField.getText().length() != 8) {
+                    RoutingClass.alert("le numero de tel doit de taille 8 ");
+                } else {
+                    Formateur formateur = new Formateur(formateurd.getCode_formateur(), Integer.parseInt(NumtelTextField.getText()), NomTextField.getText(),
+                            PrenomTextField.getText(), EmailTextField.getText(), CodeorganismeChoiceBox.getValue().getCode_organisme(),
+                            CodedomaineChoiceBox.getValue().getCode_domaine());
+                    FormateurDao formateurDao = new FormateurDao();
+                    if (formateurDao.update(formateur)) {
+                        RoutingClass.alert("success");
+                    } else {
+                        RoutingClass.alert("problem");
 
+                    }
+
+
+                }
+            }
         }
+
 
     }
 

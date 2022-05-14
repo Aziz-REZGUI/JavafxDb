@@ -6,6 +6,7 @@ import com.example.inscription.Classes.Formation;
 import com.example.inscription.Daos.DomainDao;
 import com.example.inscription.Daos.FormateurDao;
 import com.example.inscription.Daos.FormationDao;
+import com.mysql.cj.util.StringUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,19 +60,47 @@ public class Add_formationController {
 
     @FXML
     void Add_Formation(ActionEvent event) {
-        Formation formation = new Formation(Integer.parseInt(NbjourTextField.getText()), Integer.parseInt(anneeTextField.getText()),
-                Integer.parseInt(moisTextField.getText()), Integer.parseInt(NbParticipantTextField.getText()),
-                intituleTextField.getText(),
-                CodeformateurChoiceBox.getValue().getCode_formateur(),
-                CodedomaineChoiceBox.getValue().getCode_domaine());
-        FormationDao formationDao = new FormationDao();
-        if (formationDao.create(formation)) {
-            RoutingClass.alert("Formation is successfully added!");
-        } else {
-            RoutingClass.alert("problem");
+        String nbjours = NbjourTextField.getText();
+        String annee = anneeTextField.getText();
+        String mois = moisTextField.getText();
+        String nbpart = NbParticipantTextField.getText();
+        String intitule = intituleTextField.getText();
+        Formateur codeF = CodeformateurChoiceBox.getValue();
+        Domaine codeD = CodedomaineChoiceBox.getValue();
+        if ((nbjours.isEmpty()) || (annee.isEmpty()) || (mois.isEmpty()) || (nbpart.isEmpty()) || (intitule.isEmpty())) {
+            RoutingClass.alert("veillez remplir toutes les champs ");
 
+
+        } else {
+            if ((!StringUtils.isStrictlyNumeric(nbjours)) || (!StringUtils.isStrictlyNumeric(annee)) || (!StringUtils.isStrictlyNumeric(mois)) || (!StringUtils.isStrictlyNumeric(nbpart))||(CodedomaineChoiceBox.getValue()==null)||(CodeformateurChoiceBox.getValue()==null)) {
+                RoutingClass.alert("le nombre jours/annee/mois/nombre participants doit strictement contient un nombre ");
+
+            } else {
+                if (annee.length() != 4) {
+                    RoutingClass.alert("le champs annee de etre de taille 4");
+                } else {
+                    if ((Integer.parseInt(mois) > 12) || ( Integer.parseInt(mois) < 1)) {
+                        RoutingClass.alert("le mois doit entre entre 1 et 12 ");
+                    } else {
+                        if (Integer.parseInt(nbpart) < 4) {
+                            RoutingClass.alert("la formation doit contenir au minimum 4 participant ");
+                        } else {
+                            Formation formation = new Formation(Integer.parseInt(nbjours), Integer.parseInt(annee), Integer.parseInt(mois), Integer.parseInt(nbpart), intitule, codeF.getCode_formateur(), codeD.getCode_domaine());
+                            FormationDao formationDao = new FormationDao();
+                            if (formationDao.create(formation)) {
+                                RoutingClass.alert("Formation is successfully added!");
+                            } else {
+                                RoutingClass.alert("problem");
+
+
+                            }
+                        }
+                    }
+                }
+            }
 
         }
+
 
     }
 }
