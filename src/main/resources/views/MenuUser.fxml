@@ -62,7 +62,7 @@
                                     </image>
                                 </ImageView>
                                 <Button fx:id="btnRefresh2" layoutX="721.0" layoutY="19.0" mnemonicParsing="false" onAction="#refreshTableFormation" text="Refresh" />
-                        <Button fx:id="BtnAddParticipation" layoutX="16.0" layoutY="385.0" mnemonicParsing="false" onAction="#Ajouter_participation" text="Ajouter participation" />
+                        <Button fx:id="BtnAddParticipation" layoutX="16.0" layoutY="385.0" mnemonicParsing="false" text="Ajouter participation" />
 
                             </children>
                         </Pane>
@@ -160,12 +160,12 @@
                               <TableColumn fx:id="col_intituleParticipation" minWidth="0.0" prefWidth="237.60006713867188" text="Intitulé" />
                            </columns>
                         </TableView>
-                        <Button fx:id="BtnDeleteParticipation" layoutX="439.0" layoutY="338.0" mnemonicParsing="false" onAction="#Supprimer_participation" prefHeight="38.0" prefWidth="172.0" text="Supprimer">
+                        <Button fx:id="BtnDeleteParticipation" layoutX="379.0" layoutY="338.0" mnemonicParsing="false" onAction="#Supprimer_participation" prefHeight="38.0" prefWidth="172.0" text="Supprimer">
                            <font>
                               <Font name="System Bold Italic" size="17.0" />
                            </font>
                         </Button>
-                        <Button fx:id="BtnModifyParticipation" layoutX="225.0" layoutY="338.0" mnemonicParsing="false" onAction="#Modifier_participation" prefHeight="38.0" prefWidth="172.0" text="Modifier">
+                        <Button fx:id="BtnModifyParticipation" layoutX="144.0" layoutY="338.0" mnemonicParsing="false" onAction="#Modifier_participation" prefHeight="38.0" prefWidth="172.0" text="Modifier">
                            <font>
                               <Font name="System Bold Italic" size="17.0" />
                            </font>
