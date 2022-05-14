@@ -126,7 +126,7 @@ public class OrganismeDao implements Crud<Organisme> {
         try {
             java.sql.Statement st = c.createStatement();
 
-            ResultSet resultSet = st.executeQuery("SELECT  * FROM Organisme(code_organisme,libelle) where code_organisme=" + organisme.getCode_organisme());
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM Organisme where Libelle ='" + organisme.getLibelle() +"'");
 
             if (resultSet.next()) {
                 state = true;

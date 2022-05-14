@@ -1,8 +1,9 @@
-package com.example.inscription.Controllers;
+package com.example.inscription.Controllers.FormateurControllers;
 
 import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Classes.Formateur;
 import com.example.inscription.Classes.Organisme;
+import com.example.inscription.Controllers.RoutingClass;
 import com.example.inscription.Daos.DomainDao;
 import com.example.inscription.Daos.FormateurDao;
 import com.example.inscription.Daos.OrganismeDao;

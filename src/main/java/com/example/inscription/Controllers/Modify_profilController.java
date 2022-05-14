@@ -17,6 +17,7 @@ public class Modify_profilController {
     @FXML
     private TextField LibelleTextField;
 
+    boolean updated=false;
     @FXML
     void Update_domaine(ActionEvent event) {
 
@@ -26,14 +27,25 @@ public class Modify_profilController {
         Profil profil = (Profil) stage.getUserData();
         if (!LibelleTextField.getText().isEmpty()) {
             profil.setLibelle(LibelleTextField.getText().trim());
+            updated=true;
         }
         ProfileDao profileDao = new ProfileDao();
-        if (profileDao.update(profil)) {
-            RoutingClass.alert("success");
-        } else {
-            RoutingClass.alert("problem");
+      if(updated)  {
+            if (!profileDao.exists(profil)) {
+                if (profileDao.update(profil)) {
+                    RoutingClass.alert("success");
+                } else {
+                    RoutingClass.alert("problem");
 
+                }
+            } else {
+                RoutingClass.alert("profil deja existant ");
+            }
         }
+      else
+      {
+          RoutingClass.alert("no change detected");
+      }
 
     }
 

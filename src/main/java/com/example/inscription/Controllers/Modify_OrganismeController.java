@@ -16,6 +16,7 @@ public class Modify_OrganismeController {
 
     @FXML
     private TextField CodeOrganismeTextField;
+    boolean updated = false;
 
     @FXML
     private TextField LibelleTextField;
@@ -28,12 +29,24 @@ public class Modify_OrganismeController {
         Organisme organisme = (Organisme) stage.getUserData();
         if (!LibelleTextField.getText().isEmpty()) {
             organisme.setLibelle(LibelleTextField.getText().trim());
+            updated = true;
         }
         OrganismeDao organismeDao = new OrganismeDao();
-        if (organismeDao.update(organisme)) {
-            RoutingClass.alert("success");
-        } else {
-            RoutingClass.alert("problem");
+        if (updated) {
+            if (!organismeDao.exists(organisme)) {
+                if (organismeDao.update(organisme)) {
+                    RoutingClass.alert("success");
+                } else {
+                    RoutingClass.alert("problem");
+
+                }
+            } else {
+                RoutingClass.alert("organisme deja existant");
+            }
+        }
+        else
+        {
+            RoutingClass.alert("no change detected");
 
         }
 

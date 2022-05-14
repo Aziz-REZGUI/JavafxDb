@@ -23,6 +23,7 @@ public class Modify_domaineController {
 
     @FXML
     private TextField LibelleTextField;
+    boolean updated=false;
 
     @FXML
     public void Update_domaine(ActionEvent event) {
@@ -30,19 +31,30 @@ public class Modify_domaineController {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Domaine domaine = (Domaine) stage.getUserData();
-        if (!LibelleTextField.getText().isEmpty()) {
+        if (!LibelleTextField.getText().isEmpty()&&!domaine.getLibelle().equalsIgnoreCase(LibelleTextField.getText().trim())) {
             domaine.setLibelle(LibelleTextField.getText().trim());
+            updated=true;
         }
         //TODO unicity for the updates
         //controle de saisie
         DomainDao domaineDao = new DomainDao();
-        if (domaineDao.update(domaine)) {
-            RoutingClass.alert("success");
+       if(updated) {
+            if (!domaineDao.exists(domaine)) {
+                if (domaineDao.update(domaine)) {
+                    RoutingClass.alert("success");
 
-        } else {
-            RoutingClass.alert("problem");
+                } else {
+                    RoutingClass.alert("problem");
 
+                }
+            } else {
+                RoutingClass.alert("domaine already exists");
+            }
         }
+       else
+       {
+           RoutingClass.alert("no change detected");
+       }
 
     }
 }

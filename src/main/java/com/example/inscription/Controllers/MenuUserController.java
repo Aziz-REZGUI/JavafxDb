@@ -127,6 +127,8 @@ public class MenuUserController implements Initializable {
     private Button signOutButton;
 
     @FXML
+    private  Boolean btn_participation;
+    @FXML
     private TableView<Formateur> tableFormateur;
 
     @FXML
@@ -255,7 +257,7 @@ public class MenuUserController implements Initializable {
         }
     }
 
-    //TODO complete send to the other classes
+
     @FXML
     void Modifier_formation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(FormationHandlerTab);
@@ -320,7 +322,7 @@ public class MenuUserController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
 
-            alert.setTitle("Confirmation de supprition");
+            alert.setTitle("Confirmation de suppression");
             alert.setHeaderText(null);
             alert.setContentText("Êtes-vous sûr de vouloir supprimer?");
             Optional<ButtonType> action = alert.showAndWait();
@@ -410,9 +412,13 @@ public class MenuUserController implements Initializable {
 
 
     public void Ajouter_participation(ActionEvent event) throws Exception {
-        TabPane1.getSelectionModel().select(ParticipationHandlerTab);
+        TabPane1.getSelectionModel().select(FormationHandlerTab);
+        if (tableFormation.getSelectionModel().getSelectedIndex() > -1) {
+            RoutingClass.goTo("Add_participation.fxml", "Ajouter participation", 604, 251, tableFormation.getSelectionModel().getSelectedItem());
+        } else {
+            RoutingClass.alert("please select a line ");
 
-        RoutingClass.goTo("Add_participation.fxml", "Ajouter participation", 604, 251);
+        }
 
     }
 

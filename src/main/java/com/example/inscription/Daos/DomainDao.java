@@ -107,7 +107,7 @@ public class DomainDao implements Crud<Domaine> {
         boolean state = false;
         try {
             Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  * FROM profil(code_domaine,libelle) where code_profil=" + domaine.getCode_domaine());
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM domaine where Libelle ='" + domaine.getLibelle()+"'");
 
             if (resultSet.next()) {
                 state = true;

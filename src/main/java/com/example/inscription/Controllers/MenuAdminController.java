@@ -106,11 +106,11 @@ public class MenuAdminController implements Initializable {
 
     //Table view Profil
     @FXML
-    private TableView<Profil> tableProfile;
+    private TableView<Profil> tableProfil;
     @FXML
-    private TableColumn<Profil, Integer> col_idProfil;
+    private TableColumn<Profil, Integer> col_idprofil;
     @FXML
-    private TableColumn<Profil, String> col_libelleProfil;
+    private TableColumn<Profil, String> col_libelleprofil;
 
 
     @FXML
@@ -202,9 +202,9 @@ public class MenuAdminController implements Initializable {
 
 
         //affiche table Profil
-        col_idProfil.setCellValueFactory(new PropertyValueFactory<Profil, Integer>("code_profil"));
-        col_libelleProfil.setCellValueFactory(new PropertyValueFactory<Profil, String>("libelle"));
-        tableProfile.setItems(list3);
+        col_idprofil.setCellValueFactory(new PropertyValueFactory<Profil, Integer>("code_profil"));
+        col_libelleprofil.setCellValueFactory(new PropertyValueFactory<Profil, String>("libelle"));
+        tableProfil.setItems(list3);
         TabPane.getSelectionModel().select(ProfilHandlerTab);
 
     }
@@ -459,18 +459,18 @@ public class MenuAdminController implements Initializable {
 
 
     @FXML
-    void refreshTableProfile(ActionEvent event) {
+    void refreshtableProfile(ActionEvent event) {
         TabPane.getSelectionModel().select(ProfilHandlerTab);
-        tableProfile.getItems().clear();
-        tableProfile.getItems().addAll(profileDao.findAll());
+        tableProfil.getItems().clear();
+        tableProfil.getItems().addAll(profileDao.findAll());
     }
 
     @FXML
     void Modifier_profile(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(ProfilHandlerTab);
-        if (tableProfile.getSelectionModel().getSelectedIndex() > -1) {
+        if (tableProfil.getSelectionModel().getSelectedIndex() > -1) {
 
-            RoutingClass.goTo("Modify_profil.fxml", "Modifier", 604, 251, tableProfile.getSelectionModel().getSelectedItem());
+            RoutingClass.goTo("Modify_profil.fxml", "Modifier", 604, 251, tableProfil.getSelectionModel().getSelectedItem());
 
         } else {
             RoutingClass.alert("please select a line ");
@@ -488,7 +488,7 @@ public class MenuAdminController implements Initializable {
     void Supprimer_profile(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(ProfilHandlerTab);
 
-        if (tableProfile.getSelectionModel().getSelectedIndex() > -1) {
+        if (tableProfil.getSelectionModel().getSelectedIndex() > -1) {
 
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -501,7 +501,7 @@ public class MenuAdminController implements Initializable {
             if (action.get() == ButtonType.OK) {
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
-                stage.setUserData(tableProfile.getSelectionModel().getSelectedItem());
+                stage.setUserData(tableProfil.getSelectionModel().getSelectedItem());
 
                 Profil profil = (Profil) stage.getUserData();
                 ProfileDao profileDao = new ProfileDao();

@@ -130,8 +130,7 @@ public class ProfileDao implements Crud<Profil> {
         try {
             java.sql.Statement st = c.createStatement();
 
-            ResultSet resultSet = st.executeQuery("SELECT  * FROM profil(code_profil,libelle) where code_profil=" + profil.getCode_profil());
-
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM profil where  Libelle='" + profil.getLibelle()+"'");
             if (resultSet.next()) {
                 state = true;
             }

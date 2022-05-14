@@ -10,28 +10,24 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class Add_participationController {
     ParticipationDao participationDao = new ParticipationDao();
     FormationDao formationDao = new FormationDao();
     ParticipantDao participantDao = new ParticipantDao();
     @FXML
-    private Button BtnAjouterParticipation;
-    @FXML
-    private ChoiceBox<Participant> listIdParticipant;
-    @FXML
-    private ChoiceBox<Formation> listIdFormation;
-
-    @FXML
-    private TextField CodeFormationTextField;
-    @FXML
     ObservableList<Formation> list = FXCollections.observableArrayList(formationDao.findAll());
     @FXML
     ObservableList<Participant> list1 = FXCollections.observableArrayList(participantDao.findAll());
-
+    @FXML
+    private Button BtnAjouterParticipation;
+    @FXML
+    private ChoiceBox<Participant> listIdParticipant;
     @FXML
     private TextField IntituleTextField;
 
@@ -41,17 +37,14 @@ public class Add_participationController {
     @FXML
     private TextField nomTextField;
 
-    //TODO add colonne intitulé ya abir
+
     @FXML
     private void initialize() {
-        nomTextField = new TextField();
-        IntituleTextField = new TextField();
-        listIdFormation.setItems(list);
         listIdParticipant.setItems(list1);
 
     }
 
-    @FXML
+   /* @FXML
     void show_participant(ActionEvent event) {
         nomTextField.setText(listIdParticipant.getValue().getNom());
     }
@@ -59,13 +52,16 @@ public class Add_participationController {
     @FXML
     void show_formation(ActionEvent event) {
         IntituleTextField.setText(listIdFormation.getValue().getIntitule());
-    }
+    }*/
 
 
     @FXML
     void Add_participation(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Formation formation = (Formation) stage.getUserData();
         Participation participation = new Participation(listIdParticipant.getValue().getMatricule(), listIdParticipant.getValue().getNom(),
-                listIdFormation.getValue().getCode_formateur(), listIdFormation.getValue().getIntitule());
+                formation.getCode_formateur(), formation.getIntitule());
         ParticipationDao participationDao = new ParticipationDao();
 
         if (participationDao.create(participation)) {

@@ -1,11 +1,13 @@
-package com.example.inscription.Controllers;
+package com.example.inscription.Controllers.FormateurControllers;
 
 import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Classes.Formateur;
 import com.example.inscription.Classes.Organisme;
+import com.example.inscription.Controllers.RoutingClass;
 import com.example.inscription.Daos.DomainDao;
 import com.example.inscription.Daos.FormateurDao;
 import com.example.inscription.Daos.OrganismeDao;
+import com.mysql.cj.util.StringUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,17 +55,27 @@ public class Add_formateurController {
 
     @FXML
     void Add_Formateur(ActionEvent event) {
-        Formateur formateur = new Formateur(Integer.parseInt(NumtelTextField.getText()), NomTextField.getText(),
-                PrenomTextField.getText(), EmailTextField.getText(), CodeorganismeChoiceBox.getValue().getCode_organisme()
-                ,
-                CodedomaineChoiceBox.getValue().getCode_domaine());
-        FormateurDao formateurDao = new FormateurDao();
-        if (formateurDao.create(formateur)) {
-            RoutingClass.alert("Formateur is successfully added!");
+
+
+        if (!StringUtils.isStrictlyNumeric(NumtelTextField.getText()) || (NumtelTextField.getText().isEmpty())) {
+            RoutingClass.alert("le numero de tel doit strictement contient un nombre ");
         } else {
-            RoutingClass.alert("problem");
+            if ((EmailTextField.getText().isEmpty()) || (PrenomTextField.getText().isEmpty()) || (NomTextField.getText().isEmpty())) {
+                RoutingClass.alert("veillez remplir toutes les champs ");
+            } else {
+                Formateur formateur = new Formateur(Integer.parseInt(NumtelTextField.getText()), NomTextField.getText(),
+                        PrenomTextField.getText(), EmailTextField.getText(), CodeorganismeChoiceBox.getValue().getCode_organisme(),
+                        CodedomaineChoiceBox.getValue().getCode_domaine());
+                FormateurDao formateurDao = new FormateurDao();
+                if (formateurDao.create(formateur)) {
+                    RoutingClass.alert("Formateur is successfully added!");
+                } else {
+                    RoutingClass.alert("problem");
 
 
+                }
+
+            }
         }
 
 

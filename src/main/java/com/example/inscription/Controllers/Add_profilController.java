@@ -19,12 +19,17 @@ public class Add_profilController {
     void Add_profile(ActionEvent event) {
         Profil profil = new Profil(LibelleTextField.getText());
         ProfileDao profileDao = new ProfileDao();
-        if (profileDao.create(profil)) {
-            RoutingClass.alert("Profil is successfully added!");
-        } else {
-            RoutingClass.alert("Profil already exists");
+       if(!profileDao.exists(profil)) {
+            if (profileDao.create(profil)) {
+                RoutingClass.alert("Profil is successfully added!");
+            } else {
+                RoutingClass.alert("problem");
 
+            }
         }
+       else {
+           RoutingClass.alert("profile alrady exists");
+       }
 
 
     }

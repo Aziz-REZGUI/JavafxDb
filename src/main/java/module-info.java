@@ -18,6 +18,8 @@ module com.example.inscription {
     opens com.example.inscription.Classes to javafx.fxml;
     exports com.example.inscription.Controllers;
     opens com.example.inscription.Controllers to javafx.fxml;
+    exports com.example.inscription.Controllers.FormateurControllers;
+    opens com.example.inscription.Controllers.FormateurControllers to javafx.fxml;
     //exports com.example.inscription.Controllers;
     //opens com.example.inscription.Controllers to javafx.fxml;
 
