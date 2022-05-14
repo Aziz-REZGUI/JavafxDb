@@ -4,6 +4,8 @@ import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Classes.Organisme;
 import com.example.inscription.Classes.Profil;
 import com.example.inscription.Classes.User;
+import com.example.inscription.Controllers.LoginController;
+import com.example.inscription.Controllers.RoutingClass;
 import com.example.inscription.Daos.DomainDao;
 import com.example.inscription.Daos.OrganismeDao;
 import com.example.inscription.Daos.ProfileDao;
@@ -23,7 +25,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -583,7 +584,7 @@ private TextField TextfieldProfil;
     void signOut(ActionEvent event) throws IOException {
 
         //AdminDao.cleanUserSession();
-        RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login", 450, 650);
+        RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login", 450, 550);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("/views/login.fxml"));
         LoginController controller = new LoginController();

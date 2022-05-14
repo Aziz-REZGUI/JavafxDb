@@ -3,6 +3,7 @@ package com.example.inscription.Controllers;
 import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Classes.Formateur;
 import com.example.inscription.Classes.Formation;
+import com.example.inscription.Controllers.RoutingClass;
 import com.example.inscription.Daos.DomainDao;
 import com.example.inscription.Daos.FormateurDao;
 import com.example.inscription.Daos.FormationDao;
@@ -137,7 +138,12 @@ public class Modify_formationController {
                         if (Integer.parseInt(nbpart) < 4) {
                             RoutingClass.alert("la formation doit contenir au minimum 4 participant ");
                         } else {
-
+                            if ((Integer.parseInt(nbjours)>356)||(Integer.parseInt(nbjours))<1)
+                            {
+                                RoutingClass.alert("nombre du jours doit etre compris entre 1 et 356");
+                            }
+                            else
+                            {
                             Formation formation = new Formation(formationr.getCode_formation(), Integer.parseInt(nbjours), Integer.parseInt(annee), Integer.parseInt(mois), Integer.parseInt(nbpart), intitule, codeF.getCode_formateur(), codeD.getCode_domaine());
                             FormationDao formationDao = new FormationDao();
                             // if(!formationDao.exists(formation)) {
@@ -147,6 +153,9 @@ public class Modify_formationController {
                                 RoutingClass.alert("problem");
 
                             }
+
+                            }
+
 
        /* }
        else {

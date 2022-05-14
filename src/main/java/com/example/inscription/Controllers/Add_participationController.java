@@ -3,6 +3,7 @@ package com.example.inscription.Controllers;
 import com.example.inscription.Classes.Formation;
 import com.example.inscription.Classes.Participant;
 import com.example.inscription.Classes.Participation;
+import com.example.inscription.Controllers.RoutingClass;
 import com.example.inscription.Daos.FormationDao;
 import com.example.inscription.Daos.ParticipantDao;
 import com.example.inscription.Daos.ParticipationDao;

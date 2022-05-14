@@ -1,6 +1,7 @@
 package com.example.inscription.Controllers;
 
 import com.example.inscription.Classes.User;
+import com.example.inscription.Controllers.RoutingClass;
 import com.example.inscription.Daos.UserDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

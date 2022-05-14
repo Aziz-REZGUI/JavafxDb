@@ -1,14 +1,8 @@
 package com.example.inscription.Controllers;
 
-import com.example.inscription.Classes.Profil;
-import com.example.inscription.Classes.User;
-import com.example.inscription.Daos.ProfileDao;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -17,8 +11,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 
 import static javafx.scene.control.Alert.AlertType.ERROR;
 import static javafx.scene.control.ButtonType.OK;
@@ -109,7 +101,7 @@ public class RoutingClass extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane root = FXMLLoader.load(this.getClass().getResource("/views/login.fxml"));
-        Scene sceneX = new Scene(root, 450, 650);
+        Scene sceneX = new Scene(root, 450, 550);
         sceneX.getStylesheets().addAll(this.getClass().getResource("/views/login.css").toExternalForm());
         primaryStage.setScene(sceneX);
         primaryStage.setTitle("Sign in");

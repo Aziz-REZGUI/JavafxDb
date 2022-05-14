@@ -1,6 +1,7 @@
 package com.example.inscription.Controllers;
 
 import com.example.inscription.Classes.*;
+import com.example.inscription.Controllers.RoutingClass;
 import com.example.inscription.Daos.FormateurDao;
 import com.example.inscription.Daos.FormationDao;
 import com.example.inscription.Daos.ParticipantDao;
@@ -484,7 +485,24 @@ public class MenuUserController implements Initializable {
     public void Supprimer_participation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(ParticipationHandlerTab);
         if (tableParticipation.getSelectionModel().getSelectedIndex() > -1) {
-            RoutingClass.goTo("Delete_participation.fxml", "Supprimer participation", 604, 251, tableParticipation.getSelectionModel().getSelectedItem());
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+
+            alert.setTitle("Confirmation de suppression");
+            alert.setHeaderText(null);
+            alert.setContentText("Êtes-vous sûr de vouloir supprimer?");
+            Optional<ButtonType> action = alert.showAndWait();
+            if (action.get() == ButtonType.OK) {
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.setUserData(tableParticipation.getSelectionModel().getSelectedItem());
+
+                Participation participation = (Participation) stage.getUserData();
+                ParticipationDao participationDao = new ParticipationDao();
+                participationDao.delete(participation);
+                loadParticipationDetails();
+            }
         } else {
             RoutingClass.alert("please select a line ");
 
@@ -512,6 +530,6 @@ public class MenuUserController implements Initializable {
     @FXML
     void signOut(ActionEvent event) throws Exception {
 
-        RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login", 450, 650);
+        RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login", 450, 550);
     }
 }

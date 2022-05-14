@@ -1,6 +1,7 @@
 package com.example.inscription.Controllers;
 
 import com.example.inscription.Classes.Domaine;
+import com.example.inscription.Controllers.RoutingClass;
 import com.example.inscription.Daos.DomainDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

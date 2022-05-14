@@ -1,4 +1,4 @@
-package com.example.inscription.Controllers.FormateurControllers;
+package com.example.inscription.Controllers;
 
 import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Classes.Formateur;
