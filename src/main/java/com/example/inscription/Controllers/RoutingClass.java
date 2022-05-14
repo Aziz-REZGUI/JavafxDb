@@ -104,9 +104,7 @@ public class RoutingClass extends Application {
 
 
     //TODO delete all cumntss after checking with abir
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -119,7 +117,9 @@ public class RoutingClass extends Application {
         primaryStage.show();
 
     }
-
+    public static void main(String[] args) {
+        launch(args);
+    }
 
 
 
