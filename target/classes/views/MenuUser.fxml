@@ -62,7 +62,7 @@
                                     </image>
                                 </ImageView>
                                 <Button fx:id="btnRefresh2" layoutX="721.0" layoutY="19.0" mnemonicParsing="false" onAction="#refreshTableFormation" text="Refresh" />
-                        <Button fx:id="BtnAddParticipation" layoutX="16.0" layoutY="385.0" mnemonicParsing="false" text="Ajouter participation" />
+                        <Button fx:id="BtnAddParticipation" layoutX="16.0" layoutY="385.0" mnemonicParsing="false" onAction="#Ajouter_participation" text="Ajouter participation" />
 
                             </children>
                         </Pane>

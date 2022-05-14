@@ -27,87 +27,63 @@ import java.util.ResourceBundle;
 public class MenuUserController implements Initializable {
 
     @FXML
-    private Button BtnAddFormateur,
-
-    BtnAddFormation, BtnAddParticipant;
-    @FXML
     Button BtnDeleteFormateur, BtnDeleteFormation,
 
     BtnDeleteParticipant, BtnModifyFormation, BtnModifyParticipant, BtnModiyFormateur, BtnSearchFormateur, BtnSearchFormation, BtnSearchParticipant;
+    @FXML
+    private Button BtnAddFormateur,
+
+    BtnAddFormation, BtnAddParticipant;
     private FormationDao formationDao = new FormationDao();
-    private FormateurDao formateurDao = new FormateurDao();
-    private ParticipantDao participantDao = new ParticipantDao();
-    @FXML
-    private Tab FormateurHandlerTab;
-
-    @FXML
-    private Tab FormationHandlerTab;
-
-    @FXML
-    private Tab ParticipantHandlerTab;
-
-
-    @FXML
-    private TabPane TabPane1;
-
-    @FXML
-    private TextField TextFieldFormation;
-
-    @FXML
-    private TextField TextfieldFormateur;
-
-    @FXML
-    private TextField TextfieldParticipant;
-
-    @FXML
-    private Button btnRefresh;
     //Gerer Formation
     ObservableList<Formation> list = FXCollections.observableArrayList(formationDao.findAll());
-
+    private FormateurDao formateurDao = new FormateurDao();
+    ObservableList<Formateur> list1 = FXCollections.observableArrayList(formateurDao.findAll());
+    private ParticipantDao participantDao = new ParticipantDao();
+    //Gerer participant
+    ObservableList<Participant> list2 = FXCollections.observableArrayList(participantDao.findAll());
+    @FXML
+    private Tab FormateurHandlerTab;
+    @FXML
+    private Tab FormationHandlerTab;
+    @FXML
+    private Tab ParticipantHandlerTab;
+    @FXML
+    private TabPane TabPane1;
+    @FXML
+    private TextField TextFieldFormation;
+    @FXML
+    private TextField TextfieldFormateur;
+    @FXML
+    private TextField TextfieldParticipant;
+    @FXML
+    private Button btnRefresh;
     @FXML
     private TableColumn<Formation, String> col_annee;
-
     @FXML
     private TableColumn<Formation, Integer> col_idFormation;
     @FXML
     private TableColumn<Formation, String> col_Nombre_participant;
-
     @FXML
     private TableColumn<Formation, String> col_Nombrejour;
-    @FXML
-    private TableColumn<Formation, Integer> col_DomaineFormation;
-
-    @FXML
-    private TableColumn<Formation, String> col_mois;
 
 //Gerer Formateur
-
-    ObservableList<Formateur> list1 = FXCollections.observableArrayList(formateurDao.findAll());
-
-
+    @FXML
+    private TableColumn<Formation, Integer> col_DomaineFormation;
+    @FXML
+    private TableColumn<Formation, String> col_mois;
     @FXML
     private TableColumn<Formateur, String> col_EmailFormateur;
-
     @FXML
     private TableColumn<Formateur, Integer> col_IdFormateur;
-
-
     @FXML
     private TableColumn<Formateur, String> col_NomFormateur;
-
-
     @FXML
     private TableColumn<Formateur, String> col_PrenomFormateur;
-
-
     @FXML
     private TableColumn<Formateur, Integer> col_codedomaine;
     @FXML
     private TableColumn<Formateur, Integer> col_codeorganisme;
-
-    //Gerer participant
-    ObservableList<Participant> list2 = FXCollections.observableArrayList(participantDao.findAll());
-
     @FXML
     private TableColumn<Participant, String> col_PrenomPar;
     @FXML
@@ -127,7 +103,7 @@ public class MenuUserController implements Initializable {
     private Button signOutButton;
 
     @FXML
-    private  Boolean btn_participation;
+    private Boolean btn_participation;
     @FXML
     private TableView<Formateur> tableFormateur;
 
@@ -194,6 +170,10 @@ public class MenuUserController implements Initializable {
         col_Date_naissancePar.setCellValueFactory(new PropertyValueFactory<Participant, Date>("date_naissance"));
         tableParticipant.setItems(list2);
         TabPane1.getSelectionModel().select(ParticipantHandlerTab);
+
+
+
+
         //affiche table participation
         col_MatriculeParticipation.setCellValueFactory(new PropertyValueFactory<Participation, Integer>("matricule"));
         col_intituleParticipation.setCellValueFactory(new PropertyValueFactory<Participation, String>("intitule"));
