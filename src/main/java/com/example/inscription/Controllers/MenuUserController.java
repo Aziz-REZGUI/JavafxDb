@@ -1,15 +1,14 @@
 package com.example.inscription.Controllers;
 
-import com.example.inscription.Classes.Formateur;
-import com.example.inscription.Classes.Formation;
-import com.example.inscription.Classes.Participant;
-import com.example.inscription.Classes.Participation;
+import com.example.inscription.Classes.*;
 import com.example.inscription.Daos.FormateurDao;
 import com.example.inscription.Daos.FormationDao;
 import com.example.inscription.Daos.ParticipantDao;
 import com.example.inscription.Daos.ParticipationDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -146,6 +145,7 @@ public class MenuUserController implements Initializable {
         col_DomaineFormation.setCellValueFactory(new PropertyValueFactory<Formation, Integer>("code_domaine"));
         tableFormation.setItems(list);
         TabPane1.getSelectionModel().select(FormationHandlerTab);
+        filtreFormation();
 
 
         //affiche table formateur
@@ -159,7 +159,7 @@ public class MenuUserController implements Initializable {
         col_codedomaine.setCellValueFactory(new PropertyValueFactory<Formateur, Integer>("code_domaine"));
         tableFormateur.setItems(list1);
         TabPane1.getSelectionModel().select(FormateurHandlerTab);
-
+       filtreFormateur();
 
         //affiche table participant
         col_MatriculePar.setCellValueFactory(new PropertyValueFactory<Participant, Integer>("matricule"));
@@ -171,7 +171,7 @@ public class MenuUserController implements Initializable {
         tableParticipant.setItems(list2);
         TabPane1.getSelectionModel().select(ParticipantHandlerTab);
 
-
+       filtreParticipant();
 
 
         //affiche table participation
@@ -186,45 +186,13 @@ public class MenuUserController implements Initializable {
 
     }
 
+    //--------------Gerer_Formateur---------------------//
+
     @FXML
     void Ajouter_Formateur(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(FormateurHandlerTab);
 
         RoutingClass.goTo("Add_formateur.fxml", "Ajouter", 604, 251);
-    }
-
-    @FXML
-    void Ajouter_formation(ActionEvent event) throws Exception {
-        TabPane1.getSelectionModel().select(FormationHandlerTab);
-
-        RoutingClass.goTo("Add_formation.fxml", "Ajouter", 604, 251);
-
-    }
-
-    @FXML
-    void Ajouter_participant(ActionEvent event) throws Exception {
-        TabPane1.getSelectionModel().select(ParticipantHandlerTab);
-
-        RoutingClass.goTo("Add_participant.fxml", "Ajouter", 604, 251);
-
-    }
-
-    @FXML
-    void Chercher_Formation(ActionEvent event) throws Exception {
-
-    }
-
-    @FXML
-    void Chercher_Participant(ActionEvent event) throws Exception {
-
-    }
-
-    @FXML
-    void Chercher_formateur(ActionEvent event) throws Exception {
-        TabPane1.getSelectionModel().select(FormateurHandlerTab);
-
-        RoutingClass.goTo("Find_formateur.fxml", "Modifier", 604, 418);
-
     }
 
     @FXML
@@ -236,31 +204,6 @@ public class MenuUserController implements Initializable {
             RoutingClass.alert("please select a line ");
         }
     }
-
-
-    @FXML
-    void Modifier_formation(ActionEvent event) throws Exception {
-        TabPane1.getSelectionModel().select(FormationHandlerTab);
-        if (tableFormation.getSelectionModel().getSelectedIndex() > -1) {
-            RoutingClass.goTo("Modify_formation.fxml", "Modifier", 604, 418, tableFormation.getSelectionModel().getSelectedItem());
-        } else {
-            RoutingClass.alert("please select a line ");
-
-        }
-    }
-
-    @FXML
-    void Modifier_participant(ActionEvent event) throws Exception {
-        TabPane1.getSelectionModel().select(ParticipantHandlerTab);
-        if (tableParticipant.getSelectionModel().getSelectedIndex() > -1) {
-
-            RoutingClass.goTo("Modify_participant.fxml", "Modifier", 604, 418, tableParticipant.getSelectionModel().getSelectedItem());
-        } else {
-            RoutingClass.alert("please select a line ");
-
-        }
-    }
-
     @FXML
     void Supprimer_formateur(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(FormateurHandlerTab);
@@ -283,6 +226,7 @@ public class MenuUserController implements Initializable {
                 Formateur formateur = (Formateur) stage.getUserData();
                 FormateurDao formateurDao = new FormateurDao();
                 formateurDao.delete(formateur);
+                loadFormateurDetails();
             }
 
 
@@ -291,7 +235,75 @@ public class MenuUserController implements Initializable {
         }
 
     }
+    public void refreshTableFormateur(ActionEvent event) {
+        TabPane1.getSelectionModel().select(FormateurHandlerTab);
+       loadFormateurDetails();
+    }
+    private void loadFormateurDetails() {
+        list1.clear();
+        list1.addAll(formateurDao.findAll());
 
+        tableFormateur.setItems(list1);
+        filtreFormateur();
+    }
+    private void filtreFormateur() {
+        FilteredList<Formateur> filteredData = new FilteredList<>(list1, b -> true);
+
+        TextfieldFormateur.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(formateur -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (formateur.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (formateur.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(formateur.getCode_formateur()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                }else if (String.valueOf(formateur.getN_tel()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                }
+                else
+                    return false;
+            });
+        });
+
+        SortedList<Formateur> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tableFormateur.comparatorProperty());
+        tableFormateur.setItems(sortedData);
+
+    }
+    //--------------Gerer_Formation---------------------//
+
+
+    @FXML
+    void Ajouter_formation(ActionEvent event) throws Exception {
+        TabPane1.getSelectionModel().select(FormationHandlerTab);
+
+        RoutingClass.goTo("Add_formation.fxml", "Ajouter", 604, 251);
+
+    }
+    @FXML
+    void Modifier_formation(ActionEvent event) throws Exception {
+        TabPane1.getSelectionModel().select(FormationHandlerTab);
+        if (tableFormation.getSelectionModel().getSelectedIndex() > -1) {
+            RoutingClass.goTo("Modify_formation.fxml", "Modifier", 604, 418, tableFormation.getSelectionModel().getSelectedItem());
+        } else {
+            RoutingClass.alert("please select a line ");
+
+        }
+    }
+
+    @FXML
+    void refreshTableFormation(ActionEvent event) {
+        TabPane1.getSelectionModel().select(FormationHandlerTab);
+
+        loadFormationDetails();
+
+    }
     @FXML
     void Supprimer_formation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(FormationHandlerTab);
@@ -314,6 +326,7 @@ public class MenuUserController implements Initializable {
                 Formation formation = (Formation) stage.getUserData();
                 FormationDao formationDao = new FormationDao();
                 formationDao.delete(formation);
+                loadFormationDetails();
             }
 
 
@@ -322,7 +335,41 @@ public class MenuUserController implements Initializable {
         }
 
     }
+    private void loadFormationDetails() {
+        list.clear();
+        list.addAll(formationDao.findAll());
 
+        tableFormation.setItems(list);
+       filtreFormation();
+    }
+    private void filtreFormation() {
+        FilteredList<Formation> filteredData = new FilteredList<>(list, b -> true);
+
+        TextFieldFormation.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(formation -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (formation.getIntitule().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+
+                } else if (String.valueOf(formation.getCode_formation()).indexOf(lowerCaseFilter) != -1)
+                    return true;
+                else
+                    return false;
+            });
+        });
+
+        SortedList<Formation> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tableFormation.comparatorProperty());
+        tableFormation.setItems(sortedData);
+
+    }
+
+    //--------------Gerer_Participant---------------------//
     @FXML
     void Supprimer_participant(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(ParticipantHandlerTab);
@@ -345,6 +392,7 @@ public class MenuUserController implements Initializable {
                 Participant participant = (Participant) stage.getUserData();
                 ParticipantDao participantDao = new ParticipantDao();
                 participantDao.delete(participant);
+                loadParticipantDetails();
             }
 
 
@@ -355,13 +403,66 @@ public class MenuUserController implements Initializable {
     }
 
     @FXML
-    void refreshTableFormation(ActionEvent event) {
-        TabPane1.getSelectionModel().select(FormationHandlerTab);
+    void Ajouter_participant(ActionEvent event) throws Exception {
+        TabPane1.getSelectionModel().select(ParticipantHandlerTab);
 
-        tableFormation.getItems().clear();
-        tableFormation.getItems().addAll(formationDao.findAll());
+        RoutingClass.goTo("Add_participant.fxml", "Ajouter", 604, 251);
 
     }
+    @FXML
+    void Modifier_participant(ActionEvent event) throws Exception {
+        TabPane1.getSelectionModel().select(ParticipantHandlerTab);
+        if (tableParticipant.getSelectionModel().getSelectedIndex() > -1) {
+
+            RoutingClass.goTo("Modify_participant.fxml", "Modifier", 604, 418, tableParticipant.getSelectionModel().getSelectedItem());
+        } else {
+            RoutingClass.alert("please select a line ");
+
+        }
+    }
+
+    public void refreshTableParticipant(ActionEvent event) {
+        TabPane1.getSelectionModel().select(ParticipantHandlerTab);
+
+        loadParticipantDetails();
+    }
+    private void loadParticipantDetails() {
+        list2.clear();
+        list2.addAll(participantDao.findAll());
+
+        tableParticipant.setItems(list2);
+        filtreParticipant();
+    }
+    private void filtreParticipant() {
+        FilteredList<Participant> filteredData = new FilteredList<>(list2, b -> true);
+
+        TextfieldParticipant.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(participant -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (participant.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (participant.getPrenom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(participant.getDate_naissance()).indexOf(lowerCaseFilter) != -1)
+                    return true;
+                else
+                    return false;
+            });
+        });
+
+        SortedList<Participant> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tableParticipant.comparatorProperty());
+        tableParticipant.setItems(sortedData);
+
+    }
+    //--------------Gerer_Participation---------------------//
+
+
 
     @FXML
     void refreshTableParticipation(ActionEvent event) {
@@ -369,28 +470,6 @@ public class MenuUserController implements Initializable {
         tableParticipation.getItems().clear();
         tableParticipation.getItems().addAll(participationDao.findAll());
     }
-
-    @FXML
-    void signOut(ActionEvent event) throws Exception {
-
-        //AdminDao.cleanUserSession();
-        RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login", 450, 650);
-    }
-
-    public void refreshTableFormateur(ActionEvent event) {
-        TabPane1.getSelectionModel().select(FormateurHandlerTab);
-        tableFormateur.getItems().clear();
-        tableFormateur.getItems().addAll(formateurDao.findAll());
-    }
-
-    public void refreshTableParticipant(ActionEvent event) {
-        TabPane1.getSelectionModel().select(ParticipantHandlerTab);
-
-        tableParticipant.getItems().clear();
-        tableParticipant.getItems().addAll(participantDao.findAll());
-    }
-
-
     public void Ajouter_participation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(FormationHandlerTab);
         if (tableFormation.getSelectionModel().getSelectedIndex() > -1) {
@@ -420,5 +499,19 @@ public class MenuUserController implements Initializable {
         } else {
             RoutingClass.alert("please select a line ");
         }
+    }
+    private void loadParticipationDetails() {
+        list3.clear();
+        list3.addAll(participationDao.findAll());
+
+        tableParticipation.setItems(list3);
+    }
+
+
+    //-------------------Sign_out-----------------------//
+    @FXML
+    void signOut(ActionEvent event) throws Exception {
+
+        RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login", 450, 650);
     }
 }

@@ -285,13 +285,14 @@ private TextField TextfieldProfil;
         list1.addAll(domainDao.findAll());
 
         tableDomaine.setItems(list1);
+        filtreDomaine();
     }
     @FXML
     public void refreshTableDomaine(ActionEvent Action) {
 
         TabPane.getSelectionModel().select(DomaineHandlerTab);
         loadDomainDetails();
-        filtreDomaine();
+
 
     }
 
@@ -338,6 +339,7 @@ private TextField TextfieldProfil;
                 Domaine domaine = (Domaine) stage.getUserData();
                 DomainDao domaineDao = new DomainDao();
                 domaineDao.delete(domaine);
+                loadDomainDetails();
             }
 
 
