@@ -492,6 +492,9 @@ public class MenuAdminController implements Initializable {
 
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(RoutingClass.class.getResource("/views/login.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
 
 
             alert.setTitle("Confirmation de supprition");

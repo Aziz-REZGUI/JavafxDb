@@ -57,9 +57,9 @@ public class LoginController {
             UserDao userDao = new UserDao();
             if (userDao.login(user)) {
                 if (userDao.isAdmin(user)) {
-                    RoutingClass.goTo((Stage) sign_up.getScene().getWindow(), "MenuAdmin.fxml", "Menuadmin ", 778, 569);
+                    RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuAdmin.fxml", "Menuadmin ", 778, 569);
                 } else {
-                    RoutingClass.goTo((Stage) sign_up.getScene().getWindow(), "MenuUser.fxml", "MenuUser ", 778, 569);
+                    RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuUser.fxml", "MenuUser ", 778, 569);
                 }
 
             } else {

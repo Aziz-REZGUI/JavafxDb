@@ -1,11 +1,15 @@
 package com.example.inscription.Controllers;
 
+import com.example.inscription.Classes.Profil;
+import com.example.inscription.Daos.ProfileDao;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -13,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import static javafx.scene.control.Alert.AlertType.ERROR;
 import static javafx.scene.control.ButtonType.OK;
@@ -108,5 +113,7 @@ public class RoutingClass extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
     }
+
+
 
 }
