@@ -37,12 +37,11 @@ public class UserDao implements Crud<User> {
         boolean state;
         try {
             //statement.executeUpdate("INSERT INTO utilisateur (login,password,full_name,role) VALUES ('" + user.getLogin() + "','" + user.getPassword() + "','" + user.getFullname() + "','" + user.getRole() + "')");
-            pr = c.prepareStatement("insert into utilisateur (login,password,full_name,role) values(?,?,?,?)");
+            pr = c.prepareStatement("insert into utilisateur (login,password,role) values(?,?,?)");
             // pr.setInt(1, eid);
             pr.setString(1, user.getLogin());
             pr.setString(2, user.getPassword());
-            pr.setString(3, user.getFullname());
-            pr.setString(4, user.getRole());
+            pr.setString(3, user.getRole());
             pr.executeUpdate();
             System.out.println("L'utilisateur a été ajouté avec succès.");
             state = true;
@@ -58,12 +57,11 @@ public class UserDao implements Crud<User> {
     public boolean update(User user) {
         boolean state = false;
         try {
-            pr = c.prepareStatement("UPDATE utilisateur SET login=?,password=?,role=?,full_name=? where code_utilisateur=? ");
+            pr = c.prepareStatement("UPDATE utilisateur SET login=?,password=?,role=? where code_utilisateur=? ");
             pr.setString(1, user.getLogin());
             pr.setString(2, user.getPassword());
             pr.setString(3, user.getRole());
-            pr.setString(4, user.getFullname());
-            pr.setInt(5, user.getCodeutilisateur());
+            pr.setInt(4, user.getCodeutilisateur());
             pr.executeUpdate();
             state = true;
         } catch (SQLException e) {
@@ -99,7 +97,7 @@ public class UserDao implements Crud<User> {
             ResultSet resultSet = st.executeQuery("SELECT  * FROM utilisateur");
 
             while (resultSet.next()) {
-                User temp = new User(resultSet.getInt("code_utilisateur"), resultSet.getString("login"), resultSet.getString("password"), resultSet.getString("full_name"), resultSet.getString("role"));
+                User temp = new User(resultSet.getInt("code_utilisateur"), resultSet.getString("login"), resultSet.getString("password"), resultSet.getString("role"));
                 output.add(temp);
             }
         } catch (SQLException e) {

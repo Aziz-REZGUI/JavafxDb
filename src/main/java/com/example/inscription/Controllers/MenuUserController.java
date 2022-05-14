@@ -63,6 +63,8 @@ public class MenuUserController implements Initializable {
     @FXML
     private TableColumn<Formation, Integer> col_idFormation;
     @FXML
+    private TableColumn<Formation, String> col_Intitule;
+    @FXML
     private TableColumn<Formation, String> col_Nombre_participant;
     @FXML
     private TableColumn<Formation, String> col_Nombrejour;
@@ -139,6 +141,7 @@ public class MenuUserController implements Initializable {
         // Affiche table Formation
 
         col_idFormation.setCellValueFactory(new PropertyValueFactory<Formation, Integer>("code_formation"));
+        col_Intitule.setCellValueFactory(new PropertyValueFactory<Formation, String>("intitule"));
         col_Nombrejour.setCellValueFactory(new PropertyValueFactory<Formation, String>("nombre_jours"));
         col_annee.setCellValueFactory(new PropertyValueFactory<Formation, String>("annee"));
         col_mois.setCellValueFactory(new PropertyValueFactory<Formation, String>("mois"));
@@ -284,7 +287,7 @@ public class MenuUserController implements Initializable {
     void Ajouter_formation(ActionEvent event) throws Exception {
         TabPane1.getSelectionModel().select(FormationHandlerTab);
 
-        RoutingClass.goTo("Add_formation.fxml", "Ajouter", 604, 251);
+        RoutingClass.goTo("Add_formation.fxml", "Ajouter", 604, 310);
 
     }
     @FXML

@@ -4,27 +4,27 @@ public class User {
 
 
     private int Codeutilisateur;
+    private String login, password, role;
 
-    public User(int codeutilisateur, String login, String password, String fullname, String role) {
+
+    public User(int codeutilisateur, String login, String password,  String role) {
         Codeutilisateur = codeutilisateur;
         this.login = login;
         this.password = password;
         this.role = role;
-        this.fullname = fullname;
+
     }
 
     public User(String login, String password, String fullname, String role) {
         this.login = login;
         this.password = password;
         this.role = role;
-        this.fullname = fullname;
+
     }
 
     public User(int codeutilisateur) {
         Codeutilisateur = codeutilisateur;
     }
-
-    private String login, password, role, fullname;
 
 
     public User(String login, String password) {
@@ -46,7 +46,7 @@ public class User {
         this.login = login;
         this.password = password;
         this.role = "user";
-        this.fullname = fullname;
+
     }
 
     public int getCodeutilisateur() {
@@ -65,9 +65,7 @@ public class User {
         return role;
     }
 
-    public String getFullname() {
-        return fullname;
-    }
+
 
     public void setCodeutilisateur(int codeutilisateur) {
         Codeutilisateur = codeutilisateur;
@@ -85,9 +83,7 @@ public class User {
         this.role = role;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
+
 }
 
 

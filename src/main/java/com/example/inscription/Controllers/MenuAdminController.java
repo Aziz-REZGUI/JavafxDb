@@ -160,7 +160,7 @@ private TextField TextfieldProfil;
     private void Ajouter_user(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(UserHandlerTab);
 
-        RoutingClass.goTo("Add_user.fxml", "Ajouter", 450, 650);
+        RoutingClass.goTo("Add_user.fxml", "Ajouter", 604, 251);
 
 
     }
