@@ -459,7 +459,7 @@ public class MenuAdminController implements Initializable {
 
 
     @FXML
-    void refreshtableProfile(ActionEvent event) {
+    void refreshTableProfile(ActionEvent event) {
         TabPane.getSelectionModel().select(ProfilHandlerTab);
         tableProfil.getItems().clear();
         tableProfil.getItems().addAll(profileDao.findAll());

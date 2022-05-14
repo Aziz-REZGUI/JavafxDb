@@ -45,6 +45,7 @@ public class RoutingClass extends Application {
 
     static public void goTo(String fileName, String title, float width, float height, Object data) throws IOException {
         Stage SecondStage = new Stage();
+
         Pane root = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
         Scene sceneX = new Scene(root, width, height);
         sceneX.getStylesheets().add(RoutingClass.class.getResource("/views/login.css").toExternalForm());
@@ -69,6 +70,7 @@ public class RoutingClass extends Application {
     static public void goTo(String fileName, String title, float width, float height) throws IOException {
         Stage SecondStage = new Stage();
         Pane root = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
+
         Scene sceneX = new Scene(root, width, height);
         sceneX.getStylesheets().add(RoutingClass.class.getResource("/views/login.css").toExternalForm());
         SecondStage.setScene(sceneX);
