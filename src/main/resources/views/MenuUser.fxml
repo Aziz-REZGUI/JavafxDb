@@ -109,6 +109,11 @@
                                     </font>
                                 </Button>
                         <Button fx:id="btnRefresh1" layoutX="708.0" layoutY="19.0" mnemonicParsing="false" onAction="#refreshTableFormateur" prefHeight="35.0" prefWidth="35.0" />
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="713.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/refresh%20(2).png" />
+                           </image>
+                        </ImageView>
                             </children>
                         </Pane>
                     </content>
