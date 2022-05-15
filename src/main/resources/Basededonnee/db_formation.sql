@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 12 mai 2022 à 10:48
+-- Généré le : dim. 15 mai 2022 à 13:55
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 7.1.32
 
@@ -52,8 +52,8 @@ INSERT INTO `domaine` (`code_domaine`, `Libelle`) VALUES
 (1, 'info'),
 (2, 'tech'),
 (3, 'sc'),
-(4, 'ad'),
-(5, 'cz');
+(5, 're'),
+(6, 'ffrf');
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,11 @@ CREATE TABLE `formateur` (
 --
 
 INSERT INTO `formateur` (`Code_formateur`, `Nom`, `Prenom`, `Email`, `N_tel`, `Code_organisme`, `code_domaine`) VALUES
-(1, 'kkrezkcg', 'rezgui', 'azizzdzez', 55, 1, 1);
+(1, 'czcdzc', 'zcdcz', 'czcdzd', 45434567, 2, 2),
+(4, 'oicjaijc', 'yikyk', 'gyjty', 88776655, 2, 2),
+(6, 'dvsv', 'ffvs', 'svfs', 222, 2, 3),
+(7, 'zeze', 'aecfze', 'gnhgn', 222, 2, 2),
+(8, 'azdada', 'zezcz', 'zeczzc', 33333322, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -100,8 +104,9 @@ CREATE TABLE `formation` (
 --
 
 INSERT INTO `formation` (`code_formation`, `intitule`, `nombre_jour`, `annee`, `mois`, `nombre_participant`, `Code_formateur`, `code_domaine`) VALUES
-(1, 'iefhe', 99, 99, 0, 6, 1, 1),
-(2, 'iefhe', 2, 4, 2, 2, 1, 1);
+(8, 'feegre', 22, 8767, 2, 4, 6, 3),
+(9, 'dcaob', 5555, 8877, 7, 5, 4, 3),
+(10, 'javafx', 5, 6534, 7, 9, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -120,7 +125,7 @@ CREATE TABLE `organisme` (
 
 INSERT INTO `organisme` (`Code_organisme`, `Libelle`) VALUES
 (1, 'isi'),
-(2, 'dcjncsdjn');
+(2, 'iset');
 
 -- --------------------------------------------------------
 
@@ -141,10 +146,7 @@ CREATE TABLE `participant` (
 --
 
 INSERT INTO `participant` (`Matricule`, `Nom`, `prenom`, `date_naissance`, `Code_profil`) VALUES
-(1, 'ez', 'edz', '2022-05-11', 1),
-(9, 'zez', 'vzefds', '2022-05-24', 1),
-(12, 'vjove', 'voeiv', '2022-05-03', 1),
-(13, 'adaz', 'zad', '2022-05-04', 2);
+(9, 'zez', 'vzefds', '2022-05-24', 1);
 
 -- --------------------------------------------------------
 
@@ -164,7 +166,7 @@ CREATE TABLE `participation` (
 --
 
 INSERT INTO `participation` (`Matricule`, `Nom`, `code_formation`, `intitule`) VALUES
-(1, '', 1, '');
+(9, 'zez', 9, 'dcaob');
 
 -- --------------------------------------------------------
 
@@ -183,8 +185,7 @@ CREATE TABLE `profil` (
 
 INSERT INTO `profil` (`Code_profil`, `Libelle`) VALUES
 (1, 'tech '),
-(2, 'info'),
-(3, 'ijfo');
+(2, 'info');
 
 -- --------------------------------------------------------
 
@@ -194,7 +195,6 @@ INSERT INTO `profil` (`Code_profil`, `Libelle`) VALUES
 
 CREATE TABLE `utilisateur` (
   `code_utilisateur` int(11) NOT NULL,
-  `full_name` varchar(30) NOT NULL,
   `login` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
   `role` varchar(40) NOT NULL
@@ -204,13 +204,13 @@ CREATE TABLE `utilisateur` (
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`code_utilisateur`, `full_name`, `login`, `password`, `role`) VALUES
-(2, '', 'aziz', 'aziz', 'admin'),
-(3, 'test', 'fdf', 'fdgdb', 'User'),
-(4, 'edzdaad', 'ceac', 'ceazc', 'User'),
-(5, 'test', 'abir', 'benabid', 'Admin'),
-(11, 'test', 'user', 'user', 'User'),
-(12, 'test', 'azd', 'azdad', 'User');
+INSERT INTO `utilisateur` (`code_utilisateur`, `login`, `password`, `role`) VALUES
+(2, 'aziz', 'aziz', 'admin'),
+(4, 'ceac', 'ceazc', 'User'),
+(5, 'abir', 'benabid', 'Admin'),
+(11, 'user', 'user', 'User'),
+(13, 'adzda', 'azdada', 'User'),
+(14, 'zefzf', 'zezf', 'User');
 
 --
 -- Index pour les tables déchargées
@@ -290,25 +290,25 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT pour la table `domaine`
 --
 ALTER TABLE `domaine`
-  MODIFY `code_domaine` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `code_domaine` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `formateur`
 --
 ALTER TABLE `formateur`
-  MODIFY `Code_formateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Code_formateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `formation`
 --
 ALTER TABLE `formation`
-  MODIFY `code_formation` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `code_formation` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `organisme`
 --
 ALTER TABLE `organisme`
-  MODIFY `Code_organisme` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Code_organisme` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `participant`
@@ -320,13 +320,13 @@ ALTER TABLE `participant`
 -- AUTO_INCREMENT pour la table `profil`
 --
 ALTER TABLE `profil`
-  MODIFY `Code_profil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Code_profil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `code_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `code_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Contraintes pour les tables déchargées

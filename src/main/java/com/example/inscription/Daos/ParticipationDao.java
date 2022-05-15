@@ -170,9 +170,7 @@ public class ParticipationDao implements Crud<Participation> {
         try {
             java.sql.Statement st = c.createStatement();
 
-            ResultSet resultSet = st.executeQuery("SELECT  * FROM participation where Matricule=? and  code_formation=?");
-            pr.setInt(1, participation.getMatricule());
-            pr.setInt(2, participation.getCode_formation());
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM participation where Matricule=" + participation.getMatricule() + " and  code_formation=" + participation.getCode_formation() + " and  Nom='" + participation.getNom() + "' and intitule='" + participation.getIntitule() + "' ");
             if (resultSet.next()) {
                 state = true;
             }

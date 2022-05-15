@@ -65,12 +65,18 @@ public class Add_participationController {
                 formation.getCode_formation(), formation.getIntitule());
         ParticipationDao participationDao = new ParticipationDao();
 
-        if (participationDao.create(participation)) {
-            RoutingClass.alert("The participation is successfully added!");
-        } else {
-            RoutingClass.alert("Problem!");
+       if (!participationDao.exists(participation)){
+            if (participationDao.create(participation)) {
+                RoutingClass.alert("The participation is successfully added!");
+            } else {
+                RoutingClass.alert("problem!");
 
+            }
         }
+       else {
+           RoutingClass.alert("Participant déja affecter!");
+
+       }
     }
 
 }
