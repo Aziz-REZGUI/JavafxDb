@@ -575,7 +575,6 @@ private TextField TextfieldProfil;
     @FXML
     void signOut(ActionEvent event) throws IOException {
 
-        //AdminDao.cleanUserSession();
         RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login", 450, 550);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("/views/login.fxml"));
