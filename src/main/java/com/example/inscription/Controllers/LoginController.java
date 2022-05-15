@@ -27,36 +27,12 @@ public class LoginController {
 
     User user;
 
-    public void loginButtonpressed(KeyEvent event) throws IOException {
-        if (username.getText().isBlank() || password.getText().isBlank()) {
-            RoutingClass.alert("Please enter your password and username");
 
-
-        } else {
-            user = new User(username.getText().trim(), password.getText());
-            UserDao userDao = new UserDao();
-            if (userDao.login(user)) {
-                if (userDao.isAdmin(user)) {
-                    RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuAdmin.fxml", "Menuadmin ", 736, 568);
-
-                    RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuAdmin.fxml", "Menuadmin ", 736, 568);
-                } else {
-                    RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuUser.fxml", "MenuUser ", 736, 568);
-                }
-
-            } else {
-                RoutingClass.alert("The entered password is wrong!");
-
-            }
-
-        }
-
-    }
 
     public void loginButtonOnAction(ActionEvent event) throws IOException {
 
         if (username.getText().isBlank() || password.getText().isBlank()) {
-            RoutingClass.alert("Please enter your password and username");
+            RoutingClass.alert("Les champs sont vides");
 
 
         } else {
@@ -70,7 +46,7 @@ public class LoginController {
                 }
 
             } else {
-                RoutingClass.alert("The entered password is wrong!");
+                RoutingClass.alert("Login ou  mot de passe incorrect!");
 
             }
 

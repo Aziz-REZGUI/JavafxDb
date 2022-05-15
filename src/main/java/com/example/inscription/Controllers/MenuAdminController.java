@@ -172,7 +172,7 @@ private TextField TextfieldProfil;
             RoutingClass.goTo("Modify_user.fxml", "Modifier", 604, 251, tableUser.getSelectionModel().getSelectedItem());
             loadUserDetails();
         } else {
-            RoutingClass.alert("please select a line ");
+            RoutingClass.alert("Sélectionner une ligne ");
         }
 
     }
@@ -314,7 +314,7 @@ private TextField TextfieldProfil;
         if (tableDomaine.getSelectionModel().getSelectedIndex() > -1) {
             RoutingClass.goTo("Modify_Domaine.fxml", "Modifier", 604, 251, tableDomaine.getSelectionModel().getSelectedItem());
         } else {
-            RoutingClass.alert("please select a line ");
+            RoutingClass.alert("Sélectionner une ligne");
         }
     }
 
@@ -345,7 +345,7 @@ private TextField TextfieldProfil;
 
 
         } else {
-            RoutingClass.alert("please select a line ");
+            RoutingClass.alert("Sélectionner une ligne ");
         }
 
     }
@@ -389,26 +389,18 @@ private TextField TextfieldProfil;
 
 
     @FXML
-    void Chercher_org(ActionEvent event) {
-        TabPane.getSelectionModel().select(OrganismeHandlerTab);
-
-
-    }
-
-
-    @FXML
     void Modifier_org(ActionEvent event) throws Exception {
         TabPane.getSelectionModel().select(OrganismeHandlerTab);
         if (tableOrganisme.getSelectionModel().getSelectedIndex() > -1) {
             RoutingClass.goTo("Modify_Organisme.fxml", "Supprimer organisme", 604, 251, tableOrganisme.getSelectionModel().getSelectedItem());
         } else {
-            RoutingClass.alert("please select a line ");
+            RoutingClass.alert("Sélectionner une ligne ");
         }
     }
 
 
     @FXML
-    void Supprimer_org(ActionEvent event) throws Exception {
+    void Supprimer_org(ActionEvent event) {
 
         TabPane.getSelectionModel().select(OrganismeHandlerTab);
 
@@ -499,7 +491,7 @@ private TextField TextfieldProfil;
             RoutingClass.goTo("Modify_profil.fxml", "Modifier", 604, 251, tableProfil.getSelectionModel().getSelectedItem());
 
         } else {
-            RoutingClass.alert("please select a line ");
+            RoutingClass.alert("Sélectionner une ligne ");
         }
     }
 
