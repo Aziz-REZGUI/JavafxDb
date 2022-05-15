@@ -30,22 +30,7 @@ public class LoginController {
     private Label Sign_up;
     User user;
 
-    /*@Override
-    public void start(Stage primaryStage) throws Exception {
-        Pane root = FXMLLoader.load(this.getClass().getResource("/views/login.fxml"));
-        Scene sceneX = new Scene(root, 1500, 870);
-        sceneX.getStylesheets().addAll(this.getClass().getResource("/views/login.css").toExternalForm());
-        primaryStage.setMaximized(true);
-        primaryStage.setScene(sceneX);
-        primaryStage.setTitle("Sign in");
-        primaryStage.show();
-    }*/
 
-    /*@FXML
-    public void sign_up(javafx.scene.input.MouseEvent mouseEvent) throws Exception {
-        RoutingClass.goTo((Stage) sign_up.getScene().getWindow(), "register.fxml", "Sign up");
-
-    }*/
 
     public void loginButtonOnAction(ActionEvent event) throws IOException {
         if (username.getText().isBlank() || password.getText().isBlank()) {
@@ -57,9 +42,9 @@ public class LoginController {
             UserDao userDao = new UserDao();
             if (userDao.login(user)) {
                 if (userDao.isAdmin(user)) {
-                    RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuAdmin.fxml", "Menuadmin ", 778, 569);
+                    RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuAdmin.fxml", "Menuadmin ", 736, 568);
                 } else {
-                    RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuUser.fxml", "MenuUser ", 778, 569);
+                    RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuUser.fxml", "MenuUser ", 736, 568);
                 }
 
             } else {
