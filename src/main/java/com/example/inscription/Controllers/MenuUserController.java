@@ -55,7 +55,7 @@ public class MenuUserController implements Initializable {
     @FXML
     private TextField TextfieldFormateur;
     @FXML
-    private TextField TextfieldParticipant;
+    private TextField TextfieldParticipant, TextfieldParticipation;
     @FXML
     private Button btnRefresh;
     @FXML
@@ -187,6 +187,8 @@ public class MenuUserController implements Initializable {
 
         tableParticipation.setItems(list3);
         TabPane1.getSelectionModel().select(ParticipationHandlerTab);
+        filtreParticipation();
+
 
     }
 
@@ -471,11 +473,11 @@ public class MenuUserController implements Initializable {
     @FXML
     void refreshTableParticipation(ActionEvent event) {
         TabPane1.getSelectionModel().select(ParticipationHandlerTab);
-        tableParticipation.getItems().clear();
-        tableParticipation.getItems().addAll(participationDao.findAll());
+
+        loadParticipationDetails();
     }
     public void Ajouter_participation(ActionEvent event) throws Exception {
-        TabPane1.getSelectionModel().select(FormationHandlerTab);
+        TabPane1.getSelectionModel().select(ParticipationHandlerTab);
         if (tableFormation.getSelectionModel().getSelectedIndex() > -1) {
             RoutingClass.goTo("Add_participation.fxml", "Ajouter participation", 604, 251, tableFormation.getSelectionModel().getSelectedItem());
         } else {
@@ -513,19 +515,41 @@ public class MenuUserController implements Initializable {
 
     }
 
-    public void Modifier_participation(ActionEvent event) throws Exception {
-        TabPane1.getSelectionModel().select(ParticipationHandlerTab);
-        if (tableParticipation.getSelectionModel().getSelectedIndex() > -1) {
-            RoutingClass.goTo("Modify_participation.fxml", "Modifier participation", 604, 251, tableParticipation.getSelectionModel().getSelectedItem());
-        } else {
-            RoutingClass.alert("please select a line ");
-        }
-    }
+
     private void loadParticipationDetails() {
         list3.clear();
         list3.addAll(participationDao.findAll());
 
         tableParticipation.setItems(list3);
+        filtreParticipation();
+    }
+
+    private void filtreParticipation() {
+        FilteredList<Participation> filteredData = new FilteredList<>(list3, b -> true);
+
+        TextfieldParticipation.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(participation -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (participation.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (participation.getIntitule().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(participation.getMatricule()).indexOf(lowerCaseFilter) != -1)
+                    return true;
+                else
+                    return false;
+            });
+        });
+
+        SortedList<Participation> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tableParticipation.comparatorProperty());
+        tableParticipation.setItems(sortedData);
+
     }
 
 

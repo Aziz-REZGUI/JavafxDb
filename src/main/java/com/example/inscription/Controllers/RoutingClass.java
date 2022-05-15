@@ -2,6 +2,7 @@ package com.example.inscription.Controllers;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -79,6 +81,7 @@ public class RoutingClass extends Application {
         Pane root = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
 
         Scene sceneX = new Scene(root, width, height);
+
         sceneX.getStylesheets().add(RoutingClass.class.getResource("/views/login.css").toExternalForm());
         SecondStage.setScene(sceneX);
         SecondStage.setTitle(title);
@@ -99,6 +102,7 @@ public class RoutingClass extends Application {
         dialogPane.getStyleClass().add("myDialog");
         alert.show();
     }
+
 
 
     //TODO delete all cumntss after checking with abir

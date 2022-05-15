@@ -59,7 +59,7 @@
                                         <Font size="18.0" />
                                     </font>
                                 </PasswordField>
-                                <Button id="sign-in" fx:id="sign_in" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="41.0" prefWidth="364.0" stylesheets="@login.css" text="Se connecter">
+                                <Button id="sign-in" fx:id="sign_in" mnemonicParsing="false" onAction="#loginButtonOnAction" onKeyPressed="#loginButtonpressed" prefHeight="41.0" prefWidth="364.0" stylesheets="@login.css" text="Se connecter">
                                     <VBox.margin>
                                         <Insets top="17.0" />
                                     </VBox.margin>
