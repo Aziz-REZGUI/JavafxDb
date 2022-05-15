@@ -23,13 +23,13 @@ public class Add_domaineController {
             if (!domainDao.exists(LibelleTextField.getText().trim())) {
                 Domaine domaine = new Domaine(LibelleTextField.getText().trim());
                 if (domainDao.create(domaine)) {
-                    RoutingClass.alert("Domain is successfully added!");
+                    RoutingClass.success("Domain ajoutée avec succée !");
                 } else {
-                    RoutingClass.alert("problem");
+                    RoutingClass.alert("probléme");
 
                 }
             } else {
-                RoutingClass.alert("domain already exists");
+                RoutingClass.alert("domain deja existant");
             }
         }
 

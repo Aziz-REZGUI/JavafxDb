@@ -48,9 +48,9 @@ public class Add_participantController {
                     PrenomTextField.getText(), Date.from(DatePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
                     CodeprofileChoiceBox.getValue().getCode_profil());
             if (participantDao.create(participant)) {
-                RoutingClass.alert("Participant is successfully added!");
+                RoutingClass.success("Participant ajouté avec succée !");
             } else {
-                RoutingClass.alert("problem");
+                RoutingClass.alert("probléme");
 
 
             }

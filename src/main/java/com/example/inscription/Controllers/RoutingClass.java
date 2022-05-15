@@ -16,6 +16,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 
 import static javafx.scene.control.Alert.AlertType.ERROR;
+import static javafx.scene.control.Alert.AlertType.INFORMATION;
 import static javafx.scene.control.ButtonType.OK;
 
 public class RoutingClass extends Application {
@@ -92,6 +93,13 @@ public class RoutingClass extends Application {
 
     public static void alert(String alertText) {
         Alert alert = new Alert(ERROR, alertText, OK);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(RoutingClass.class.getResource("/views/login.css").toExternalForm());
+        dialogPane.getStyleClass().add("myDialog");
+        alert.show();
+    }
+    public static void success(String alertText) {
+        Alert alert = new Alert(INFORMATION, alertText, OK);
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(RoutingClass.class.getResource("/views/login.css").toExternalForm());
         dialogPane.getStyleClass().add("myDialog");

@@ -81,9 +81,9 @@ public class Add_formationController {
                             Formation formation = new Formation(Integer.parseInt(nbjours), Integer.parseInt(annee), Integer.parseInt(mois), Integer.parseInt(nbpart), intitule, codeF.getCode_formateur(), codeD.getCode_domaine());
                             FormationDao formationDao = new FormationDao();
                             if (formationDao.create(formation)) {
-                                RoutingClass.alert("Formation is successfully added!");
+                                RoutingClass.success("Formation ajouté avec succée!");
                             } else {
-                                RoutingClass.alert("problem");
+                                RoutingClass.alert("probléme");
 
 
                             }

@@ -65,9 +65,9 @@ public class Modify_formateurController {
                             CodedomaineChoiceBox.getValue().getCode_domaine());
                     FormateurDao formateurDao = new FormateurDao();
                     if (formateurDao.update(formateur)) {
-                        RoutingClass.alert("success");
+                        RoutingClass.success("succés");
                     } else {
-                        RoutingClass.alert("problem");
+                        RoutingClass.alert("probléme");
 
                     }
 

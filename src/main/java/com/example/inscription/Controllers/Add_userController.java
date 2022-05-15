@@ -40,14 +40,14 @@ public class Add_userController {
         } else {
             if (!(userDao.exists(emailTextField.getText().trim()))) {
                 if (userDao.create(user)) {
-                    successLabel.setText("success");
-                    RoutingClass.alert("The user is successfully added!");
+                    //successLabel.setText("success");
+                    RoutingClass.success("l'utilisateur  ajouté avec succée!");
                 } else {
-                    successLabel.setText("problem");
+                    successLabel.setText("probléme");
 
                 }
             } else {
-                RoutingClass.alert("Username exists");
+                RoutingClass.alert("Username éxistant ");
 
             }
         }

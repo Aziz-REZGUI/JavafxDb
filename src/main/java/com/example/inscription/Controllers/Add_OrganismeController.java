@@ -21,12 +21,12 @@ public class Add_OrganismeController {
             if (!organismeDao.exists(LibelleTextField.getText().trim())) {
                 Organisme organisme = new Organisme(LibelleTextField.getText().trim());
                 if (organismeDao.create(organisme)) {
-                    RoutingClass.alert("Organisme is successfully added!");
+                    RoutingClass.success("Organisme ajouté avec succée!");
                 } else {
-                    RoutingClass.alert("problem");
+                    RoutingClass.alert("probléme");
                 }
             } else {
-                RoutingClass.alert("organisme already exists");
+                RoutingClass.alert("organisme déja éxistant ");
             }
         }
     }

@@ -79,9 +79,9 @@ public class Modify_participantController {
        else
         {  ParticipantDao participantDao = new ParticipantDao();
             if (participantDao.update(participant)) {
-                RoutingClass.alert("success");
+                RoutingClass.success("succés");
             } else {
-                RoutingClass.alert("problem");
+                RoutingClass.alert("probléme");
 
             }
         }

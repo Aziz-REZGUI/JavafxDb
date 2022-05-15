@@ -81,9 +81,9 @@ public class Modify_formationController {
                                 FormationDao formationDao = new FormationDao();
                                 // if(!formationDao.exists(formation)) {
                                 if (formationDao.update(formation)) {
-                                    RoutingClass.alert("success");
+                                    RoutingClass.success("succés");
                                 } else {
-                                    RoutingClass.alert("problem");
+                                    RoutingClass.alert("probléme");
 
                                 }
                             }

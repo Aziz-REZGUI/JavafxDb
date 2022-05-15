@@ -22,13 +22,13 @@ public class Add_profilController {
             Profil profil = new Profil(LibelleTextField.getText());
             if (!profileDao.exists(profil)) {
                 if (profileDao.create(profil)) {
-                    RoutingClass.alert("Profil is successfully added!");
+                    RoutingClass.success("Profil ajouté avec succée!");
                 } else {
-                    RoutingClass.alert("problem");
+                    RoutingClass.alert("probléme");
 
                 }
             } else {
-                RoutingClass.alert("profile alrady exists");
+                RoutingClass.alert("profile déja éxistant");
             }
         }
 

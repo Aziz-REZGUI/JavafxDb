@@ -67,9 +67,9 @@ public class Add_formateurController {
                             CodedomaineChoiceBox.getValue().getCode_domaine());
                     FormateurDao formateurDao = new FormateurDao();
                     if (formateurDao.create(formateur)) {
-                        RoutingClass.alert("Formateur is successfully added!");
+                        RoutingClass.success("Formateur ajouté avec succée!");
                     } else {
-                        RoutingClass.alert("problem");
+                        RoutingClass.alert("probléme");
 
 
                     }

@@ -50,10 +50,10 @@ public class Modify_userController {
         } else {
             UserDao userDao = new UserDao();
             if (userDao.update(user)) {
-                successLabel.setText("success");
+              RoutingClass.success("succés");
 
             } else {
-                successLabel.setText("problem");
+                successLabel.setText("probléme");
             }
         }
 

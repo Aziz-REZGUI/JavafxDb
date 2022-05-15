@@ -29,16 +29,16 @@ public class Modify_profilController {
         if (updated) {
             if (!profileDao.exists(profil)) {
                 if (profileDao.update(profil)) {
-                    RoutingClass.alert("success");
+                    RoutingClass.success("succés");
                 } else {
-                    RoutingClass.alert("problem");
+                    RoutingClass.alert("probléme");
 
                 }
             } else {
                 RoutingClass.alert("profil deja existant ");
             }
         } else {
-            RoutingClass.alert("no change detected");
+            RoutingClass.alert("aucun changement détéctée");
         }
 
     }

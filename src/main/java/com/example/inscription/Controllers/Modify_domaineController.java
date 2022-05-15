@@ -27,17 +27,17 @@ public class Modify_domaineController {
         if (updated) {
             if (!domaineDao.exists(domaine)) {
                 if (domaineDao.update(domaine)) {
-                    RoutingClass.alert("success");
+                    RoutingClass.success("succés");
 
                 } else {
-                    RoutingClass.alert("problem");
+                    RoutingClass.alert("probléme");
 
                 }
             } else {
-                RoutingClass.alert("domaine already exists");
+                RoutingClass.alert("domaine déja éxistant");
             }
         } else {
-            RoutingClass.alert("no change detected");
+            RoutingClass.alert("aucun changement détéctée");
         }
 
     }

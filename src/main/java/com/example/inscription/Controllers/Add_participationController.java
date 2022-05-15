@@ -43,9 +43,9 @@ public class Add_participationController {
 
             if (!participationDao.exists(participation)) {
                 if (participationDao.create(participation)) {
-                    RoutingClass.alert("The participation is successfully added!");
+                    RoutingClass.success("une participation ajouté avec succée!");
                 } else {
-                    RoutingClass.alert("problem!");
+                    RoutingClass.alert("probléme!");
                 }
             } else {
                 RoutingClass.alert("Participant déja affecter!");

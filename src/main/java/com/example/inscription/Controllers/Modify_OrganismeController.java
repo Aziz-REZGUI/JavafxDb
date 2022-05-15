@@ -32,9 +32,9 @@ public class Modify_OrganismeController {
         if (updated) {
             if (!organismeDao.exists(organisme)) {
                 if (organismeDao.update(organisme)) {
-                    RoutingClass.alert("success");
+                    RoutingClass.success("succés");
                 } else {
-                    RoutingClass.alert("problem");
+                    RoutingClass.alert("probléme");
 
                 }
             } else {
@@ -43,7 +43,7 @@ public class Modify_OrganismeController {
         }
         else
         {
-            RoutingClass.alert("no change detected");
+            RoutingClass.alert("aucun changement détéctée");
 
         }
 
