@@ -47,12 +47,17 @@ public class Modify_userController {
         if (roleChoiceBox.getSelectionModel().getSelectedIndex() > -1) {
             user.setRole(roleChoiceBox.getSelectionModel().getSelectedItem().toString());
         }
-        UserDao userDao = new UserDao();
-        if (userDao.update(user)) {
-            successLabel.setText("success");
+        if((EmaillTextField.getText().isEmpty())&&(passwordTextField.getText().isEmpty())&&(roleChoiceBox.getSelectionModel().getSelectedIndex() <0)){
+            RoutingClass.alert("veillez appliquez des modifications");
+        }
+        else {
+            UserDao userDao = new UserDao();
+            if (userDao.update(user)) {
+                successLabel.setText("success");
 
-        } else {
-            successLabel.setText("problem");
+            } else {
+                successLabel.setText("problem");
+            }
         }
 
     }

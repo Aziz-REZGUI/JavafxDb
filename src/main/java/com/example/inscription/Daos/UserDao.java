@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements Crud<User> {
-    Connection c = Databaseconnection.getConnection();
+  public   Connection c = Databaseconnection.getConnection();
     PreparedStatement pr = null;
 
     public boolean login(User user) {

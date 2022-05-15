@@ -50,6 +50,7 @@ public class Modify_participantController {
 
     @FXML
     void Modify_participant(ActionEvent event) {
+        Boolean updated=false;
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Participant participant = (Participant) stage.getUserData();
@@ -63,7 +64,7 @@ public class Modify_participantController {
             participant.setPrenom(PrenomTextField.getText().trim());
         }
 
-        if (!DatePicker.getValue().toString().isEmpty()) {
+        if (DatePicker.getValue()!=null) {
             participant.setDate_naissance(Date.from(DatePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
         }
@@ -71,12 +72,18 @@ public class Modify_participantController {
             participant.setCode_profil(CodeprofileChoiceBox.getSelectionModel().getSelectedItem().getCode_profil());
         }
 
-        ParticipantDao participantDao = new ParticipantDao();
-        if (participantDao.update(participant)) {
-            RoutingClass.alert("success");
-        } else {
-            RoutingClass.alert("problem");
+       if ( (CodeprofileChoiceBox.getSelectionModel().getSelectedIndex() < 0)&&(DatePicker.getValue()==null)&&(PrenomTextField.getText().isEmpty())&&(NomTextField.getText().isEmpty())){
+           RoutingClass.alert("veillez appliquez des modifications");
 
+        }
+       else
+        {  ParticipantDao participantDao = new ParticipantDao();
+            if (participantDao.update(participant)) {
+                RoutingClass.alert("success");
+            } else {
+                RoutingClass.alert("problem");
+
+            }
         }
 
     }

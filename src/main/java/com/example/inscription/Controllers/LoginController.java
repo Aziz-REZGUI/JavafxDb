@@ -38,17 +38,22 @@ public class LoginController {
         } else {
             user = new User(username.getText().trim(), password.getText());
             UserDao userDao = new UserDao();
-            if (userDao.login(user)) {
-                if (userDao.isAdmin(user)) {
-                    RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuAdmin.fxml", "Menuadmin ", 736, 568);
+          if(userDao.c!=null)  {
+                if (userDao.login(user)) {
+                    if (userDao.isAdmin(user)) {
+                        RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuAdmin.fxml", "Menuadmin ", 736, 568);
+                    } else {
+                        RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuUser.fxml", "MenuUser ", 770, 568);
+                    }
+
                 } else {
-                    RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuUser.fxml", "MenuUser ", 770, 568);
+                    RoutingClass.alert("Login ou  mot de passe incorrect!");
+
                 }
-
-            } else {
-                RoutingClass.alert("Login ou  mot de passe incorrect!");
-
             }
+          else {
+              RoutingClass.alert("erreur de connexion à la base de données");
+          }
 
         }
     }
