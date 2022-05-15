@@ -17,7 +17,6 @@ public class FormationDao implements Crud<Formation> {
         boolean state;
 
         try {
-            //   java.sql.Statement st = c.createStatement();
             PreparedStatement pr = c.prepareStatement("insert into formation(nombre_jour,annee,mois,nombre_participant,intitule,Code_formateur,code_domaine) values(?,?,?,?,?,?,?) ");
             pr.setInt(1, formation.getNombre_jours());
             pr.setInt(2, formation.getAnnee());
@@ -63,7 +62,6 @@ public class FormationDao implements Crud<Formation> {
     public boolean delete(Formation formation) {
         boolean state = false;
         try {
-
             pr = c.prepareStatement("DELETE FROM formation where code_formation=" + formation.getCode_formation());
             pr.executeUpdate();
             state = true;

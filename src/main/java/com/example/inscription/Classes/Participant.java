@@ -13,7 +13,7 @@ public class Participant {
         return nom + "  " + prenom;
     }
 
-    //constructeur
+
     public Participant(int matricule, String nom, String prenom, Date date_naissance, int code_profil) {
         this.matricule = matricule;
         this.nom = nom;

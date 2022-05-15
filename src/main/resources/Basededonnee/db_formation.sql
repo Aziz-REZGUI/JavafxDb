@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 15 mai 2022 à 13:55
+-- Généré le : dim. 15 mai 2022 à 18:49
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 7.1.32
 
@@ -20,18 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `db_formation`
 --
-
--- --------------------------------------------------------
-
---
--- Structure de la table `admin`
---
-
-CREATE TABLE `admin` (
-  `code_admin` int(11) NOT NULL,
-  `login` varchar(10) NOT NULL,
-  `password` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -146,7 +134,7 @@ CREATE TABLE `participant` (
 --
 
 INSERT INTO `participant` (`Matricule`, `Nom`, `prenom`, `date_naissance`, `Code_profil`) VALUES
-(9, 'zez', 'vzefds', '2022-05-24', 1);
+(9, 'ae', 'd', '2022-05-11', 2);
 
 -- --------------------------------------------------------
 
@@ -166,7 +154,8 @@ CREATE TABLE `participation` (
 --
 
 INSERT INTO `participation` (`Matricule`, `Nom`, `code_formation`, `intitule`) VALUES
-(9, 'zez', 9, 'dcaob');
+(9, 'zez', 9, 'dcaob'),
+(9, 'zez', 10, 'javafx');
 
 -- --------------------------------------------------------
 
@@ -209,18 +198,12 @@ INSERT INTO `utilisateur` (`code_utilisateur`, `login`, `password`, `role`) VALU
 (4, 'ceac', 'ceazc', 'User'),
 (5, 'abir', 'benabid', 'Admin'),
 (11, 'user', 'user', 'User'),
-(13, 'adzda', 'azdada', 'User'),
+(13, 'adzda', 'edd', 'User'),
 (14, 'zefzf', 'zezf', 'User');
 
 --
 -- Index pour les tables déchargées
 --
-
---
--- Index pour la table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`code_admin`);
 
 --
 -- Index pour la table `domaine`
@@ -279,12 +262,6 @@ ALTER TABLE `utilisateur`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
-
---
--- AUTO_INCREMENT pour la table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `code_admin` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `domaine`

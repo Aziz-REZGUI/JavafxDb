@@ -33,7 +33,7 @@ public class ProfileDao implements Crud<Profil> {
 
     }
 
-    public int findId(String lib) {
+ /*   public int findId(String lib) {
         int output = -1;
         try {
 
@@ -48,9 +48,9 @@ public class ProfileDao implements Crud<Profil> {
 
         }
         return output;
-    }
+    }*/
 
-    public List<String> findIds() {
+/*    public List<String> findIds() {
         List<String> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
@@ -65,7 +65,7 @@ public class ProfileDao implements Crud<Profil> {
 
         }
         return output;
-    }
+    }*/
 
     public boolean exists(String libelle) {
         boolean state = false;
@@ -130,7 +130,7 @@ public class ProfileDao implements Crud<Profil> {
         try {
             java.sql.Statement st = c.createStatement();
 
-            ResultSet resultSet = st.executeQuery("SELECT  * FROM profil where  Libelle='" + profil.getLibelle()+"'");
+            ResultSet resultSet = st.executeQuery("SELECT  * FROM profil where  Libelle='" + profil.getLibelle() + "'");
             if (resultSet.next()) {
                 state = true;
             }

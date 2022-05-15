@@ -137,7 +137,7 @@
                                         <TableColumn fx:id="col_NomFormateur" prefWidth="73.5999755859375" text="Nom" />
                               <TableColumn fx:id="col_PrenomFormateur" prefWidth="81.60002136230469" text="Prenom" />
                               <TableColumn fx:id="col_EmailFormateur" prefWidth="162.4000244140625" text="Email" />
-                              <TableColumn fx:id="col_numéroTelephoneFormateur" minWidth="0.0" prefWidth="66.4000244140625" text="Num. Tel" />
+                              <TableColumn fx:id="col_numeroTelephoneFormateur" minWidth="0.0" prefWidth="66.4000244140625" text="Num. Tel" />
                               <TableColumn fx:id="col_codeorganisme" minWidth="0.0" prefWidth="113.60003662109375" text="Code_organisme" />
                               <TableColumn fx:id="col_codedomaine" minWidth="0.0" prefWidth="98.4000244140625" text="Code_Domaine" />
                                     </columns>

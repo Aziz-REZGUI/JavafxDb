@@ -32,7 +32,7 @@ public class OrganismeDao implements Crud<Organisme> {
 
     }
 
-    public List<String> findIds() {
+   /* public List<String> findIds() {
         List<String> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
@@ -47,7 +47,7 @@ public class OrganismeDao implements Crud<Organisme> {
 
         }
         return output;
-    }
+    }*/
 
     @Override
     public boolean create(Organisme organisme) {
@@ -84,7 +84,7 @@ public class OrganismeDao implements Crud<Organisme> {
 
     }
 
-    public int findId(String lib) {
+    /*public int findId(String lib) {
         int output = -1;
         try {
 
@@ -100,7 +100,7 @@ public class OrganismeDao implements Crud<Organisme> {
         }
         return output;
     }
-
+*/
     public boolean exists(String libelle) {
         boolean state = false;
         try {

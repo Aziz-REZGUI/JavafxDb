@@ -27,13 +27,7 @@ import java.util.ResourceBundle;
 public class MenuUserController implements Initializable {
 
     @FXML
-    Button BtnDeleteFormateur, BtnDeleteFormation,
-
-    BtnDeleteParticipant, BtnModifyFormation, BtnModifyParticipant, BtnModiyFormateur, BtnSearchFormateur, BtnSearchFormation, BtnSearchParticipant;
-    @FXML
-    private Button BtnAddFormateur,
-
-    BtnAddFormation, BtnAddParticipant;
+    Button BtnDeleteFormateur, BtnDeleteFormation, BtnDeleteParticipant, BtnModifyFormation, BtnModifyParticipant, BtnModiyFormateur;
     private FormationDao formationDao = new FormationDao();
     //Gerer Formation
     ObservableList<Formation> list = FXCollections.observableArrayList(formationDao.findAll());
@@ -56,8 +50,6 @@ public class MenuUserController implements Initializable {
     private TextField TextfieldFormateur;
     @FXML
     private TextField TextfieldParticipant, TextfieldParticipation;
-    @FXML
-    private Button btnRefresh;
     @FXML
     private TableColumn<Formation, String> col_annee;
     @FXML
@@ -94,7 +86,7 @@ public class MenuUserController implements Initializable {
     private TableColumn<Participant, Integer> col_ProfilPar;
 
     @FXML
-    private TableColumn<Formateur, Integer> col_numéroTelephoneFormateur;
+    private TableColumn<Formateur, Integer> col_numeroTelephoneFormateur;
 
     @FXML
     private TableColumn<Participant, Integer> col_MatriculePar;
@@ -103,9 +95,6 @@ public class MenuUserController implements Initializable {
 
     @FXML
     private Button signOutButton;
-
-    @FXML
-    private Boolean btn_participation;
     @FXML
     private TableView<Formateur> tableFormateur;
 
@@ -158,7 +147,7 @@ public class MenuUserController implements Initializable {
         col_NomFormateur.setCellValueFactory(new PropertyValueFactory<Formateur, String>("nom"));
         col_PrenomFormateur.setCellValueFactory(new PropertyValueFactory<Formateur, String>("prenom"));
         col_EmailFormateur.setCellValueFactory(new PropertyValueFactory<Formateur, String>("email"));
-        col_numéroTelephoneFormateur.setCellValueFactory(new PropertyValueFactory<Formateur, Integer>("n_tel"));
+        col_numeroTelephoneFormateur.setCellValueFactory(new PropertyValueFactory<Formateur, Integer>("n_tel"));
         col_codeorganisme.setCellValueFactory(new PropertyValueFactory<Formateur, Integer>("Code_organisme"));
         col_codedomaine.setCellValueFactory(new PropertyValueFactory<Formateur, Integer>("code_domaine"));
         tableFormateur.setItems(list1);

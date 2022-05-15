@@ -3,7 +3,6 @@ package com.example.inscription.Controllers;
 import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Classes.Formateur;
 import com.example.inscription.Classes.Organisme;
-import com.example.inscription.Controllers.RoutingClass;
 import com.example.inscription.Daos.DomainDao;
 import com.example.inscription.Daos.FormateurDao;
 import com.example.inscription.Daos.OrganismeDao;
@@ -12,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
@@ -25,8 +23,6 @@ public class Add_formateurController {
     @FXML
     ObservableList<Domaine> list1 = FXCollections.observableArrayList(domainDao.findAll());
 
-    @FXML
-    private Button BtnAjouterFormateur;
 
     @FXML
     private ChoiceBox<Domaine> CodedomaineChoiceBox;
@@ -56,7 +52,7 @@ public class Add_formateurController {
     @FXML
     void Add_Formateur(ActionEvent event) {
         /*  */
-        if ((EmailTextField.getText().isEmpty()) || (PrenomTextField.getText().isEmpty()) || (NomTextField.getText().isEmpty()) || (NumtelTextField.getText().isEmpty())||(CodedomaineChoiceBox.getSelectionModel().getSelectedIndex()<0)||(CodeorganismeChoiceBox.getSelectionModel().getSelectedIndex()<0) ){
+        if ((EmailTextField.getText().isEmpty()) || (PrenomTextField.getText().isEmpty()) || (NomTextField.getText().isEmpty()) || (NumtelTextField.getText().isEmpty()) || (CodedomaineChoiceBox.getSelectionModel().getSelectedIndex() < 0) || (CodeorganismeChoiceBox.getSelectionModel().getSelectedIndex() < 0)) {
 
             RoutingClass.alert("veillez remplir toutes les champs ");
         } else {

@@ -13,7 +13,7 @@ public class DomainDao implements Crud<Domaine> {
     PreparedStatement pr = null;
 
 
-    public int findId(String lib) {
+    /*public int findId(String lib) {
         int output = -1;
         try {
             Statement st = c.createStatement();
@@ -27,7 +27,7 @@ public class DomainDao implements Crud<Domaine> {
 
         }
         return output;
-    }
+    }*/
     public List<Domaine> findAll() {
         List<Domaine> output = new ArrayList<>();
         try {
@@ -47,7 +47,7 @@ public class DomainDao implements Crud<Domaine> {
 
     }
 
-    public List<String> findIds()
+   /* public List<String> findIds()
     {
         List<String> output = new ArrayList<>();
         try {
@@ -63,7 +63,7 @@ public class DomainDao implements Crud<Domaine> {
 
         }
         return output;
-    }
+    }*/
 
 
 

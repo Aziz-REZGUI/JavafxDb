@@ -36,7 +36,7 @@ public class ParticipantDao implements Crud<Participant> {
     }
 
 
-    public int findId(String lib) {
+/*    public int findId(String lib) {
         int output = -1;
         try {
 
@@ -51,12 +51,9 @@ public class ParticipantDao implements Crud<Participant> {
         }
         return output;
 
-    }
+    }*/
 
-    /*
-    returns list of id's
-     */
-    public List<String> findIds() {
+   /* public List<String> findIds() {
         List<String> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
@@ -71,16 +68,13 @@ public class ParticipantDao implements Crud<Participant> {
 
         }
         return output;
-    }
+    }*/
 
     @Override
     public boolean update(Participant participant) {
         boolean state = false;
         try {
-            java.sql.Statement st = c.createStatement();
-
             pr = c.prepareStatement("UPDATE participant SET nom=?,prenom=?,date_naissance=?,Code_profil=? where matricule=?");
-
             pr.setString(1, participant.getNom());
             pr.setString(2, participant.getPrenom());
             java.sql.Date datenais = new java.sql.Date(participant.getDate_naissance().getTime());

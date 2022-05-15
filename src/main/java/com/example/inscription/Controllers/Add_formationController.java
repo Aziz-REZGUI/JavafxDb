@@ -3,7 +3,6 @@ package com.example.inscription.Controllers;
 import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Classes.Formateur;
 import com.example.inscription.Classes.Formation;
-import com.example.inscription.Controllers.RoutingClass;
 import com.example.inscription.Daos.DomainDao;
 import com.example.inscription.Daos.FormateurDao;
 import com.example.inscription.Daos.FormationDao;
@@ -12,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
@@ -24,12 +22,6 @@ public class Add_formationController {
     ObservableList<Formateur> list = FXCollections.observableArrayList(formateurDao.findAll());
     @FXML
     ObservableList<Domaine> list1 = FXCollections.observableArrayList(domainDao.findAll());
-
-    @FXML
-    private Button BtnAjouterFormation;
-
-    @FXML
-    private TextField Code_formateurTextField;
 
     @FXML
     private ChoiceBox<Domaine> CodedomaineChoiceBox;
@@ -73,14 +65,14 @@ public class Add_formationController {
 
 
         } else {
-            if ((!StringUtils.isStrictlyNumeric(nbjours)) || (!StringUtils.isStrictlyNumeric(annee)) || (!StringUtils.isStrictlyNumeric(mois)) || (!StringUtils.isStrictlyNumeric(nbpart))||(CodedomaineChoiceBox.getValue()==null)||(CodeformateurChoiceBox.getValue()==null)) {
+            if ((!StringUtils.isStrictlyNumeric(nbjours)) || (!StringUtils.isStrictlyNumeric(annee)) || (!StringUtils.isStrictlyNumeric(mois)) || (!StringUtils.isStrictlyNumeric(nbpart)) || (CodedomaineChoiceBox.getValue() == null) || (CodeformateurChoiceBox.getValue() == null)) {
                 RoutingClass.alert("le nombre jours/annee/mois/nombre participants doit strictement contient un nombre ");
 
             } else {
                 if (annee.length() != 4) {
                     RoutingClass.alert("le champs annee de etre de taille 4");
                 } else {
-                    if ((Integer.parseInt(mois) > 12) || ( Integer.parseInt(mois) < 1)) {
+                    if ((Integer.parseInt(mois) > 12) || (Integer.parseInt(mois) < 1)) {
                         RoutingClass.alert("le mois doit entre entre 1 et 12 ");
                     } else {
                         if (Integer.parseInt(nbpart) < 4) {

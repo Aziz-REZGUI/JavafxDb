@@ -12,7 +12,7 @@ public class ParticipationDao implements Crud<Participation> {
     Connection c = Databaseconnection.getConnection();
     PreparedStatement pr = null;
 
-    public List<Integer> findparticipantIds() {
+   /* public List<Integer> findparticipantIds() {
         List<Integer> output = new ArrayList<>();
         try {
             Statement st = c.createStatement();
@@ -27,9 +27,9 @@ public class ParticipationDao implements Crud<Participation> {
 
         }
         return output;
-    }
+    }*/
 
-    public String find_intitule(int id) {
+ /*   public String find_intitule(int id) {
         String output = "intitule invalide";
 
         try {
@@ -44,9 +44,9 @@ public class ParticipationDao implements Crud<Participation> {
 
         }
         return output;
-    }
+    }*/
 
-    public String find_nom(int id) {
+    /*public String find_nom(int id) {
         String output = "nom invalide";
 
         try {
@@ -61,33 +61,31 @@ public class ParticipationDao implements Crud<Participation> {
 
         }
         return output;
-    }
+    }*/
 
-    public List<Integer> findformationIds() {
-        List<Integer> output = new ArrayList<>();
-        try {
-            Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  code_formation FROM formation");
+    /* public List<Integer> findformationIds() {
+         List<Integer> output = new ArrayList<>();
+         try {
+             Statement st = c.createStatement();
+             ResultSet resultSet = st.executeQuery("SELECT  code_formation FROM formation");
 
-            while (resultSet.next()) {
-                output.add(resultSet.getInt("code_formation"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            e.getCause();
+             while (resultSet.next()) {
+                 output.add(resultSet.getInt("code_formation"));
+             }
+         } catch (SQLException e) {
+             e.printStackTrace();
+             e.getCause();
 
-        }
-        return output;
-    }
-
+         }
+         return output;
+     }
+ */
     @Override
     public boolean create(Participation participation) {
         boolean state;
 
         try {
-            //   java.sql.Statement st = c.createStatement();
             PreparedStatement pr = c.prepareStatement("insert into participation(Matricule, code_formation,Nom,intitule) values(?,?,?,?) ");
-
             pr.setInt(1, participation.getMatricule());
             pr.setInt(2, participation.getCode_formation());
             pr.setString(3, participation.getNom());
@@ -107,7 +105,7 @@ public class ParticipationDao implements Crud<Participation> {
     @Override
     public boolean update(Participation participation) {
 
-        //TODO check return
+
         boolean state = false;
         try {
             java.sql.Statement st = c.createStatement();

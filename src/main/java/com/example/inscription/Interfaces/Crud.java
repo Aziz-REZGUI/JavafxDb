@@ -1,7 +1,6 @@
 package com.example.inscription.Interfaces;
 
 import java.util.List;
-import java.util.Objects;
 
 public interface Crud<S> {
     boolean create(S o);

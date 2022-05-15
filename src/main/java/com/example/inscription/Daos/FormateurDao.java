@@ -95,7 +95,7 @@ public class FormateurDao implements Crud<Formateur> {
         return output;
     }
 
-    public List<Integer> findIds()
+   /* public List<Integer> findIds()
     {
         List<Integer> output = new ArrayList<>();
         try {
@@ -113,7 +113,7 @@ public class FormateurDao implements Crud<Formateur> {
         }
         return output;
     }
-
+*/
     @Override
     public boolean exists(Formateur formateur) {
         boolean state = false;

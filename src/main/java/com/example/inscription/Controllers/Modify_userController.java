@@ -19,7 +19,7 @@ public class Modify_userController {
     @FXML
     ChoiceBox roleChoiceBox;
     @FXML
-    TextField IDTextField, EmaillTextField, passwordTextField;
+    TextField EmaillTextField, passwordTextField;
 
     @FXML
     Label successLabel;
@@ -33,8 +33,6 @@ public class Modify_userController {
 
 
     public void Update_user(ActionEvent event) {
-        //TODO add fullname
-        //User user = new User(Integer.parseInt(IDTextField.getText().trim()), EmaillTextField.getText(), passwordTextField.getText(), "test", roleChoiceBox.getValue().toString());
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         User user = (User) stage.getUserData();
@@ -47,10 +45,9 @@ public class Modify_userController {
         if (roleChoiceBox.getSelectionModel().getSelectedIndex() > -1) {
             user.setRole(roleChoiceBox.getSelectionModel().getSelectedItem().toString());
         }
-        if((EmaillTextField.getText().isEmpty())&&(passwordTextField.getText().isEmpty())&&(roleChoiceBox.getSelectionModel().getSelectedIndex() <0)){
+        if ((EmaillTextField.getText().isEmpty()) && (passwordTextField.getText().isEmpty()) && (roleChoiceBox.getSelectionModel().getSelectedIndex() < 0)) {
             RoutingClass.alert("veillez appliquez des modifications");
-        }
-        else {
+        } else {
             UserDao userDao = new UserDao();
             if (userDao.update(user)) {
                 successLabel.setText("success");

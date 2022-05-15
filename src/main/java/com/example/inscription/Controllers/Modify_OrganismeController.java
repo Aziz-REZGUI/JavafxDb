@@ -12,12 +12,8 @@ import javafx.stage.Stage;
 
 public class Modify_OrganismeController {
 
-    @FXML
-    private Button BtnModifierOrganisme;
 
-    @FXML
-    private TextField CodeOrganismeTextField;
-    boolean updated = false;
+    private boolean updated = false;
 
     @FXML
     private TextField LibelleTextField;
