@@ -44,7 +44,7 @@ public class LoginController {
                 if (userDao.isAdmin(user)) {
                     RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuAdmin.fxml", "Menuadmin ", 736, 568);
                 } else {
-                    RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuUser.fxml", "MenuUser ", 736, 568);
+                    RoutingClass.goTo((Stage) sign_in.getScene().getWindow(), "MenuUser.fxml", "MenuUser ", 770, 568);
                 }
 
             } else {
