@@ -179,6 +179,10 @@ public class MenuUserController implements Initializable {
         filtreParticipation();
 
 
+
+        TabPane1.getSelectionModel().select(FormationHandlerTab);
+
+
     }
 
     //--------------Gerer_Formateur---------------------//
@@ -470,6 +474,7 @@ public class MenuUserController implements Initializable {
         if (tableFormation.getSelectionModel().getSelectedIndex() > -1) {
             RoutingClass.goTo("Add_participation.fxml", "Ajouter participation", 604, 251, tableFormation.getSelectionModel().getSelectedItem());
         } else {
+            TabPane1.getSelectionModel().select(FormationHandlerTab);
             RoutingClass.alert("Sélectionner une ligne ");
 
         }

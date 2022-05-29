@@ -151,6 +151,11 @@ private TextField TextfieldProfil;
         TabPane.getSelectionModel().select(ProfilHandlerTab);
         filtreprofile();
 
+
+
+
+        TabPane.getSelectionModel().select(UserHandlerTab);
+
     }
 
 
