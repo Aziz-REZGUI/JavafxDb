@@ -1,17 +1,14 @@
 package com.example.inscription.Controllers;
 
-import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -20,7 +17,9 @@ import static javafx.scene.control.Alert.AlertType.INFORMATION;
 import static javafx.scene.control.ButtonType.OK;
 
 public class RoutingClass extends Application {
-
+    /*
+    fonction d'envoie  avec la specification du stage, le chemain du fxml, le titre de la scene et les dimensions
+     */
     static public void goTo(Stage stage, String fileName, String title, float width, float height) throws IOException {
         Parent signUp = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
         stage.getIcons().add(new Image(RoutingClass.class.getResourceAsStream("/Images/logo.png")));
@@ -34,6 +33,9 @@ public class RoutingClass extends Application {
         stage.show();
     }
 
+    /*
+    fonction d'envoie  avec la specification du stage, le chemain du fxml, le titre de la scene et les dimensions  avec evnoi de données entre les stages
+     */
     static public void goTo(Stage stage, String fileName, String title, float width, float height, Object data) throws IOException {
         Parent signUp = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
         Scene scene = new Scene(signUp, width, height);
@@ -48,6 +50,9 @@ public class RoutingClass extends Application {
         stage.show();
     }
 
+    /*
+fonction d'envoie  avec la creation  du nouveau  stage, le chemain du fxml, le titre de la scene et les dimensions
+ */
     static public void goTo(String fileName, String title, float width, float height, Object data) throws IOException {
         Stage SecondStage = new Stage();
         SecondStage.getIcons().add(new Image(RoutingClass.class.getResourceAsStream("/Images/logo.png")));
@@ -60,6 +65,9 @@ public class RoutingClass extends Application {
         SecondStage.setResizable(false);
         SecondStage.show();
     }
+    /*
+fonction d'envoie  avec la specification du stage, le chemain du fxml, le titre de la scene avec des tailles par defaut
+ */
 
     static public void goTo(Stage stage, String fileName, String title) throws IOException {
         Parent signUp = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
@@ -73,6 +81,9 @@ public class RoutingClass extends Application {
         stage.show();
     }
 
+    /*
+    fonction d'envoie  avec  creation du nouveau stage, le chemain du fxml, le titre de la scene et les dimensions
+     */
     static public void goTo(String fileName, String title, float width, float height) throws IOException {
         Stage SecondStage = new Stage();
         SecondStage.getIcons().add(new Image(RoutingClass.class.getResourceAsStream("/Images/logo.png")));
@@ -84,13 +95,15 @@ public class RoutingClass extends Application {
         SecondStage.show();
     }
 
-    public static void MsgErreur(Label label) {
-        FadeTransition ft = new FadeTransition(Duration.millis(1000), label);
-        ft.setFromValue(0.0);
-        ft.setToValue(1);
-        ft.play();
-    }
-
+    /*   public static void MsgErreur(Label label) {
+           FadeTransition ft = new FadeTransition(Duration.millis(1000), label);
+           ft.setFromValue(0.0);
+           ft.setToValue(1);
+           ft.play();
+       }*/
+/*
+creation d'un popup  d'erreur avec un texte en parametre
+ */
     public static void alert(String alertText) {
         Alert alert = new Alert(ERROR, alertText, OK);
         DialogPane dialogPane = alert.getDialogPane();
@@ -98,6 +111,10 @@ public class RoutingClass extends Application {
         dialogPane.getStyleClass().add("myDialog");
         alert.show();
     }
+
+    /*
+creation d'un popup  d'infotmation  avec un texte en parametre
+ */
     public static void success(String alertText) {
         Alert alert = new Alert(INFORMATION, alertText, OK);
         DialogPane dialogPane = alert.getDialogPane();
@@ -110,6 +127,9 @@ public class RoutingClass extends Application {
         launch(args);
     }
 
+    /*
+ l'interface de demarrage
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane root = FXMLLoader.load(this.getClass().getResource("/views/login.fxml"));
