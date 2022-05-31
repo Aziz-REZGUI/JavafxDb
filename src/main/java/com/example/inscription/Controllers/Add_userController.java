@@ -33,7 +33,7 @@ public class Add_userController {
     public void Ajouter_user(ActionEvent event) {
 
 
-        User user = new User(emailTextField.getText().trim(), passwordTextField.getText().trim(), roleChoiceBox.getValue().toString());
+        User user = new User(emailTextField.getText().trim(), passwordTextField.getText().trim(), roleChoiceBox.getSelectionModel().getSelectedItem().toString());
         UserDao userDao = new UserDao();
         if ((emailTextField.getText().isEmpty()) || (passwordTextField.getText().isEmpty()) || (roleChoiceBox.getSelectionModel().getSelectedIndex() < 0)) {
             RoutingClass.alert("Veillez remplir tous les champs ");

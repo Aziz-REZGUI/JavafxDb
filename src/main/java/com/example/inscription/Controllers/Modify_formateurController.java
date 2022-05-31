@@ -51,6 +51,9 @@ public class Modify_formateurController {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Formateur formateurd = (Formateur) stage.getUserData();
+
+        EmailTextField.setText(formateurd.getEmail());
+
         if ((EmailTextField.getText().isEmpty()) || (PrenomTextField.getText().isEmpty()) || (NomTextField.getText().isEmpty()) || (NumtelTextField.getText().isEmpty()) || (CodedomaineChoiceBox.getSelectionModel().getSelectedIndex() < 0) || (CodeorganismeChoiceBox.getSelectionModel().getSelectedIndex() < 0)) {
             RoutingClass.alert("veillez remplir toutes les champs ");
         } else {
