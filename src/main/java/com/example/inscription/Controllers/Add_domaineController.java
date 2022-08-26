@@ -4,12 +4,10 @@ import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Daos.DomainDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class Add_domaineController {
-    @FXML
-    Button CancelButton;
+public class  Add_domaineController {
+
     @FXML
     TextField LibelleTextField;
 
