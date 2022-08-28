@@ -1,7 +1,9 @@
 package com.example.inscription.Controllers;
 
-import com.example.inscription.Classes.*;
-import com.example.inscription.Controllers.RoutingClass;
+import com.example.inscription.Classes.Formateur;
+import com.example.inscription.Classes.Formation;
+import com.example.inscription.Classes.Participant;
+import com.example.inscription.Classes.Participation;
 import com.example.inscription.Daos.FormateurDao;
 import com.example.inscription.Daos.FormationDao;
 import com.example.inscription.Daos.ParticipantDao;
@@ -28,12 +30,12 @@ public class MenuUserController implements Initializable {
 
     @FXML
     Button BtnDeleteFormateur, BtnDeleteFormation, BtnDeleteParticipant, BtnModifyFormation, BtnModifyParticipant, BtnModiyFormateur;
-    private FormationDao formationDao = new FormationDao();
+    private final FormationDao formationDao = new FormationDao();
     //Gerer Formation
     ObservableList<Formation> list = FXCollections.observableArrayList(formationDao.findAll());
-    private FormateurDao formateurDao = new FormateurDao();
+    private final FormateurDao formateurDao = new FormateurDao();
     ObservableList<Formateur> list1 = FXCollections.observableArrayList(formateurDao.findAll());
-    private ParticipantDao participantDao = new ParticipantDao();
+    private final ParticipantDao participantDao = new ParticipantDao();
     //Gerer participant
     ObservableList<Participant> list2 = FXCollections.observableArrayList(participantDao.findAll());
     @FXML
@@ -107,7 +109,7 @@ public class MenuUserController implements Initializable {
     @FXML
     private Tab ParticipationHandlerTab;
 
-    private ParticipationDao participationDao = new ParticipationDao();
+    private final ParticipationDao participationDao = new ParticipationDao();
     ObservableList<Participation> list3 = FXCollections.observableArrayList(participationDao.findAll());
 
 
@@ -121,7 +123,6 @@ public class MenuUserController implements Initializable {
     private TableColumn<Participation, Integer> col_code_formation;
     @FXML
     private TableColumn<Participation, String> col_intituleParticipation;
-    ;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -262,11 +263,7 @@ public class MenuUserController implements Initializable {
                     return true;
                 } else if (String.valueOf(formateur.getCode_formateur()).indexOf(lowerCaseFilter) != -1) {
                     return true;
-                }else if (String.valueOf(formateur.getN_tel()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                }
-                else
-                    return false;
+                } else return String.valueOf(formateur.getN_tel()).indexOf(lowerCaseFilter) != -1;
             });
         });
 
@@ -355,10 +352,7 @@ public class MenuUserController implements Initializable {
                 if (formation.getIntitule().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
 
-                } else if (String.valueOf(formation.getCode_formation()).indexOf(lowerCaseFilter) != -1)
-                    return true;
-                else
-                    return false;
+                } else return String.valueOf(formation.getCode_formation()).indexOf(lowerCaseFilter) != -1;
             });
         });
 
@@ -447,10 +441,7 @@ public class MenuUserController implements Initializable {
                     return true;
                 } else if (participant.getPrenom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if (String.valueOf(participant.getDate_naissance()).indexOf(lowerCaseFilter) != -1)
-                    return true;
-                else
-                    return false;
+                } else return String.valueOf(participant.getDate_naissance()).indexOf(lowerCaseFilter) != -1;
             });
         });
 
@@ -533,10 +524,7 @@ public class MenuUserController implements Initializable {
                     return true;
                 } else if (participation.getIntitule().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if (String.valueOf(participation.getMatricule()).indexOf(lowerCaseFilter) != -1)
-                    return true;
-                else
-                    return false;
+                } else return String.valueOf(participation.getMatricule()).indexOf(lowerCaseFilter) != -1;
             });
         });
 
@@ -553,4 +541,10 @@ public class MenuUserController implements Initializable {
 
         RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login", 450, 550);
     }
+//    System.out.println(jsonres);
 }
+
+
+//    Adnene Mhiri
+//$response = $client->request('GET', 'https://live-fitness-and-health-news.p.rapidapi.com/news',['headers'=>['X-RapidAPI-Host' => 'live-fitness-and-health-news.p.rapidapi.com',
+//        'X-RapidAPI-Key' => '4c0a99687fmshff00f8e0368243bp104588jsn8d9d5bfef934']]);

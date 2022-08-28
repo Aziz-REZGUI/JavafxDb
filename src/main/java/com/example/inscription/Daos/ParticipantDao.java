@@ -36,40 +36,6 @@ public class ParticipantDao implements Crud<Participant> {
     }
 
 
-/*    public int findId(String lib) {
-        int output = -1;
-        try {
-
-            Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  code_domaine FROM domaine where Libelle=" + lib);
-            output = resultSet.getInt("code_domaine");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            e.getCause();
-
-        }
-        return output;
-
-    }*/
-
-   /* public List<String> findIds() {
-        List<String> output = new ArrayList<>();
-        try {
-            Statement st = c.createStatement();
-            ResultSet resultSet = st.executeQuery("SELECT  Libelle FROM domaine");
-
-            while (resultSet.next()) {
-                output.add(resultSet.getString("Libelle"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            e.getCause();
-
-        }
-        return output;
-    }*/
-
     @Override
     public boolean update(Participant participant) {
         boolean state = false;
@@ -120,7 +86,7 @@ public class ParticipantDao implements Crud<Participant> {
     public boolean delete(Participant participant) {
         boolean state = false;
         try {
-            java.sql.Statement st = c.createStatement();
+
 
             pr = c.prepareStatement("DELETE FROM participant where matricule=" + participant.getMatricule());
             pr.executeUpdate();

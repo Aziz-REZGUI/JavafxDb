@@ -20,7 +20,7 @@ public class RoutingClass extends Application {
     /*
     fonction d'envoie  avec la specification du stage, le chemain du fxml, le titre de la scene et les dimensions
      */
-    static public void goTo(Stage stage, String fileName, String title, float width, float height) throws IOException {
+    public static void goTo(Stage stage, String fileName, String title, float width, float height) throws IOException {
         Parent signUp = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
         stage.getIcons().add(new Image(RoutingClass.class.getResourceAsStream("/Images/logo.png")));
         Scene scene = new Scene(signUp, width, height);
@@ -36,7 +36,7 @@ public class RoutingClass extends Application {
     /*
     fonction d'envoie  avec la specification du stage, le chemain du fxml, le titre de la scene et les dimensions  avec evnoi de données entre les stages
      */
-    static public void goTo(Stage stage, String fileName, String title, float width, float height, Object data) throws IOException {
+    public static void goTo(Stage stage, String fileName, String title, float width, float height, Object data) throws IOException {
         Parent signUp = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
         Scene scene = new Scene(signUp, width, height);
         stage.getIcons().add(new Image(RoutingClass.class.getResourceAsStream("/Images/logo.png")));
@@ -53,7 +53,7 @@ public class RoutingClass extends Application {
     /*
 fonction d'envoie  avec la creation  du nouveau  stage, le chemain du fxml, le titre de la scene et les dimensions
  */
-    static public void goTo(String fileName, String title, float width, float height, Object data) throws IOException {
+    public static void goTo(String fileName, String title, float width, float height, Object data) throws IOException {
         Stage SecondStage = new Stage();
         SecondStage.getIcons().add(new Image(RoutingClass.class.getResourceAsStream("/Images/logo.png")));
         Pane root = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
@@ -69,7 +69,7 @@ fonction d'envoie  avec la creation  du nouveau  stage, le chemain du fxml, le t
 fonction d'envoie  avec la specification du stage, le chemain du fxml, le titre de la scene avec des tailles par defaut
  */
 
-    static public void goTo(Stage stage, String fileName, String title) throws IOException {
+    public static void goTo(Stage stage, String fileName, String title) throws IOException {
         Parent signUp = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));
         Scene scene = new Scene(signUp, 1500, 870);
         scene.getStylesheets().add(RoutingClass.class.getResource("/views/login.css").toExternalForm());
@@ -84,7 +84,7 @@ fonction d'envoie  avec la specification du stage, le chemain du fxml, le titre 
     /*
     fonction d'envoie  avec  creation du nouveau stage, le chemain du fxml, le titre de la scene et les dimensions
      */
-    static public void goTo(String fileName, String title, float width, float height) throws IOException {
+    public static void goTo(String fileName, String title, float width, float height) throws IOException {
         Stage SecondStage = new Stage();
         SecondStage.getIcons().add(new Image(RoutingClass.class.getResourceAsStream("/Images/logo.png")));
         Pane root = FXMLLoader.load(RoutingClass.class.getResource("/views/" + fileName));

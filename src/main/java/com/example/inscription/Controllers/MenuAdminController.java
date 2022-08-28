@@ -4,8 +4,6 @@ import com.example.inscription.Classes.Domaine;
 import com.example.inscription.Classes.Organisme;
 import com.example.inscription.Classes.Profil;
 import com.example.inscription.Classes.User;
-import com.example.inscription.Controllers.LoginController;
-import com.example.inscription.Controllers.RoutingClass;
 import com.example.inscription.Daos.DomainDao;
 import com.example.inscription.Daos.OrganismeDao;
 import com.example.inscription.Daos.ProfileDao;
@@ -16,7 +14,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -30,10 +27,10 @@ import java.util.ResourceBundle;
 
 public class MenuAdminController implements Initializable {
 
-    private UserDao userDao = new UserDao();
-    private DomainDao domainDao = new DomainDao();
-    private OrganismeDao organismeDao = new OrganismeDao();
-    private ProfileDao profileDao = new ProfileDao();
+    private final UserDao userDao = new UserDao();
+    private final DomainDao domainDao = new DomainDao();
+    private final OrganismeDao organismeDao = new OrganismeDao();
+    private final ProfileDao profileDao = new ProfileDao();
     @FXML
     TabPane TabPane;
 
@@ -233,10 +230,7 @@ private TextField TextfieldProfil;
                     return true;
                 } else if (user.getPassword().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if (String.valueOf(user.getCodeutilisateur()).indexOf(lowerCaseFilter) != -1)
-                    return true;
-                else
-                    return false;
+                } else return String.valueOf(user.getCodeutilisateur()).indexOf(lowerCaseFilter) != -1;
             });
         });
 
@@ -271,10 +265,7 @@ private TextField TextfieldProfil;
                     return true;
                 } else if (user.getPassword().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if (String.valueOf(user.getCodeutilisateur()).indexOf(lowerCaseFilter) != -1)
-                    return true;
-                else
-                    return false;
+                } else return String.valueOf(user.getCodeutilisateur()).indexOf(lowerCaseFilter) != -1;
             });
         });
 
@@ -369,10 +360,7 @@ private TextField TextfieldProfil;
                 if (domaine.getLibelle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
 
-                } else if (String.valueOf(domaine.getCode_domaine()).indexOf(lowerCaseFilter) != -1)
-                    return true;
-                else
-                    return false;
+                } else return String.valueOf(domaine.getCode_domaine()).indexOf(lowerCaseFilter) != -1;
             });
         });
 
@@ -467,10 +455,7 @@ private TextField TextfieldProfil;
                 if (organisme.getLibelle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
 
-                } else if (String.valueOf(organisme.getCode_organisme()).indexOf(lowerCaseFilter) != -1)
-                    return true;
-                else
-                    return false;
+                } else return String.valueOf(organisme.getCode_organisme()).indexOf(lowerCaseFilter) != -1;
             });
         });
 
@@ -563,10 +548,7 @@ private TextField TextfieldProfil;
                 if (profil.getLibelle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
 
-                } else if (String.valueOf(profil.getCode_profil()).indexOf(lowerCaseFilter) != -1)
-                    return true;
-                else
-                    return false;
+                } else return String.valueOf(profil.getCode_profil()).indexOf(lowerCaseFilter) != -1;
             });
         });
 
@@ -581,10 +563,7 @@ private TextField TextfieldProfil;
     void signOut(ActionEvent event) throws IOException {
 
         RoutingClass.goTo((Stage) signOutButton.getScene().getWindow(), "login.fxml", "login", 450, 550);
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource("/views/login.fxml"));
-        LoginController controller = new LoginController();
-        loader.setController(controller);
+//
 
 
     }
